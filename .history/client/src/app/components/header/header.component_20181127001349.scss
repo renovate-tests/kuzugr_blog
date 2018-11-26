@@ -1,0 +1,24 @@
+.header-block {
+  width: 100%;
+  display: flex;
+  margin-bottom: 3%;
+}
+
+.title-block {
+  width: 20%;
+  text-align: left;
+  margin-left: 3%;
+  margin-right: 55%;
+}
+
+.account-block {
+  width: 20%;
+  text-align: right;
+
+  span {
+    margin-right: 10%;
+
+    display: inline-flex;
+    align-items: center;
+  }
+}

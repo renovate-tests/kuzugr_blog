@@ -1,0 +1,16 @@
+<div class='login-body'>
+  <h2>ログイン</h2>
+  <div class='form-block'>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <p class="field">
+        <label>メールアドレス</label>
+        <input type="email" formControlName="email">
+      </p>
+      <span class="field">
+        <label>パスワード</label>
+        <input type="password" formControlName="password">
+      </span>
+      <input type="submit" value='ログイン'>
+    </form>
+  </div>
+</div>

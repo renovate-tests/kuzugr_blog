@@ -1,0 +1,15 @@
+.header-block {
+  display: flex
+}
+
+.title-block {
+  text-align: center;
+}
+
+.account-block {
+  text-align: right;
+
+  span {
+    margin-right: 1rem;
+  }
+}

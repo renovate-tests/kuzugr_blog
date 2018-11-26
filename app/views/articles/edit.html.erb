@@ -1,0 +1,12 @@
+<div class="contents row">
+  <a href="/">一覧にもどる</a>
+  <%= form_tag("/#{@article.id}", method: :patch) do %>
+    <h3>
+      編集する
+    </h3>
+    <p><input type="text" name="title" placeholder="タイトル" value="<%= @article.title %>"></p>
+    <p><input type="text" name="image" placeholder="Image Url" value="<%= @article.image %>"></p>
+    <textarea name="content" placeholder="記事を編集してください" rows="10" cols="50"><%= @article.content %></textarea>
+    <p><input type="submit" value="投稿"></p>
+  <% end %>
+</div>

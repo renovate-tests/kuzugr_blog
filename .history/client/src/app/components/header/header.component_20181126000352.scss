@@ -1,0 +1,19 @@
+.header-block {
+  width: 100%;
+}
+
+.title-block {
+  display: inline-block;
+  width: 80%;
+  text-align: left;
+}
+
+.account-block {
+  display: inline-block;
+  width: 20%;
+  text-align: right;
+
+  span {
+    margin-right: 1rem;
+  }
+}
