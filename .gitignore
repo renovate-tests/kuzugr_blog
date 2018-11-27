@@ -19,5 +19,5 @@
 
 .byebug_history
 .history/
-.tags/
+.tags
 .DS_Store
