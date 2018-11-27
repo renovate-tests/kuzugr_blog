@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resource :login, only: [:create], controller: :sessions
+      get :login_state, controller: :sessions
     end
   end
 end
