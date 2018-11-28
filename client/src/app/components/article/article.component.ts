@@ -3,7 +3,7 @@ import { ArticleService } from './article.service';
 import { Article } from 'src/app/shared/models/article';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { ArticlesResponse } from './articles-response'
+import { ArticlesResponse } from './articles-response';
 
 @Component({
   selector: 'app-article',
