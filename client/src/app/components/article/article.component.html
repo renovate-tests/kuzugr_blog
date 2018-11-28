@@ -1,11 +1,11 @@
-<div class='article-body'>
-  <h2 class='title'>記事のタイトル</h2>
+<div class='article-body' *ngIf="article">
+  <h2 class='title'>{{article.title}}</h2>
   <div>
     <div class='date'>
-      <span>投稿日時: xxxx-xx-xx xx:xx</span>
+      <span>投稿日時: {{article.created_at}}</span>
     </div>
     <div class='content'>
-      記事の本文
+      {{article.content}}
     </div>
   </div>
 </div>

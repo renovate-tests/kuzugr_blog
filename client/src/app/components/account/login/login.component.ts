@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { SessionService } from '../session.service';
 import { User } from 'src/app/shared/models/user';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
   user: User;
 
   constructor(private sessionService: SessionService,
-              private cookieService: CookieService) { }
+              private cookieService: CookieService,
+              private router: Router) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -31,6 +33,8 @@ export class LoginComponent implements OnInit {
         data => {
           this.cookieService.set( 'login_email', data['email'], 1 );
           this.cookieService.set( 'access_token', data['access_token'], 1 );
+          this.router.navigateByUrl(`/`);
+          location.reload();
         },
         error => {
           // エラーメッセージを出す

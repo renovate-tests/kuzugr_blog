@@ -3,8 +3,9 @@
     <h1 [routerLink]="['/']">ブログのタイトル</h1>
   </div>
   <div class='account-block'>
-    <span [routerLink]="['/login']">ログイン</span>
-    <span [routerLink]="['/registration']">新規登録</span>
+    <span *ngIf="!loginState()" [routerLink]="['/login']">ログイン</span>
+    <span *ngIf="loginState()" [routerLink]="['/registration']">ユーザ新規登録</span>
+    <span *ngIf="loginState()" [routerLink]="['/registration']">新規投稿</span>
   </div>
   <span *ngIf="loginState()">test-</span>
 </div>
