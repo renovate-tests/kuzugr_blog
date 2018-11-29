@@ -2,6 +2,7 @@ module Api
   module V1
     class ArticlesController < ApplicationController
       skip_before_action :authenticate_user_from_token!, only: [:index, :show]
+      skip_before_action :verify_authenticity_token, only: [:create]
 
       def index
         @articles = Article.order('created_at desc').limit(params[:limit])
@@ -38,7 +39,7 @@ module Api
 
       private
       def article_params
-        params.permit(:title, :content, :thumbnail)
+        params[:article].permit(:title, :content, :thumbnail)
       end
 
       def move_to_index

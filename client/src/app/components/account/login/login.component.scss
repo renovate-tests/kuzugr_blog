@@ -22,13 +22,30 @@
     margin-right: 5%;
     width: 20%;
     float: left;
+    font-weight: 700;
   }
 
   .password-li {
     margin-bottom: 3%;
   }
+
   .login-btn-li {
     margin-right: 40%;
     float: right;
+
+    button {
+      color: #fff;
+      border-color: #1a3d66;
+      background-color: #214d7f;
+      border-radius: 4px;
+      font-weight: 700;
+      cursor: pointer;
+      height: 30px;
+    }
+  }
+
+  input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
   }
 }

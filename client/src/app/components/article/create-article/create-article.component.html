@@ -1,0 +1,26 @@
+<div class='create-article-body'>
+  <h2 class='title'>新規投稿</h2>
+  <div class='form-block'>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div>
+        <div class='label-div'>
+          <label>タイトル</label>
+        </div>
+        <div class='form-control'>
+          <input class='title' type="text" formControlName="title">
+        </div>
+      </div>
+      <div>
+        <div class='label-div'>
+          <label>本文</label>
+        </div>
+        <div class='form-control'>
+          <textarea class='content' rows=30 formControlName="content"></textarea>
+        </div>
+      </div>
+      <button class='create-btn fa' type="submit">
+        <i class="fa fa-sign-in" aria-hidden="true"></i>投稿
+      </button>
+    </form>
+  </div>
+</div>

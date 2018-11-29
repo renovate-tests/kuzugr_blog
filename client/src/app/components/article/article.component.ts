@@ -13,12 +13,14 @@ import { ArticlesResponse } from './articles-response';
 export class ArticleComponent implements OnInit {
   articles: ArticlesResponse;
   article: Article;
+  articleLoaded: boolean;
 
   constructor(private articleService: ArticleService,
     private cookieService: CookieService,
     private router: Router) { }
 
   ngOnInit() {
+    this.articleLoaded = false;
     this.getArticles();
   }
 
@@ -35,8 +37,12 @@ export class ArticleComponent implements OnInit {
     this.articleService.getArticle(articleId).subscribe(
       response => {
         this.article = response;
-        this.router.navigateByUrl('/');
+        this.articleLoaded = true;
       }
     );
+  }
+
+  dataLoaded(): boolean {
+    return this.articleLoaded;
   }
 }

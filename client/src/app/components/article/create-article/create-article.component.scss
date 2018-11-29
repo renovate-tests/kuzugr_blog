@@ -1,0 +1,51 @@
+.create-article-body {
+  display: inline-block;
+  width: 100%;
+  margin-left: 5%;
+}
+
+.form-block {
+  margin: 0 auto;
+  width: 80%;
+
+  .form-control {
+    text-align: center;
+    margin-right: 40%;
+    margin-bottom: 5%;
+  }
+
+  .create-btn {
+    float: right;
+    color: #fff;
+    border-color: #1a3d66;
+    background-color: #214d7f;
+    border-radius: 4px;
+    font-weight: 700;
+    cursor: pointer;
+    width: 10%;
+    height: 30px;
+  }
+
+  .title, .content {
+    width: 150%;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+  }
+
+  label {
+    font-weight: 700;
+  }
+
+  .title {
+    height: 2rem;
+    border-radius: 4px;
+  }
+
+  .content {
+    border-radius: 10px;
+  }
+
+  .label-div {
+    margin-bottom: 3%;
+  }
+}

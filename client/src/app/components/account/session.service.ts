@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { User } from 'src/app/shared/models/user';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
-  apiEndpoint = 'http://localhost:3000/api/v1';
+  apiEndpoint = environment.apiEndpoint;
 
   constructor(private http: HttpClient) { }
 

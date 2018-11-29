@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  apiEndpoint = 'http://localhost:3000/api/v1';
+  apiEndpoint = environment.apiEndpoint;
 
   constructor(private http: HttpClient,
               private cookieService: CookieService) { }

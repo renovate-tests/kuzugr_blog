@@ -5,7 +5,6 @@
   <div class='account-block'>
     <span *ngIf="!loginState()" [routerLink]="['/login']">ログイン</span>
     <span *ngIf="loginState()" [routerLink]="['/registration']">ユーザ新規登録</span>
-    <span *ngIf="loginState()" [routerLink]="['/registration']">新規投稿</span>
+    <span *ngIf="loginState()" [routerLink]="['/article/create']">新規投稿</span>
   </div>
-  <span *ngIf="loginState()">test-</span>
 </div>

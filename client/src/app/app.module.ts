@@ -16,6 +16,7 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { CreateArticleComponent } from './components/article/create-article/create-article.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     ArticleComponent,
     CreateAccountComponent,
     EditAccountComponent,
-    LoginComponent
+    LoginComponent,
+    CreateArticleComponent
   ],
   imports: [
     BrowserModule,
