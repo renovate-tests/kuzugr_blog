@@ -13,8 +13,8 @@ export class ArticleService {
 
   constructor(private http: HttpClient) { }
 
-  getArticles(params = {}): Observable<ArticlesResponse> {
-    return this.http.get<ArticlesResponse>(`${this.apiEndpoint}/articles`, { params: params } );
+  getArticles(params = {}): Observable<Array<Article>> {
+    return this.http.get<Array<Article>>(`${this.apiEndpoint}/articles`, { params: params } );
   }
 
   getArticle(articleId: number): Observable<Article> {

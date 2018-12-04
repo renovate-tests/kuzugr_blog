@@ -2,9 +2,4 @@
   <div class='title-block'>
     <h1 [routerLink]="['/']">ブログのタイトル</h1>
   </div>
-  <div class='account-block'>
-    <span *ngIf="!loginState()" [routerLink]="['/login']">ログイン</span>
-    <span *ngIf="loginState()" [routerLink]="['/registration']">ユーザ新規登録</span>
-    <span *ngIf="loginState()" [routerLink]="['/article/create']">新規投稿</span>
-  </div>
 </div>

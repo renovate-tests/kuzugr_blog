@@ -1,0 +1,9 @@
+.menu-block {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 10px;
+  z-index: 999;
+}

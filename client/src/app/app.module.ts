@@ -17,6 +17,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CreateArticleComponent } from './components/article/create-article/create-article.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { LatestArticleComponent } from './components/article/latest-article/latest-article.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { CreateArticleComponent } from './components/article/create-article/crea
     CreateAccountComponent,
     EditAccountComponent,
     LoginComponent,
-    CreateArticleComponent
+    CreateArticleComponent,
+    MenuComponent,
+    LatestArticleComponent
   ],
   imports: [
     BrowserModule,

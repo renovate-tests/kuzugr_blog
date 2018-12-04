@@ -11,13 +11,13 @@ import { ArticlesResponse } from './articles-response';
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
-  articles: ArticlesResponse;
+  articles: Array<Article>;
   article: Article;
   articleLoaded: boolean;
 
   constructor(private articleService: ArticleService,
-    private cookieService: CookieService,
-    private router: Router) { }
+              private cookieService: CookieService,
+              private router: Router) { }
 
   ngOnInit() {
     this.articleLoaded = false;
