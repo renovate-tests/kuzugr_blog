@@ -19,6 +19,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CreateArticleComponent } from './components/article/create-article/create-article.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { LatestArticleComponent } from './components/article/latest-article/latest-article.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { LatestArticleComponent } from './components/article/latest-article/late
     LoginComponent,
     CreateArticleComponent,
     MenuComponent,
-    LatestArticleComponent
+    LatestArticleComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

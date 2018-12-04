@@ -5,12 +5,14 @@ import { CreateAccountComponent } from './components/account/create-account/crea
 import { EditAccountComponent } from './components/account/edit-account/edit-account.component';
 import { LoginComponent } from './components/account/login/login.component';
 import { CreateArticleComponent } from './components/article/create-article/create-article.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: ArticleComponent },
   { path: 'registration', component: CreateAccountComponent },
   { path: 'account', component: EditAccountComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
   {
     path: 'article',
     children: [

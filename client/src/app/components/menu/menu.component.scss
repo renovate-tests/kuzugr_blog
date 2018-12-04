@@ -1,9 +1,12 @@
 .menu-block {
-  width: 80%;
+  width: 100%;
+  font-weight: bold;
   margin: auto;
   display: flex;
+  background-color: white;
   justify-content: space-between;
   position: sticky;
-  top: 10px;
+  top: 0px;
   z-index: 999;
+  opacity: 0.6;
 }
