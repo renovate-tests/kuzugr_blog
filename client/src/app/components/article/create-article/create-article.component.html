@@ -1,7 +1,7 @@
 <div class='create-article-body'>
   <h2 class='title'>新規投稿</h2>
   <div class='form-block'>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="dataLoaded()">
       <div>
         <div class='label-div'>
           <label>タイトル</label>

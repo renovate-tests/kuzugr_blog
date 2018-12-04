@@ -24,4 +24,8 @@ export class ArticleService {
   createArticle(article: Article): Observable<Article> {
     return this.http.post<Article>(`${this.apiEndpoint}/articles/`, { article: article } );
   }
+
+  editArticle(article: Article, articleId: number): Observable<Article> {
+    return this.http.patch<Article>(`${this.apiEndpoint}/articles/${articleId}`, { article: article } );
+  }
 }

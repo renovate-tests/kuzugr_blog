@@ -2,7 +2,7 @@ module Api
   module V1
     class ArticlesController < ApplicationController
       skip_before_action :authenticate_user_from_token!, only: [:index, :show]
-      skip_before_action :verify_authenticity_token, only: [:create]
+      skip_before_action :verify_authenticity_token, only: [:create, :update]
 
       def index
         @articles = Article.order('created_at desc').limit(params[:limit])
@@ -23,7 +23,7 @@ module Api
 
       def update
         article = Article.find(params[:id])
-        article.update(blog_params) if article.user_id == current_user.id
+        article.update(article_params) if article.user_id == current_user.id
       end
 
       def create
