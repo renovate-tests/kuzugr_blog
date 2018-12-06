@@ -4,6 +4,9 @@ import { ArticleService } from '../article.service';
 import { Article } from 'src/app/shared/models/article';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../../../../environments/environment';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-create-article',
@@ -15,11 +18,16 @@ export class CreateArticleComponent implements OnInit {
   article: Article;
   articleLoaded: boolean;
   articleId: number;
+  apiEndpoint = environment.apiEndpoint;
+  public uploadResult: any = null;
+
 
   constructor(private articleService: ArticleService,
               private router: Router,
               private cookieService: CookieService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private http: HttpClient
+            ) { firebase.initializeApp(environment.firebase); }
 
   ngOnInit() {
     this.loginCheck();
@@ -31,12 +39,36 @@ export class CreateArticleComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       this.article = this.form.value;
+      this.uploadFile();
       if (this.articleId) {
-        this.editArticle();
+        // this.editArticle();
       } else {
-        this.createArticle();
+        // this.createArticle();
       }
     }
+  }
+
+  uploadFile() {
+    const file_element = <HTMLInputElement>document.getElementById('thumbnail');
+    const file = file_element.files[0];
+    const storageRef = firebase.storage().ref(`upload_files/${file.name}`);
+    storageRef.put(file).then(
+      upload_response => {
+        // ここではアップロー済みの画像を表示するため結果をメンバ変数に格納
+        this.uploadResult = upload_response;
+        storageRef.getDownloadURL().then(
+          download_url => {
+            console.log(download_url);
+          }
+        ).catch(
+          download_error => {
+            console.log(download_error);
+          }
+        );
+      }
+    ).catch(
+      err => console.log(err)
+    );
   }
 
   createArticle() {
@@ -71,7 +103,8 @@ export class CreateArticleComponent implements OnInit {
     } else {
       this.form = new FormGroup({
         title: new FormControl(),
-        content: new FormControl()
+        content: new FormControl(),
+        thumbnail: new FormControl()
       });
       this.articleLoaded = true;
     }
@@ -82,7 +115,8 @@ export class CreateArticleComponent implements OnInit {
       response => {
         this.form = new FormGroup({
           title: new FormControl(response.title),
-          content: new FormControl(response.content)
+          content: new FormControl(response.content),
+          thumbnail: new FormControl(response.thumbnail)
         });
         this.articleLoaded = true;
       },

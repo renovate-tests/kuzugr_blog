@@ -17,6 +17,10 @@
         <div class='form-control'>
           <textarea class='content' rows=30 formControlName="content"></textarea>
         </div>
+        <div class='form-control'>
+          <input type=file id='thumbnail' name='thumbnail' class='thumbnail' formControlName='thumbnail'>
+        </div>
+        <img [src]="uploadResult?.downloadURL || ''">
       </div>
       <button class='create-btn fa' type="submit">
         <i class="fa fa-sign-in" aria-hidden="true"></i>投稿

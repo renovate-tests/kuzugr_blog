@@ -28,4 +28,9 @@ export class ArticleService {
   editArticle(article: Article, articleId: number): Observable<Article> {
     return this.http.patch<Article>(`${this.apiEndpoint}/articles/${articleId}`, { article: article } );
   }
+
+  uploadThumbnail(thumbnail: any): any {
+    console.log(thumbnail);
+    return this.http.post(`${this.apiEndpoint}/articles/upload_thumbnail`, { data: thumbnail } );
+  }
 }
