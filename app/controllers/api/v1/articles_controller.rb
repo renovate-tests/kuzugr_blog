@@ -1,8 +1,9 @@
 module Api
   module V1
     class ArticlesController < ApplicationController
-      skip_before_action :authenticate_user_from_token!, only: [:index, :show]
-      skip_before_action :verify_authenticity_token, only: [:create, :update]
+      # TODO: upload_thumbnailでなぜCookieが取れないのか
+      skip_before_action :authenticate_user_from_token!, only: [:index, :show, :upload_thumbnail]
+      skip_before_action :verify_authenticity_token, only: [:create, :update, :upload_thumbnail]
 
       def index
         @articles = Article.order('created_at desc').limit(params[:limit])
@@ -35,6 +36,10 @@ module Api
       def destroy
         article = Article.find(params[:id])
         article.destroy if article.user_id === current_user.id
+      end
+
+      def upload_thumbnail
+        binding.pry
       end
 
       private

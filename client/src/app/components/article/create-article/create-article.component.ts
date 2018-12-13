@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { ArticleService } from '../article.service';
 import { Article } from 'src/app/shared/models/article';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -14,11 +14,21 @@ import * as firebase from 'firebase';
   styleUrls: ['./create-article.component.scss']
 })
 export class CreateArticleComponent implements OnInit {
+  @ViewChild('fileInput') fileInput;
   form: FormGroup;
   article: Article;
   articleLoaded: boolean;
   articleId: number;
   apiEndpoint = environment.apiEndpoint;
+  innerFormElement = `<div class='label-div'>
+                        <label>本文</label>
+                      </div>
+                      <div class='form-control'>
+                        <textarea class='content' rows=30 formControlName="content"></textarea>
+                      </div>
+                      <div class='form-control'>
+                        <input type=file id='thumbnail' name='thumbnail' class='thumbnail' formControlName='thumbnail'>
+                      </div>`;
   public uploadResult: any = null;
 
 
@@ -26,7 +36,8 @@ export class CreateArticleComponent implements OnInit {
               private router: Router,
               private cookieService: CookieService,
               private route: ActivatedRoute,
-              private http: HttpClient
+              private http: HttpClient,
+              private formBuilder: FormBuilder
             ) { firebase.initializeApp(environment.firebase); }
 
   ngOnInit() {
@@ -52,7 +63,20 @@ export class CreateArticleComponent implements OnInit {
     const file_element = <HTMLInputElement>document.getElementById('thumbnail');
     const file = file_element.files[0];
     const storageRef = firebase.storage().ref(`upload_files/${file.name}`);
-    storageRef.put(file).then(
+    const data = new FormData();
+      data.append('image', file, file.name);
+      const config = {
+        header: {
+          'Content-Type': 'multipart/form-data'
+        }
+      };
+    const movieFile = this.fileInput.nativeElement.files[0];
+    this.articleService.uploadThumbnail(movieFile).subscribe(
+      response => {
+        console.log(response);
+      }
+    );
+    /*storageRef.put(file).then(
       upload_response => {
         // ここではアップロー済みの画像を表示するため結果をメンバ変数に格納
         this.uploadResult = upload_response;
@@ -68,7 +92,7 @@ export class CreateArticleComponent implements OnInit {
       }
     ).catch(
       err => console.log(err)
-    );
+    );*/
   }
 
   createArticle() {
@@ -101,11 +125,11 @@ export class CreateArticleComponent implements OnInit {
     if (this.articleId) {
       this.getArticle(this.articleId);
     } else {
-      this.form = new FormGroup({
+      this.form = this.formBuilder.group({
         title: new FormControl(),
-        content: new FormControl(),
-        thumbnail: new FormControl()
+        articleElements: this.formBuilder.array([])
       });
+      this.addFormElement();
       this.articleLoaded = true;
     }
   }
@@ -128,5 +152,17 @@ export class CreateArticleComponent implements OnInit {
 
   dataLoaded(): boolean {
     return this.articleLoaded;
+  }
+
+  get articleElements(): FormArray {
+    return this.form.get('articleElements') as FormArray;
+  }
+
+  addFormElement() {
+    // Getter を用意したいので「this.phoneNumbers」でアクセス可能
+    this.articleElements.push(this.formBuilder.group({
+      content: new FormControl(),
+      thumbnail: new FormControl()
+    }));
   }
 }

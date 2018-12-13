@@ -30,7 +30,13 @@ export class ArticleService {
   }
 
   uploadThumbnail(thumbnail: any): any {
-    console.log(thumbnail);
-    return this.http.post(`${this.apiEndpoint}/articles/upload_thumbnail`, { data: thumbnail } );
+    const formData = new FormData();
+    formData.append('video', thumbnail);
+    formData.append('title', thumbnail.title);
+    console.log(formData);
+    const headers = new HttpHeaders();
+    headers.delete('Content-Type');
+    console.log(headers);
+    return this.http.post(`${this.apiEndpoint}/articles/upload_thumbnail`, formData, { headers: headers } );
   }
 }

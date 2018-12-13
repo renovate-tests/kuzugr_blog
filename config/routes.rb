@@ -8,7 +8,11 @@ Rails.application.routes.draw do
       resource :login, only: [:create], controller: :sessions
       get :login_state, controller: :sessions
 
-      resources :articles
+      resources :articles do
+        collection do
+          post :upload_thumbnail
+        end
+      end
     end
   end
 end

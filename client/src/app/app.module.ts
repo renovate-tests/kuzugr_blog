@@ -8,6 +8,7 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { ImageUploadModule } from 'angular2-image-upload';
 
 import { HttpsInterceptor } from './shared/services/http.interceptor';
 
@@ -49,7 +50,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     HttpClientModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ImageUploadModule.forRoot(),
   ],
   providers: [
     CookieService,
