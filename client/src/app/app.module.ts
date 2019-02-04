@@ -4,11 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
 import { ImageUploadModule } from 'angular2-image-upload';
+import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { HttpsInterceptor } from './shared/services/http.interceptor';
 
@@ -48,10 +47,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule,
-    AngularFireAuthModule,
     ImageUploadModule.forRoot(),
+    AngularMarkdownEditorModule.forRoot(),
+    MarkdownModule.forRoot()
   ],
   providers: [
     CookieService,

@@ -6,34 +6,35 @@
         <div class='label-div'>
           <label>タイトル</label>
         </div>
-        <div class='form-control'>
+        <div class='form-parts'>
           <input class='title' type="text" formControlName="title">
         </div>
       </div>
       <div id='form-input'>
-        <div formArrayName="articleElements">
-          <div *ngFor="let articleElement of articleElements.controls; let i = index" [formGroupName]="i">
             <div class='label-div'>
-              <label>本文{{i + 1}}</label>
+              <label>本文</label>
             </div>
-            <div class='form-control'>
+            <!--<div class='form-parts'>
               <textarea class='content' rows=30 formControlName="content"></textarea>
+            </div>-->
+            <div class='form-parts'>
+              <angular-markdown-editor
+                textareaId="editor1" rows="30"
+                class='content'
+                name="markdownText" formControlName="content"
+                [options]="editorOptions">
+              </angular-markdown-editor>
             </div>
             <image-upload
-                        url="http://kuzugr-blog.jp:3000/api/v1/articles/upload_thumbnail"
-                        buttonCaption="PRESS ME AAAAAAAAAH"
-                        dropBoxMessage="DROP ON ME AAAAAAAAAH"
-                        clearButtonCaption="CLEAR ME AAAAAAAAAH">
-                      </image-upload>
-            <div class='form-control'>
-              <input type=file id='thumbnail' #fileInput multiple="true" name='thumbnail' class='thumbnail' formControlName='thumbnail'>
-            </div>
+              url="http://kuzugr-blog.jp:3000/api/v1/upload_files"
+              [withCredentials]
+              buttonCaption="PRESS ME AAAAAAAAAH"
+              dropBoxMessage="DROP ON ME AAAAAAAAAH"
+              clearButtonCaption="CLEAR ME AAAAAAAAAH"
+              (uploadFinished)="onUploadFinished($event)">
+            </image-upload>
             <img [src]="uploadResult?.downloadURL || ''">
-          </div>
-        </div>
-
       </div>
-      <button class='create-btn fa' type="button" (click)='addFormElement()'>入力欄追加</button>
       <button class='create-btn fa' type="submit">
         <i class="fa fa-sign-in" aria-hidden="true"></i>投稿
       </button>

@@ -8,11 +8,11 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     domain = case Rails.env
-    when 'production'
-      ENV['CORS_ALLOW_HOST']
-    else
-      'http://kuzugr-blog.jp:4200'
-    end
+             when 'production'
+               ENV['CORS_ALLOW_HOST']
+             else
+               'http://kuzugr-blog.jp:4200'
+             end
     origins domain
     resource '*',
       headers: :any,

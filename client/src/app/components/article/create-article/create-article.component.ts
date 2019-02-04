@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ArticleService } from '../article.service';
 import { Article } from 'src/app/shared/models/article';
+import { UploadFileService } from 'src/app/shared/services/upload-file.service';
+import { ThumbnailService } from 'src/app/shared/services/thumbnail.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
-import * as firebase from 'firebase';
+import { MarkdownService } from 'ngx-markdown';
 
 @Component({
   selector: 'app-create-article',
@@ -20,27 +21,24 @@ export class CreateArticleComponent implements OnInit {
   articleLoaded: boolean;
   articleId: number;
   apiEndpoint = environment.apiEndpoint;
-  innerFormElement = `<div class='label-div'>
-                        <label>本文</label>
-                      </div>
-                      <div class='form-control'>
-                        <textarea class='content' rows=30 formControlName="content"></textarea>
-                      </div>
-                      <div class='form-control'>
-                        <input type=file id='thumbnail' name='thumbnail' class='thumbnail' formControlName='thumbnail'>
-                      </div>`;
   public uploadResult: any = null;
-
+  result: any;
+  aHeaders: { [header: string]: string | string[] };
 
   constructor(private articleService: ArticleService,
               private router: Router,
               private cookieService: CookieService,
               private route: ActivatedRoute,
-              private http: HttpClient,
-              private formBuilder: FormBuilder
-            ) { firebase.initializeApp(environment.firebase); }
+              private markdownService: MarkdownService,
+              private uploadFileService: UploadFileService,
+              private thumbnailService: ThumbnailService,
+            ) { }
 
   ngOnInit() {
+    this.aHeaders = {
+      'Authorization': this.cookieService.get('access_token')
+    };
+    console.log(this.aHeaders);
     this.loginCheck();
     this.articleLoaded = false;
     this.articleId = this.route.snapshot.params['article_id'];
@@ -50,19 +48,21 @@ export class CreateArticleComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       this.article = this.form.value;
-      this.uploadFile();
+      // this.article.title = this.form.controls.title.value;
+      this.article.content = this.markdownService.compile(this.form.controls.content.value.trim());
+      // this.article = this.form.value;
       if (this.articleId) {
         // this.editArticle();
       } else {
-        // this.createArticle();
+        this.createArticle();
       }
     }
   }
 
+
   uploadFile() {
     const file_element = <HTMLInputElement>document.getElementById('thumbnail');
     const file = file_element.files[0];
-    const storageRef = firebase.storage().ref(`upload_files/${file.name}`);
     const data = new FormData();
       data.append('image', file, file.name);
       const config = {
@@ -70,29 +70,21 @@ export class CreateArticleComponent implements OnInit {
           'Content-Type': 'multipart/form-data'
         }
       };
-    const movieFile = this.fileInput.nativeElement.files[0];
-    this.articleService.uploadThumbnail(movieFile).subscribe(
+    const myReader = new FileReader();
+    this.result = myReader.result;
+    myReader.onloadend = (e) => {
+      this.result = myReader.result;
+    };
+    myReader.readAsDataURL(file);
+    this.uploadFileService.uploadFile(data).subscribe(
       response => {
-        console.log(response);
+
       }
     );
-    /*storageRef.put(file).then(
-      upload_response => {
-        // ここではアップロー済みの画像を表示するため結果をメンバ変数に格納
-        this.uploadResult = upload_response;
-        storageRef.getDownloadURL().then(
-          download_url => {
-            console.log(download_url);
-          }
-        ).catch(
-          download_error => {
-            console.log(download_error);
-          }
-        );
-      }
-    ).catch(
-      err => console.log(err)
-    );*/
+  }
+
+  onUploadFinished(response) {
+
   }
 
   createArticle() {
@@ -125,11 +117,11 @@ export class CreateArticleComponent implements OnInit {
     if (this.articleId) {
       this.getArticle(this.articleId);
     } else {
-      this.form = this.formBuilder.group({
+      this.form = new FormGroup({
         title: new FormControl(),
-        articleElements: this.formBuilder.array([])
+        content: new FormControl(),
+        thumbnail: new FormControl()
       });
-      this.addFormElement();
       this.articleLoaded = true;
     }
   }
@@ -152,17 +144,5 @@ export class CreateArticleComponent implements OnInit {
 
   dataLoaded(): boolean {
     return this.articleLoaded;
-  }
-
-  get articleElements(): FormArray {
-    return this.form.get('articleElements') as FormArray;
-  }
-
-  addFormElement() {
-    // Getter を用意したいので「this.phoneNumbers」でアクセス可能
-    this.articleElements.push(this.formBuilder.group({
-      content: new FormControl(),
-      thumbnail: new FormControl()
-    }));
   }
 }

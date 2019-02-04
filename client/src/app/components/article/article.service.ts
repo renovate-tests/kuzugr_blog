@@ -28,15 +28,4 @@ export class ArticleService {
   editArticle(article: Article, articleId: number): Observable<Article> {
     return this.http.patch<Article>(`${this.apiEndpoint}/articles/${articleId}`, { article: article } );
   }
-
-  uploadThumbnail(thumbnail: any): any {
-    const formData = new FormData();
-    formData.append('video', thumbnail);
-    formData.append('title', thumbnail.title);
-    console.log(formData);
-    const headers = new HttpHeaders();
-    headers.delete('Content-Type');
-    console.log(headers);
-    return this.http.post(`${this.apiEndpoint}/articles/upload_thumbnail`, formData, { headers: headers } );
-  }
 }

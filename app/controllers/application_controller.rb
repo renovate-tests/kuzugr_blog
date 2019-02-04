@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   # Authenticates the user with OAuth2 Resource Owner Password Credentials
   def authenticate_user_from_token!
     auth_token = cookies[:access_token]
-binding.pry
+
     if auth_token
       authenticate_with_auth_token auth_token
     else
