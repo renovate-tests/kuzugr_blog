@@ -11,8 +11,8 @@ export const environment = {
     databaseURL: 'https://my-blog-5bf8f.firebaseio.com',
     projectId: 'my-blog-5bf8f',
     storageBucket: 'my-blog-5bf8f.appspot.com',
-    messagingSenderId: '488866007816'
-  }
+    messagingSenderId: '488866007816',
+  },
 };
 
 /*

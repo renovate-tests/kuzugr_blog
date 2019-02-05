@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { SessionService } from '../session.service';
 import { User } from 'src/app/shared/models/user';
 import { CookieService } from 'ngx-cookie-service';
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.form = new FormGroup({
       email: new FormControl(),
-      password: new FormControl()
+      password: new FormControl(),
     });
   }
 
@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
         },
         error => {
           // エラーメッセージを出す
-        }
+        },
       );
     }
   }
