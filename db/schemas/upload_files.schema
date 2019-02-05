@@ -2,5 +2,5 @@ create_table "upload_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CH
   t.integer "article_id", null: false
   t.string "file_name", null: false
   t.string "file_extension", null: false
-  t.string "file_path", null: false
+  t.string "uuid", null: false
 end

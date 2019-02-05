@@ -14,18 +14,25 @@ ActiveRecord::Schema.define(version: 0) do
 
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
     t.string "title", null: false
-    t.text "content", null: false
+    t.text "mark_content", null: false
+    t.text "html_content", null: false
     t.integer "user_id", null: false
-    t.string "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "thumbnails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
+    t.integer "article_id", null: false
+    t.string "file_name", null: false
+    t.string "file_extension", null: false
+    t.string "uuid", null: false
   end
 
   create_table "upload_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
     t.integer "article_id", null: false
     t.string "file_name", null: false
     t.string "file_extension", null: false
-    t.string "file_path", null: false
+    t.string "uuid", null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|

@@ -4,6 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../environments/environment';
+import { ImageUploadModule } from 'angular2-image-upload';
+import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
+import { MarkdownModule } from 'ngx-markdown';
 
 import { HttpsInterceptor } from './shared/services/http.interceptor';
 
@@ -17,6 +21,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { CreateArticleComponent } from './components/article/create-article/create-article.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { LatestArticleComponent } from './components/article/latest-article/latest-article.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { SafeHtmlPipe } from './shared/pipes/pipe.safehtml.pipe';
 
 @NgModule({
   declarations: [
@@ -29,14 +37,21 @@ import { CreateArticleComponent } from './components/article/create-article/crea
     CreateAccountComponent,
     EditAccountComponent,
     LoginComponent,
-    CreateArticleComponent
+    CreateArticleComponent,
+    MenuComponent,
+    LatestArticleComponent,
+    ProfileComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ImageUploadModule.forRoot(),
+    AngularMarkdownEditorModule.forRoot(),
+    MarkdownModule.forRoot()
   ],
   providers: [
     CookieService,

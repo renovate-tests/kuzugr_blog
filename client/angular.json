@@ -28,9 +28,15 @@
             ],
             "styles": [
               "node_modules/font-awesome/css/font-awesome.css",
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/bootstrap-markdown/css/bootstrap-markdown.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/jquery/dist/jquery.js",
+              "node_modules/bootstrap-markdown/js/bootstrap-markdown.js",
+              "node_modules/marked/lib/marked.js"
+            ]
           },
           "configurations": {
             "production": {

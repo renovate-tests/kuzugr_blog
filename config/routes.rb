@@ -7,8 +7,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource :login, only: [:create], controller: :sessions
       get :login_state, controller: :sessions
-
       resources :articles
+      resources :upload_files, only: [:create]
+      resources :thumbnails, only: [:create]
     end
   end
 end

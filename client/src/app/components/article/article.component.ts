@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from './article.service';
 import { Article } from 'src/app/shared/models/article';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ArticlesResponse } from './articles-response';
 
 @Component({
@@ -11,24 +11,32 @@ import { ArticlesResponse } from './articles-response';
   styleUrls: ['./article.component.scss']
 })
 export class ArticleComponent implements OnInit {
-  articles: ArticlesResponse;
+  articles: Array<Article>;
   article: Article;
   articleLoaded: boolean;
 
   constructor(private articleService: ArticleService,
-    private cookieService: CookieService,
-    private router: Router) { }
+              private cookieService: CookieService,
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.articleLoaded = false;
-    this.getArticles();
+    const articleId = this.route.snapshot.params['article_id'];
+
+    if (articleId) {
+      this.getArticle(articleId);
+    } else {
+      this.getArticles();
+    }
   }
 
   getArticles() {
     this.articleService.getArticles({ limit: 5 }).subscribe(
       response => {
         this.articles = response;
-        this.getArticle(this.articles[0].id);
+        this.article = response[0];
+        this.articleLoaded = true;
       }
     );
   }

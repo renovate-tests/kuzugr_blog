@@ -1,22 +1,39 @@
 <div class='create-article-body'>
   <h2 class='title'>新規投稿</h2>
   <div class='form-block'>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="onSubmit()" *ngIf="dataLoaded()">
       <div>
         <div class='label-div'>
           <label>タイトル</label>
         </div>
-        <div class='form-control'>
+        <div class='form-parts'>
           <input class='title' type="text" formControlName="title">
         </div>
       </div>
-      <div>
-        <div class='label-div'>
-          <label>本文</label>
-        </div>
-        <div class='form-control'>
-          <textarea class='content' rows=30 formControlName="content"></textarea>
-        </div>
+      <div id='form-input'>
+            <div class='label-div'>
+              <label>本文</label>
+            </div>
+            <!--<div class='form-parts'>
+              <textarea class='content' rows=30 formControlName="content"></textarea>
+            </div>-->
+            <div class='form-parts'>
+              <angular-markdown-editor
+                textareaId="editor1" rows="30"
+                class='content'
+                name="markdownText" formControlName="html_content"
+                [options]="editorOptions">
+              </angular-markdown-editor>
+            </div>
+            <image-upload
+              url="http://kuzugr-blog.jp:3000/api/v1/upload_files"
+              [withCredentials]
+              buttonCaption="PRESS ME AAAAAAAAAH"
+              dropBoxMessage="DROP ON ME AAAAAAAAAH"
+              clearButtonCaption="CLEAR ME AAAAAAAAAH"
+              (uploadFinished)="onUploadFinished($event)">
+            </image-upload>
+            <img [src]="uploadResult?.downloadURL || ''">
       </div>
       <button class='create-btn fa' type="submit">
         <i class="fa fa-sign-in" aria-hidden="true"></i>投稿

@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ArticleService } from '../article.service';
 import { Article } from 'src/app/shared/models/article';
-import { Router } from '@angular/router';
+import { UploadFileService } from 'src/app/shared/services/upload-file.service';
+import { ThumbnailService } from 'src/app/shared/services/thumbnail.service';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { environment } from '../../../../environments/environment';
+import { MarkdownService } from 'ngx-markdown';
 
 @Component({
   selector: 'app-create-article',
@@ -11,34 +15,90 @@ import { CookieService } from 'ngx-cookie-service';
   styleUrls: ['./create-article.component.scss']
 })
 export class CreateArticleComponent implements OnInit {
+  @ViewChild('fileInput') fileInput;
   form: FormGroup;
   article: Article;
+  articleLoaded: boolean;
+  articleId: number;
+  apiEndpoint = environment.apiEndpoint;
+  public uploadResult: any = null;
+  result: any;
 
   constructor(private articleService: ArticleService,
               private router: Router,
-              private cookieService: CookieService) { }
+              private cookieService: CookieService,
+              private route: ActivatedRoute,
+              private markdownService: MarkdownService,
+              private uploadFileService: UploadFileService,
+              private thumbnailService: ThumbnailService,
+            ) { }
 
   ngOnInit() {
     this.loginCheck();
-    this.form = new FormGroup({
-      title: new FormControl(),
-      content: new FormControl()
-    });
+    this.articleLoaded = false;
+    this.articleId = this.route.snapshot.params['article_id'];
+    this.loadArticle();
   }
 
   onSubmit() {
     if (this.form.valid) {
       this.article = this.form.value;
-
-      this.articleService.createArticle(this.article).subscribe(
-        data => {
-          this.router.navigateByUrl(`/`);
-        },
-        error => {
-          // エラーメッセージを出す
-        }
-      );
+      // this.article.title = this.form.controls.title.value;
+      this.article.mark_content = this.markdownService.compile(this.form.controls.html_content.value.trim());
+      // this.article = this.form.value;
+      if (this.articleId) {
+        this.editArticle();
+      } else {
+        this.createArticle();
+      }
     }
+  }
+
+
+  uploadFile() {
+    const file_element = <HTMLInputElement>document.getElementById('thumbnail');
+    const file = file_element.files[0];
+    const data = new FormData();
+      data.append('image', file, file.name);
+      const config = {
+        header: {
+          'Content-Type': 'multipart/form-data'
+        }
+      };
+    const myReader = new FileReader();
+    this.result = myReader.result;
+    myReader.onloadend = (e) => {
+      this.result = myReader.result;
+    };
+    myReader.readAsDataURL(file);
+    this.uploadFileService.uploadFile(data).subscribe(
+      response => {
+
+      }
+    );
+  }
+
+  onUploadFinished(response) {
+
+  }
+
+  createArticle() {
+    this.articleService.createArticle(this.article).subscribe(
+      response => {
+        this.router.navigateByUrl(`/`);
+      },
+      error => {
+        // エラーメッセージを出す
+      }
+    );
+  }
+
+  editArticle() {
+    this.articleService.editArticle(this.article, this.articleId).subscribe(
+      response => {
+        this.router.navigateByUrl(`/article/${this.articleId}`);
+      }
+    );
   }
 
   // TODO: serviceに置き換える
@@ -48,4 +108,35 @@ export class CreateArticleComponent implements OnInit {
     }
   }
 
+  loadArticle() {
+    if (this.articleId) {
+      console.log(this.articleId);
+      this.getArticle(this.articleId);
+    } else {
+      this.form = new FormGroup({
+        title: new FormControl(),
+        html_content: new FormControl()
+      });
+      this.articleLoaded = true;
+    }
+  }
+
+  getArticle(articleId: number) {
+    this.articleService.getArticle(articleId).subscribe(
+      response => {
+        this.form = new FormGroup({
+          title: new FormControl(response.title),
+          html_content: new FormControl(response.html_content),
+        });
+        this.articleLoaded = true;
+      },
+      error => {
+        this.articleLoaded = true;
+      }
+    );
+  }
+
+  dataLoaded(): boolean {
+    return this.articleLoaded;
+  }
 }

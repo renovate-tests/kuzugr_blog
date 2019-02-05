@@ -1,3 +1,4 @@
 require 'articles.schema'
 require 'upload_files.schema'
 require 'users.schema'
+require 'thumbnails.schema'

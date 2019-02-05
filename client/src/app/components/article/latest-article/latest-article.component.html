@@ -1,0 +1,9 @@
+<div class='latest-article-content' *ngIf="dataLoaded()">
+  <div class='latest-article-img-block'>
+    <img class='latest-article-img' src={{article.thumbnail}}>
+    <div class='article-detail-block'>
+      <p class='article-title'>{{article.title}}</p>
+      <button class='article-page-button'>READ THIS ARTICLE</button>
+    </div>
+  </div>
+</div>
