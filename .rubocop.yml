@@ -6,6 +6,7 @@ AllCops:
     - 'client/**/*'
     - 'db/**/*'
     - 'bin/**/*'
+    - 'config/**/*'
 
 Rails:
   Enabled: true
