@@ -22,3 +22,7 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# MarkDownについて
+- マークダウンエディタとしてはangular-markdown-editorを採用
+- しかし書き込み中のPreview表示のためngx-markdownも使用している
