@@ -3,6 +3,7 @@ AllCops:
   DisabledByDefault: true
   Exclude:
     - 'vendor/**/*'
+    - 'client/**/*'
 
 Rails:
   Enabled: true
