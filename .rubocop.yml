@@ -1,0 +1,133 @@
+AllCops:
+  DisabledByDefault: true
+  Exclude:
+    - 'vendor/**/*'
+
+Rails:
+  Enabled: true
+
+Metrics/AbcSize:
+  Max: 15
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/MethodLength:
+  Max: 15
+
+Rails/ActionFilter:
+  Enabled: true
+
+Rails/ActiveRecordAliases:
+  Enabled: false
+
+Rails/ActiveSupportAliases:
+  Enabled: true
+
+Rails/ApplicationJob:
+  Enabled: true
+
+Rails/Blank:
+  Enabled: true
+
+Rails/Date:
+  Enabled: true
+
+Rails/Delegate:
+  Enabled: true
+
+Rails/DynamicFindBy:
+  Enabled: true
+
+Rails/EnumUniqueness:
+  Enabled: true
+
+Rails/EnvironmentComparison:
+  Enabled: true
+
+Rails/Exit:
+  Enabled: true
+
+Rails/FindEach:
+  Enabled: true
+
+Rails/HasAndBelongsToMany:
+  Enabled: true
+
+Rails/HasManyOrHasOneDependent:
+  Enabled: true
+
+Rails/HttpStatus:
+  EnforcedStyle: numeric
+
+Rails/InverseOf:
+  Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: true
+
+Rails/Output:
+  Enabled: true
+
+Rails/PluralizationGrammar:
+  Enabled: true
+
+Rails/Presence:
+  Enabled: true
+
+Rails/Present:
+  Enabled: true
+
+Rails/RedundantReceiverInWithOptions:
+  Enabled: true
+
+Rails/RelativeDateConstant:
+  Enabled: true
+
+Rails/RequestReferer:
+  Enabled: true
+
+Rails/SafeNavigation:
+  Enabled: true
+
+Rails/ScopeArgs:
+  Enabled: true
+
+Rails/TimeZone:
+  EnforcedStyle: flexible
+
+Rails/UniqBeforePluck:
+  Enabled: true
+
+Rails/Validation:
+  Enabled: true
+
+Style/AndOr:
+  Enabled: true
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/BracesAroundHashParameters:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    '%w': ()
+    '%W': ()
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+

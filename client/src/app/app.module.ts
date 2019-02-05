@@ -41,7 +41,7 @@ import { SafeHtmlPipe } from './shared/pipes/pipe.safehtml.pipe';
     MenuComponent,
     LatestArticleComponent,
     ProfileComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
   ],
   imports: [
     BrowserModule,
@@ -51,12 +51,12 @@ import { SafeHtmlPipe } from './shared/pipes/pipe.safehtml.pipe';
     HttpClientModule,
     ImageUploadModule.forRoot(),
     AngularMarkdownEditorModule.forRoot(),
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
   ],
   providers: [
     CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpsInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
