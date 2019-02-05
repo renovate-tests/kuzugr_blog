@@ -23,7 +23,6 @@ export class CreateArticleComponent implements OnInit {
   apiEndpoint = environment.apiEndpoint;
   public uploadResult: any = null;
   result: any;
-  aHeaders: { [header: string]: string | string[] };
 
   constructor(private articleService: ArticleService,
               private router: Router,
@@ -35,10 +34,6 @@ export class CreateArticleComponent implements OnInit {
             ) { }
 
   ngOnInit() {
-    this.aHeaders = {
-      'Authorization': this.cookieService.get('access_token')
-    };
-    console.log(this.aHeaders);
     this.loginCheck();
     this.articleLoaded = false;
     this.articleId = this.route.snapshot.params['article_id'];
@@ -49,10 +44,10 @@ export class CreateArticleComponent implements OnInit {
     if (this.form.valid) {
       this.article = this.form.value;
       // this.article.title = this.form.controls.title.value;
-      this.article.content = this.markdownService.compile(this.form.controls.content.value.trim());
+      this.article.mark_content = this.markdownService.compile(this.form.controls.html_content.value.trim());
       // this.article = this.form.value;
       if (this.articleId) {
-        // this.editArticle();
+        this.editArticle();
       } else {
         this.createArticle();
       }
@@ -115,12 +110,12 @@ export class CreateArticleComponent implements OnInit {
 
   loadArticle() {
     if (this.articleId) {
+      console.log(this.articleId);
       this.getArticle(this.articleId);
     } else {
       this.form = new FormGroup({
         title: new FormControl(),
-        content: new FormControl(),
-        thumbnail: new FormControl()
+        html_content: new FormControl()
       });
       this.articleLoaded = true;
     }
@@ -131,8 +126,7 @@ export class CreateArticleComponent implements OnInit {
       response => {
         this.form = new FormGroup({
           title: new FormControl(response.title),
-          content: new FormControl(response.content),
-          thumbnail: new FormControl(response.thumbnail)
+          html_content: new FormControl(response.html_content),
         });
         this.articleLoaded = true;
       },

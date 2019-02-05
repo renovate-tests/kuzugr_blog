@@ -40,7 +40,7 @@ module Api
 
       private
       def article_params
-        params[:article].permit(:title, :content, :thumbnail)
+        params[:article].permit(:title, :mark_content, :html_content)
       end
 
       def move_to_index

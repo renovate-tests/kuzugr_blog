@@ -8,7 +8,6 @@
 /.bundle
 /vendor/bundle
 .vscode/
-.DS_Store
 
 # Ignore all logfiles and tempfiles.
 /log/*

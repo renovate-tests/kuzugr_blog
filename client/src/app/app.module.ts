@@ -24,6 +24,7 @@ import { CreateArticleComponent } from './components/article/create-article/crea
 import { MenuComponent } from './components/menu/menu.component';
 import { LatestArticleComponent } from './components/article/latest-article/latest-article.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SafeHtmlPipe } from './shared/pipes/pipe.safehtml.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     CreateArticleComponent,
     MenuComponent,
     LatestArticleComponent,
-    ProfileComponent
+    ProfileComponent,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,

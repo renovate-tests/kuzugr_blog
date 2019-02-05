@@ -1,3 +1,3 @@
 class ArticleSerializer < ActiveModel::Serializer
-  attributes :id, :title, :content, :user_id, :thumbnail, :created_at, :updated_at
+  attributes :id, :title, :html_content, :mark_content, :user_id, :created_at, :updated_at
 end

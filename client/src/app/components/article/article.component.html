@@ -4,8 +4,6 @@
     <div class='date'>
       <span>投稿日時: {{article.created_at | date:"yyyy/MM/dd HH:mm"}}</span>
     </div>
-    <div class='content'>
-      {{article.content}}
-    </div>
+    <div class='content' [innerHTML]='article.mark_content | safeHtml'></div>
   </div>
 </div>
