@@ -4,6 +4,7 @@ AllCops:
   Exclude:
     - 'vendor/**/*'
     - 'client/**/*'
+    - 'db/**/*'
 
 Rails:
   Enabled: true
