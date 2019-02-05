@@ -5,14 +5,6 @@
 export const environment = {
   production: false,
   apiEndpoint: 'http://kuzugr-blog.jp:3000/api/v1',
-  firebase: {
-    apiKey: 'AIzaSyAHyGhb1j4vu0fOfMF9ImL8A1ZJu8xcdK8',
-    authDomain: 'my-blog-5bf8f.firebaseapp.com',
-    databaseURL: 'https://my-blog-5bf8f.firebaseio.com',
-    projectId: 'my-blog-5bf8f',
-    storageBucket: 'my-blog-5bf8f.appspot.com',
-    messagingSenderId: '488866007816',
-  },
 };
 
 /*
