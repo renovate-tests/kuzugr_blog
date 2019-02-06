@@ -9,14 +9,14 @@ export class HttpsInterceptor implements HttpInterceptor {
   // リクエストの変換処理。ここに共通処理を記述。
   intercept(
     request: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
       request = request.clone({
         setHeaders: {
           'Content-Type': 'application/json',
-          'Authorization': this.cookieService.get('access_token')
+          'Authorization': this.cookieService.get('access_token'),
         },
-        withCredentials: true
+        withCredentials: true,
       });
       return next.handle(request);
   }

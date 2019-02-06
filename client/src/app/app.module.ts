@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { environment } from '../environments/environment';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
 import { MarkdownModule } from 'ngx-markdown';
@@ -41,7 +40,7 @@ import { SafeHtmlPipe } from './shared/pipes/pipe.safehtml.pipe';
     MenuComponent,
     LatestArticleComponent,
     ProfileComponent,
-    SafeHtmlPipe
+    SafeHtmlPipe,
   ],
   imports: [
     BrowserModule,
@@ -51,12 +50,12 @@ import { SafeHtmlPipe } from './shared/pipes/pipe.safehtml.pipe';
     HttpClientModule,
     ImageUploadModule.forRoot(),
     AngularMarkdownEditorModule.forRoot(),
-    MarkdownModule.forRoot()
+    MarkdownModule.forRoot(),
   ],
   providers: [
     CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpsInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

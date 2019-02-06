@@ -8,7 +8,7 @@ describe('DeviseComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeviseComponent ]
+      declarations: [ DeviseComponent ],
     })
     .compileComponents();
   }));

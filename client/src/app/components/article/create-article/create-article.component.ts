@@ -12,7 +12,7 @@ import { MarkdownService } from 'ngx-markdown';
 @Component({
   selector: 'app-create-article',
   templateUrl: './create-article.component.html',
-  styleUrls: ['./create-article.component.scss']
+  styleUrls: ['./create-article.component.scss'],
 })
 export class CreateArticleComponent implements OnInit {
   @ViewChild('fileInput') fileInput;
@@ -54,16 +54,15 @@ export class CreateArticleComponent implements OnInit {
     }
   }
 
-
   uploadFile() {
-    const file_element = <HTMLInputElement>document.getElementById('thumbnail');
-    const file = file_element.files[0];
+    const fileElement = <HTMLInputElement>document.getElementById('thumbnail');
+    const file = fileElement.files[0];
     const data = new FormData();
       data.append('image', file, file.name);
       const config = {
         header: {
-          'Content-Type': 'multipart/form-data'
-        }
+          'Content-Type': 'multipart/form-data',
+        },
       };
     const myReader = new FileReader();
     this.result = myReader.result;
@@ -74,7 +73,7 @@ export class CreateArticleComponent implements OnInit {
     this.uploadFileService.uploadFile(data).subscribe(
       response => {
 
-      }
+      },
     );
   }
 
@@ -89,7 +88,7 @@ export class CreateArticleComponent implements OnInit {
       },
       error => {
         // エラーメッセージを出す
-      }
+      },
     );
   }
 
@@ -97,7 +96,7 @@ export class CreateArticleComponent implements OnInit {
     this.articleService.editArticle(this.article, this.articleId).subscribe(
       response => {
         this.router.navigateByUrl(`/article/${this.articleId}`);
-      }
+      },
     );
   }
 
@@ -110,12 +109,11 @@ export class CreateArticleComponent implements OnInit {
 
   loadArticle() {
     if (this.articleId) {
-      console.log(this.articleId);
       this.getArticle(this.articleId);
     } else {
       this.form = new FormGroup({
         title: new FormControl(),
-        html_content: new FormControl()
+        html_content: new FormControl(),
       });
       this.articleLoaded = true;
     }
@@ -132,7 +130,7 @@ export class CreateArticleComponent implements OnInit {
       },
       error => {
         this.articleLoaded = true;
-      }
+      },
     );
   }
 

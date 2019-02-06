@@ -8,7 +8,7 @@ describe('EditAccountComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditAccountComponent ]
+      declarations: [ EditAccountComponent ],
     })
     .compileComponents();
   }));

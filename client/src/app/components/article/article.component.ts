@@ -3,12 +3,11 @@ import { ArticleService } from './article.service';
 import { Article } from 'src/app/shared/models/article';
 import { CookieService } from 'ngx-cookie-service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ArticlesResponse } from './articles-response';
 
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss']
+  styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent implements OnInit {
   articles: Array<Article>;
@@ -37,7 +36,7 @@ export class ArticleComponent implements OnInit {
         this.articles = response;
         this.article = response[0];
         this.articleLoaded = true;
-      }
+      },
     );
   }
 
@@ -46,7 +45,7 @@ export class ArticleComponent implements OnInit {
       response => {
         this.article = response;
         this.articleLoaded = true;
-      }
+      },
     );
   }
 

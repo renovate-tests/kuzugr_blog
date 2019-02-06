@@ -7,7 +7,7 @@ import 'rxjs/add/observable/interval';
 @Component({
   selector: 'app-latest-article',
   templateUrl: './latest-article.component.html',
-  styleUrls: ['./latest-article.component.scss']
+  styleUrls: ['./latest-article.component.scss'],
 })
 export class LatestArticleComponent implements OnInit {
   articles: Array<Article>;
@@ -36,10 +36,10 @@ export class LatestArticleComponent implements OnInit {
                 this.index = 0;
               }
               this.setArticle();
-            }
+            },
           );
         }
-      }
+      },
     );
   }
 

@@ -18,13 +18,13 @@ const routes: Routes = [
     children: [
       { path: 'create', component: CreateArticleComponent },
       { path: ':article_id', component: ArticleComponent },
-      { path: ':article_id/edit', component: CreateArticleComponent }
-    ]
-  }
+      { path: ':article_id/edit', component: CreateArticleComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class AppRoutingModule { }

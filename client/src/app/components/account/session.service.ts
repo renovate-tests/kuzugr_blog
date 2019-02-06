@@ -5,7 +5,7 @@ import { User } from 'src/app/shared/models/user';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SessionService {
   apiEndpoint = environment.apiEndpoint;
