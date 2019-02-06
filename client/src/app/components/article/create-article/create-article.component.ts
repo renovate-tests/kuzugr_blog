@@ -54,29 +54,6 @@ export class CreateArticleComponent implements OnInit {
     }
   }
 
-  uploadFile() {
-    const fileElement = <HTMLInputElement>document.getElementById('thumbnail');
-    const file = fileElement.files[0];
-    const data = new FormData();
-      data.append('image', file, file.name);
-      const config = {
-        header: {
-          'Content-Type': 'multipart/form-data',
-        },
-      };
-    const myReader = new FileReader();
-    this.result = myReader.result;
-    myReader.onloadend = (e) => {
-      this.result = myReader.result;
-    };
-    myReader.readAsDataURL(file);
-    this.uploadFileService.uploadFile(data).subscribe(
-      response => {
-
-      },
-    );
-  }
-
   onUploadFinished(response) {
 
   }
