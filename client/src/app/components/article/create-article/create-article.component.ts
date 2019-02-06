@@ -2,11 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ArticleService } from '../article.service';
 import { Article } from 'src/app/shared/models/article';
-import { UploadFileService } from 'src/app/shared/services/upload-file.service';
-import { ThumbnailService } from 'src/app/shared/services/thumbnail.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { environment } from '../../../../environments/environment';
 import { MarkdownService } from 'ngx-markdown';
 
 @Component({
@@ -15,22 +12,16 @@ import { MarkdownService } from 'ngx-markdown';
   styleUrls: ['./create-article.component.scss'],
 })
 export class CreateArticleComponent implements OnInit {
-  @ViewChild('fileInput') fileInput;
   form: FormGroup;
   article: Article;
   articleLoaded: boolean;
   articleId: number;
-  apiEndpoint = environment.apiEndpoint;
-  public uploadResult: any = null;
-  result: any;
 
   constructor(private articleService: ArticleService,
               private router: Router,
               private cookieService: CookieService,
               private route: ActivatedRoute,
               private markdownService: MarkdownService,
-              private uploadFileService: UploadFileService,
-              private thumbnailService: ThumbnailService,
             ) { }
 
   ngOnInit() {
@@ -114,4 +105,5 @@ export class CreateArticleComponent implements OnInit {
   dataLoaded(): boolean {
     return this.articleLoaded;
   }
+// tslint:disable-next-line:max-file-line-count
 }
