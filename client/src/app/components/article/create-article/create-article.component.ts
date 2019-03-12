@@ -16,6 +16,7 @@ export class CreateArticleComponent implements OnInit {
   article: Article;
   articleLoaded: boolean;
   articleId: number;
+  uploadFileUuids = [];
 
   constructor(private articleService: ArticleService,
               private router: Router,
@@ -36,6 +37,7 @@ export class CreateArticleComponent implements OnInit {
       this.article = this.form.value;
       // this.article.title = this.form.controls.title.value;
       this.article.mark_content = this.markdownService.compile(this.form.controls.html_content.value.trim());
+      this.article.upload_file_uuids = this.uploadFileUuids;
       // this.article = this.form.value;
       if (this.articleId) {
         this.editArticle();
@@ -46,7 +48,13 @@ export class CreateArticleComponent implements OnInit {
   }
 
   onUploadFinished(response) {
-
+    // NOTE: 使用する画像のuuidを配列で保持しておく、また自動的に画像を入力欄に挿入する
+    if ( response.serverResponse.status === 200 ) {
+      const responseBody = JSON.parse(response.serverResponse.response._body);
+      this.uploadFileUuids.push(responseBody.uuid);
+      const markDownImage = `![image description](${responseBody.public_url} "image title")`;
+      this.form.controls.html_content.setValue(`${this.form.controls.html_content.value}\n${markDownImage}`);
+    }
   }
 
   createArticle() {
