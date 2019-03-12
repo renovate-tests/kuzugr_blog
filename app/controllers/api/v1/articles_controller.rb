@@ -6,6 +6,7 @@ module Api
       # TODO: upload_thumbnailでなぜCookieが取れないのか
       skip_before_action :authenticate_user_from_token!, only: [:index, :show]
       skip_before_action :verify_authenticity_token, only: [:create, :update]
+      before_action :upload_files, only: [:create]
 
       def index
         @articles = Article.order('created_at desc').limit(params[:limit])
@@ -30,7 +31,9 @@ module Api
       end
 
       def create
+        upload_files_params = upload_files
         article = Article.new(article_params)
+        article.upload_files = UploadFile.where(uuid: upload_files_params)
         article.user_id = current_user.id
         article.save!
       end
@@ -47,6 +50,19 @@ module Api
 
       def move_to_index
         redirect_to action: :index unless user_signed_in?
+      end
+
+      # 最終的に記事に乗せない画像を削除する
+      def upload_files
+        remove_files = []
+        params[:article][:upload_file_uuids].each do |uuid|
+          unless params[:article][:html_content].include?(uuid)
+            remove_files.push(uuid)
+            UploadFile.remove_upload_file(uuid)
+          end
+        end
+        UploadFile.where(uuid: remove_files).destroy_all if remove_files
+        params[:article][:upload_file_uuids] - remove_files
       end
     end
   end
