@@ -28,9 +28,9 @@
             <image-upload
               url="http://kuzugr-blog.jp:3000/api/v1/upload_files"
               [withCredentials]
-              buttonCaption="PRESS ME AAAAAAAAAH"
-              dropBoxMessage="DROP ON ME AAAAAAAAAH"
-              clearButtonCaption="CLEAR ME AAAAAAAAAH"
+              buttonCaption="SELECT IMAGE"
+              dropBoxMessage="DROP IMAGE"
+              clearButtonCaption="CLEAR IMAGES"
               (uploadFinished)="onUploadFinished($event)">
             </image-upload>
             <img [src]="uploadResult?.downloadURL || ''">
