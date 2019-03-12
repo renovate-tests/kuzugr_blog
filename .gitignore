@@ -8,6 +8,7 @@
 /.bundle
 /vendor/bundle
 .vscode/
+/my_scripts
 
 # Ignore all logfiles and tempfiles.
 /log/*
