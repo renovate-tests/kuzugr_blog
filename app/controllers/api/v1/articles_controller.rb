@@ -33,7 +33,10 @@ module Api
       def create
         upload_files_params = upload_files
         article = Article.new(article_params)
-        article.upload_files = UploadFile.where(uuid: upload_files_params)
+        article_upload_files = UploadFile.where(uuid: upload_files_params).order(:id)
+        article.upload_files = article_upload_files
+        article.thumbnail = Thumbnail.new(file_name: article_upload_files[0].file_name,
+                                          uuid: upload_files_params)
         article.user_id = current_user.id
         article.save!
       end

@@ -29,7 +29,6 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "thumbnails", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
     t.integer "article_id", null: false
     t.string "file_name", null: false
-    t.string "file_extension", null: false
     t.string "uuid", null: false
   end
 
