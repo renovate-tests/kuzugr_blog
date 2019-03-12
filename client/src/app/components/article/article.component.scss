@@ -19,3 +19,12 @@
   margin-left: 5%;
   text-align: left;
 }
+
+/deep/ .content {
+  img {
+      max-width: 95%;
+      height: auto;
+      overflow: hidden;
+      margin-bottom: 30px;
+  }
+}
