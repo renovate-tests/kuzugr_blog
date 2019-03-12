@@ -7,4 +7,5 @@ export class Article {
   created_at: string;
   updated_at: string;
   upload_file_uuids: any[];
+  thumbnail_url: string;
 }
