@@ -12,6 +12,11 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "article_upload_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
+    t.integer "article_id", null: false
+    t.integer "upload_file_id", null: false
+  end
+
   create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
     t.string "title", null: false
     t.text "mark_content", null: false
@@ -29,7 +34,6 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "upload_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
-    t.integer "article_id", null: false
     t.string "file_name", null: false
     t.string "file_extension", null: false
     t.string "uuid", null: false

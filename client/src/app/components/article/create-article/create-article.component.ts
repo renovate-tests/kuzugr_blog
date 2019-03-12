@@ -2,11 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ArticleService } from '../article.service';
 import { Article } from 'src/app/shared/models/article';
-import { UploadFileService } from 'src/app/shared/services/upload-file.service';
-import { ThumbnailService } from 'src/app/shared/services/thumbnail.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { environment } from '../../../../environments/environment';
 import { MarkdownService } from 'ngx-markdown';
 
 @Component({
@@ -15,22 +12,17 @@ import { MarkdownService } from 'ngx-markdown';
   styleUrls: ['./create-article.component.scss'],
 })
 export class CreateArticleComponent implements OnInit {
-  @ViewChild('fileInput') fileInput;
   form: FormGroup;
   article: Article;
   articleLoaded: boolean;
   articleId: number;
-  apiEndpoint = environment.apiEndpoint;
-  public uploadResult: any = null;
-  result: any;
+  uploadFileUuids = [];
 
   constructor(private articleService: ArticleService,
               private router: Router,
               private cookieService: CookieService,
               private route: ActivatedRoute,
               private markdownService: MarkdownService,
-              private uploadFileService: UploadFileService,
-              private thumbnailService: ThumbnailService,
             ) { }
 
   ngOnInit() {
@@ -45,6 +37,7 @@ export class CreateArticleComponent implements OnInit {
       this.article = this.form.value;
       // this.article.title = this.form.controls.title.value;
       this.article.mark_content = this.markdownService.compile(this.form.controls.html_content.value.trim());
+      this.article.upload_file_uuids = this.uploadFileUuids;
       // this.article = this.form.value;
       if (this.articleId) {
         this.editArticle();
@@ -54,31 +47,14 @@ export class CreateArticleComponent implements OnInit {
     }
   }
 
-  uploadFile() {
-    const fileElement = <HTMLInputElement>document.getElementById('thumbnail');
-    const file = fileElement.files[0];
-    const data = new FormData();
-      data.append('image', file, file.name);
-      const config = {
-        header: {
-          'Content-Type': 'multipart/form-data',
-        },
-      };
-    const myReader = new FileReader();
-    this.result = myReader.result;
-    myReader.onloadend = (e) => {
-      this.result = myReader.result;
-    };
-    myReader.readAsDataURL(file);
-    this.uploadFileService.uploadFile(data).subscribe(
-      response => {
-
-      },
-    );
-  }
-
   onUploadFinished(response) {
-
+    // NOTE: 使用する画像のuuidを配列で保持しておく、また自動的に画像を入力欄に挿入する
+    if ( response.serverResponse.status === 200 ) {
+      const responseBody = JSON.parse(response.serverResponse.response._body);
+      this.uploadFileUuids.push(responseBody.uuid);
+      const markDownImage = `![image description](${responseBody.public_url} "image title")`;
+      this.form.controls.html_content.setValue(`${this.form.controls.html_content.value}\n${markDownImage}`);
+    }
   }
 
   createArticle() {
@@ -137,4 +113,5 @@ export class CreateArticleComponent implements OnInit {
   dataLoaded(): boolean {
     return this.articleLoaded;
   }
+// tslint:disable-next-line:max-file-line-count
 }
