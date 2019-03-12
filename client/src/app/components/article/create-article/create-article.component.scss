@@ -14,6 +14,10 @@
     margin-bottom: 5%;
   }
 
+  .form-parts-content {
+    width: 90%;
+  }
+
   .create-btn {
     float: right;
     color: #fff;
@@ -26,7 +30,7 @@
     height: 30px;
   }
 
-  .title, .content {
+  .title {
     width: 150%;
     font-size: 1.2rem;
     border: 1px solid #ccc;
@@ -39,10 +43,6 @@
   .title {
     height: 2rem;
     border-radius: 4px;
-  }
-
-  .content {
-    border-radius: 10px;
   }
 
   .label-div {
