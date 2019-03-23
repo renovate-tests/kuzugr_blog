@@ -1,7 +1,0 @@
-{
-  "name": "my-blog",
-  "private": true,
-  "dependencies": {
-    "@angular/cli": "^7.0.6"
-  }
-}
