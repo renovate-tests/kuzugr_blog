@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndpoint: 'http://kuzugr-blog.jp:3000/api/v1',
+  apiEndpoint: 'http://local.kuzugr.com:3000/api/v1',
 };
 
 /*
