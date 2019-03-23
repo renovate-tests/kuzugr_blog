@@ -11,7 +11,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
              when 'production'
                ENV['CORS_ALLOW_HOST']
              else
-               'http://kuzugr-blog.jp:4200'
+               'http://local.kuzugr.com:4200'
              end
     origins domain
     resource '*',
