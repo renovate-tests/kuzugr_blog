@@ -26,7 +26,7 @@
               </angular-markdown-editor>
             </div>
             <image-upload
-              url="http://kuzugr-blog.jp:3000/api/v1/upload_files"
+              url="{{ this.uploadFileEndpoint }}"
               [withCredentials]
               buttonCaption="SELECT IMAGE"
               dropBoxMessage="DROP IMAGE"

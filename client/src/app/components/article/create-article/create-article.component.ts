@@ -5,6 +5,7 @@ import { Article } from 'src/app/shared/models/article';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MarkdownService } from 'ngx-markdown';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-create-article',
@@ -17,6 +18,7 @@ export class CreateArticleComponent implements OnInit {
   articleLoaded: boolean;
   articleId: number;
   uploadFileUuids = [];
+  uploadFileEndpoint: string;
 
   constructor(private articleService: ArticleService,
               private router: Router,
@@ -26,6 +28,7 @@ export class CreateArticleComponent implements OnInit {
             ) { }
 
   ngOnInit() {
+    this.uploadFileEndpoint = environment.uploadFileEndpoint;
     this.loginCheck();
     this.articleLoaded = false;
     this.articleId = this.route.snapshot.params['article_id'];
