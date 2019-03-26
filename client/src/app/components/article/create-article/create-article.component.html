@@ -33,7 +33,15 @@
               clearButtonCaption="CLEAR IMAGES"
               (uploadFinished)="onUploadFinished($event)">
             </image-upload>
-            <img [src]="uploadResult?.downloadURL || ''">
+            <div class='label-div'>
+              <img [src]="uploadResult?.downloadURL || ''">
+            </div>
+            <select class='category label-div'>
+              <option [ngValue]="null">カテゴリを選択</option>
+              <option *ngFor="let category of categories" [ngValue]="category.id">
+                {{category.name}}
+              </option>
+            </select>
       </div>
       <button class='create-btn fa' type="submit">
         <i class="fa fa-sign-in" aria-hidden="true"></i>投稿

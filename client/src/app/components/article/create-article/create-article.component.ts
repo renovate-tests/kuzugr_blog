@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ArticleService } from '../article.service';
+import { CategoryService } from 'src/app/shared/services/category-service.service';
 import { Article } from 'src/app/shared/models/article';
+import { Category } from 'src/app/shared/models/category';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MarkdownService } from 'ngx-markdown';
@@ -19,8 +21,10 @@ export class CreateArticleComponent implements OnInit {
   articleId: number;
   uploadFileUuids = [];
   uploadFileEndpoint: string;
+  categories: Array<Category>;
 
   constructor(private articleService: ArticleService,
+              private categoryService: CategoryService,
               private router: Router,
               private cookieService: CookieService,
               private route: ActivatedRoute,
@@ -33,6 +37,7 @@ export class CreateArticleComponent implements OnInit {
     this.articleLoaded = false;
     this.articleId = this.route.snapshot.params['article_id'];
     this.loadArticle();
+    this.getCategories();
   }
 
   onSubmit() {
@@ -115,6 +120,16 @@ export class CreateArticleComponent implements OnInit {
 
   dataLoaded(): boolean {
     return this.articleLoaded;
+  }
+
+  getCategories() {
+    this.categoryService.getCategories().subscribe(
+      response => {
+        this.categories = response;
+      },
+      error => {
+      },
+    );
   }
 // tslint:disable-next-line:max-file-line-count
 }
