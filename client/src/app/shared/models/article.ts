@@ -8,4 +8,5 @@ export class Article {
   updated_at: string;
   upload_file_uuids: any[];
   thumbnail_url: string;
+  category: string;
 }

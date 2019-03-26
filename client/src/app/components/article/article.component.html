@@ -1,8 +1,11 @@
 <div class='article-body' *ngIf="dataLoaded()">
   <h2 class='title'>{{article.title}}</h2>
   <div>
-    <div class='date'>
+    <div class='article-element'>
       <span>投稿日時: {{article.created_at | date:"yyyy/MM/dd HH:mm"}}</span>
+    </div>
+    <div class='article-element category' *ngIf="article.category">
+      <span>{{article.category}}</span>
     </div>
     <div class='content' [innerHTML]='article.html_content | safeHtml'></div>
   </div>
