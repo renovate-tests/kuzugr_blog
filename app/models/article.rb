@@ -5,4 +5,5 @@ class Article < ApplicationRecord
   has_many :upload_files, through: :article_upload_files, dependent: :destroy
   belongs_to :user
   has_one :thumbnail, dependent: :destroy
+  belongs_to :category, optional: true
 end
