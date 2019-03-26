@@ -15,15 +15,22 @@
   * 7.0.6
 
 ## ローカル実行方法
-### サーバサイド
+### サーバサイドの準備と実行
 * `bundle install --path vendor/bundle`
 * `bundle exec rake db:create`
 * `bundle exec rake ridgepole:apply`
+* `bundle exec rails s`
 
-### クライアントサイド
+### クライアントサイドの準備と実行
 * `npm install -g yarn && yarn global add @angular/cli`
 * `ng set --global packageManager=yarn`
 * `cd client && yarn`
+* `yarn start
+
+### ブラウザでの確認
+* /etc/hostsに127.0.0.1としてlocal.kuzugr.comを登録
+* ブラウザでlocal.kuzugr.com:4200にアクセス
+
 
 # MarkDownについて
 - マークダウンエディタとしてはangular-markdown-editorを採用
