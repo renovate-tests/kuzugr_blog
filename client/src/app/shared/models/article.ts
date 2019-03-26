@@ -1,11 +1,11 @@
 export class Article {
   id: number;
   title: string;
-  markContent: string;
-  htmlContent: string;
-  userId: number;
-  createdAt: string;
-  updatedAt: string;
-  uploadFileUuids: any[];
-  thumbnailUrl: string;
+  mark_content: string;
+  html_content: string;
+  user_id: number;
+  created_at: string;
+  updated_at: string;
+  upload_file_uuids: any[];
+  thumbnail_url: string;
 }
