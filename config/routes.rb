@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :articles
       resources :upload_files, only: [:create]
       resources :thumbnails, only: [:create]
+      resources :categories, only: [:index]
     end
   end
 end
