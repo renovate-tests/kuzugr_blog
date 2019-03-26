@@ -59,7 +59,7 @@ module Api
       def upload_files
         remove_files = []
         params[:article][:upload_file_uuids].each do |uuid|
-          unless params[:article][:html_content].include?(uuid)
+          unless params[:article][:mark_content].include?(uuid)
             remove_files.push(uuid)
             UploadFile.remove_upload_file(uuid)
           end
