@@ -39,7 +39,7 @@ export class CreateArticleComponent implements OnInit {
     if (this.form.valid) {
       this.article = this.form.value;
       // this.article.title = this.form.controls.title.value;
-      this.article.mark_content = this.markdownService.compile(this.form.controls.html_content.value.trim());
+      this.article.html_content = this.markdownService.compile(this.form.controls.mark_content.value.trim());
       this.article.upload_file_uuids = this.uploadFileUuids;
       // this.article = this.form.value;
       if (this.articleId) {
@@ -56,7 +56,7 @@ export class CreateArticleComponent implements OnInit {
       const responseBody = JSON.parse(response.serverResponse.response._body);
       this.uploadFileUuids.push(responseBody.uuid);
       const markDownImage = `![image description](${responseBody.public_url} "image title")`;
-      this.form.controls.html_content.setValue(`${this.form.controls.html_content.value}\n${markDownImage}`);
+      this.form.controls.mark_content.setValue(`${this.form.controls.mark_content.value}\n${markDownImage}`);
     }
   }
 
@@ -92,7 +92,7 @@ export class CreateArticleComponent implements OnInit {
     } else {
       this.form = new FormGroup({
         title: new FormControl(),
-        html_content: new FormControl(),
+        mark_content: new FormControl(),
       });
       this.articleLoaded = true;
     }
@@ -103,7 +103,7 @@ export class CreateArticleComponent implements OnInit {
       response => {
         this.form = new FormGroup({
           title: new FormControl(response.title),
-          html_content: new FormControl(response.html_content),
+          mark_content: new FormControl(response.mark_content),
         });
         this.articleLoaded = true;
       },
