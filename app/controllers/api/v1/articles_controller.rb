@@ -3,7 +3,6 @@
 module Api
   module V1
     class ArticlesController < ApplicationController
-      # TODO: upload_thumbnailでなぜCookieが取れないのか
       skip_before_action :authenticate_user_from_token!, only: [:index, :show]
       skip_before_action :verify_authenticity_token, only: [:create, :update]
       before_action :upload_files, only: [:create]
