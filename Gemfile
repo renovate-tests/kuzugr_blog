@@ -43,8 +43,9 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'pry-byebug'
   gem 'rubocop'
-  gem 'factory_girl_rails'
+  gem 'factory_bot'
   gem 'rspec-rails'
+  gem 'simplecov'
 end
 
 group :development do
