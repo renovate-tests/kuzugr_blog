@@ -3,7 +3,7 @@
 module Api
   module V1
     class ArticlesController < ApplicationController
-      skip_before_action :authenticate_user_from_token!, only: [:index, :show]
+      skip_before_action :authenticate_user_from_token!, only: [:index, :show, :create_months]
       skip_before_action :verify_authenticity_token, only: [:create, :update]
       before_action :upload_files, only: [:create]
 
