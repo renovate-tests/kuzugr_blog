@@ -9,4 +9,5 @@ export class Article {
   upload_file_uuids: any[];
   thumbnail_url: string;
   category: string;
+  category_id: integer;
 }

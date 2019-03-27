@@ -36,7 +36,7 @@
             <div class='label-div'>
               <img [src]="uploadResult?.downloadURL || ''">
             </div>
-            <select class='category label-div'>
+            <select class='category label-div' formControlName="category_id">
               <option [ngValue]="null">カテゴリを選択</option>
               <option *ngFor="let category of categories" [ngValue]="category.id">
                 {{category.name}}
