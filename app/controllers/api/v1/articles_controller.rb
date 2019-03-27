@@ -3,7 +3,7 @@
 module Api
   module V1
     class ArticlesController < ApplicationController
-      skip_before_action :authenticate_user_from_token!, only: [:index, :show]
+      skip_before_action :authenticate_user_from_token!, only: [:index, :show, :create_months]
       skip_before_action :verify_authenticity_token, only: [:create, :update]
       before_action :upload_files, only: [:create]
 
@@ -43,6 +43,11 @@ module Api
       def destroy
         article = Article.find(params[:id])
         article.destroy if article.user_id === current_user.id
+      end
+
+      def create_months
+        create_months = Article.select(:created_at).map{ |i| i.created_at.strftime('%Y年%m月') }.uniq
+        render status: 200, json: create_months
       end
 
       private
