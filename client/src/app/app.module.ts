@@ -7,6 +7,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
 import { MarkdownModule } from 'ngx-markdown';
+import { AdsenseModule } from 'ng2-adsense';
 
 import { HttpsInterceptor } from './shared/services/http.interceptor';
 
@@ -51,6 +52,9 @@ import { SafeHtmlPipe } from './shared/pipes/pipe.safehtml.pipe';
     ImageUploadModule.forRoot(),
     AngularMarkdownEditorModule.forRoot(),
     MarkdownModule.forRoot(),
+    AdsenseModule.forRoot({
+      adClient: 'ca-pub-4015300938527195',
+    }),
   ],
   providers: [
     CookieService,
