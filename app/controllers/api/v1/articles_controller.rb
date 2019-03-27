@@ -45,6 +45,11 @@ module Api
         article.destroy if article.user_id === current_user.id
       end
 
+      def create_months
+        create_months = Article.select(:created_at).map{ |i| i.created_at.strftime('%Y年%m月') }.uniq
+        render status: 200, json: create_months
+      end
+
       private
       def article_params
         params[:article].permit(:title, :mark_content, :html_content)
