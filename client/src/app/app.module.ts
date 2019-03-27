@@ -25,6 +25,9 @@ import { MenuComponent } from './components/menu/menu.component';
 import { LatestArticleComponent } from './components/article/latest-article/latest-article.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SafeHtmlPipe } from './shared/pipes/pipe.safehtml.pipe';
+import { SearchTextComponent } from './components/sidebar/search-text/search-text.component';
+import { SearchCategoryComponent } from './components/sidebar/search-category/search-category.component';
+import { AdvertisementComponent } from './components/sidebar/advertisement/advertisement.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,9 @@ import { SafeHtmlPipe } from './shared/pipes/pipe.safehtml.pipe';
     LatestArticleComponent,
     ProfileComponent,
     SafeHtmlPipe,
+    SearchTextComponent,
+    SearchCategoryComponent,
+    AdvertisementComponent,
   ],
   imports: [
     BrowserModule,
