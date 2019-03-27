@@ -98,6 +98,7 @@ export class CreateArticleComponent implements OnInit {
       this.form = new FormGroup({
         title: new FormControl(),
         mark_content: new FormControl(),
+        category_id: new FormControl(),
       });
       this.articleLoaded = true;
     }
@@ -109,6 +110,7 @@ export class CreateArticleComponent implements OnInit {
         this.form = new FormGroup({
           title: new FormControl(response.title),
           mark_content: new FormControl(response.mark_content),
+          category_id: new FormControl(response.category_id),
         });
         this.articleLoaded = true;
       },
