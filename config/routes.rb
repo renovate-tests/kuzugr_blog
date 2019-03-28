@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       get :login_state, controller: :sessions
       resources :articles do
         collection do
+          get :search
           get :create_months
         end
       end

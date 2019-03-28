@@ -6,4 +6,6 @@ class Article < ApplicationRecord
   belongs_to :user
   has_one :thumbnail, dependent: :destroy
   belongs_to :category, optional: true
+
+  scope :by_keyword, -> (keyword) { where('mark_content LIKE ?', "%#{keyword}%") }
 end
