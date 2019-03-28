@@ -20,9 +20,9 @@ export class SearchArticleComponent implements OnInit {
     this.route.queryParams.subscribe(
       params => {
         this.params = params;
+        this.searchArticle();
       },
     );
-    this.searchArticle();
   }
 
   searchArticle() {
