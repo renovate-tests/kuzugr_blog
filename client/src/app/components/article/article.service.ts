@@ -27,4 +27,8 @@ export class ArticleService {
   editArticle(article: Article, articleId: number): Observable<Article> {
     return this.http.patch<Article>(`${this.apiEndpoint}/articles/${articleId}`, { article: article } );
   }
+
+  searchArticle(params = {}): Observable<Array<Article>> {
+    return this.http.get<Array<Article>>(`${this.apiEndpoint}/articles/search`, { params: params }  );
+  }
 }

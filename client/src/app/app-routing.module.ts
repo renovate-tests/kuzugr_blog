@@ -6,6 +6,7 @@ import { EditAccountComponent } from './components/account/edit-account/edit-acc
 import { LoginComponent } from './components/account/login/login.component';
 import { CreateArticleComponent } from './components/article/create-article/create-article.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SearchArticleComponent } from './components/article/search-article/search-article.component';
 
 const routes: Routes = [
   { path: '', component: ArticleComponent },
@@ -21,6 +22,7 @@ const routes: Routes = [
       { path: ':article_id/edit', component: CreateArticleComponent },
     ],
   },
+  { path: 'search', component: SearchArticleComponent },
 ];
 
 @NgModule({
