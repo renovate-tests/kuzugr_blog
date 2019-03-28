@@ -6,7 +6,7 @@ import { Article } from '../../../shared/models/article';
 @Component({
   selector: 'app-search-article',
   templateUrl: './search-article.component.html',
-  styleUrls: ['./search-article.component.scss']
+  styleUrls: ['./search-article.component.scss'],
 })
 export class SearchArticleComponent implements OnInit {
 
