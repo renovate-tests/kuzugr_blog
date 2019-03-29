@@ -1,7 +1,7 @@
 <div class='search-text-div'>
-  <p>ブログ内検索</p>
+  <h4>ブログ内検索</h4>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <input type='text' formControlName='keyword'>
-    <input type='submit' value='検索'>
+    <input class='search-button' type='submit' value='検索'>
   </form>
 </div>
