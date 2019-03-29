@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "category_id"
   end
 
+  create_table "blog_informations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
+    t.string "title", null: false
+    t.string "profile_image", null: false
+    t.string "profile_name", null: false
+    t.text "profile_text", null: false
+  end
+
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
     t.string "name", null: false
     t.integer "create_user_id"
