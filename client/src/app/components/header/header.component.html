@@ -1,5 +1,5 @@
 <div class='header-block'>
   <div class='title-block'>
-    <h1 [routerLink]="['/']">クズのブログ</h1>
+    <h1 [routerLink]="['/']" *ngIf="blogInformationLoaded">{{blogInformation.title}}</h1>
   </div>
 </div>

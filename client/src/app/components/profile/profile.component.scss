@@ -21,6 +21,7 @@ ul {
 
   h4 {
     margin: 0;
+    margin-bottom: 0.8rem;
   }
 
   span {
@@ -38,6 +39,11 @@ ul {
   }
 
   .li {
-    margin-bottom: 0.7rem;
+    margin-bottom: 2rem;
+  }
+
+  .profile-text {
+    white-space: pre-wrap;
+    margin-left: 3%;
   }
 }

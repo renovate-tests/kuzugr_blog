@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BlogInformation } from '../../shared/models/blog-information';
+import { BlogInformationService} from '../../shared/services/blog-information.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +8,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.scss'],
 })
 export class ProfileComponent implements OnInit {
+  blogInformation: BlogInformation;
+  blogInformationLoaded: boolean;
 
-  constructor() { }
+  constructor(private blogInformationService: BlogInformationService) { }
 
   ngOnInit() {
+    this.blogInformationLoaded = false;
+    this.getBlogInformation();
+  }
+
+  getBlogInformation() {
+    this.blogInformationService.getBlogInformation().subscribe(
+      response => {
+        this.blogInformation = response;
+        this.blogInformationLoaded = true;
+      },
+      errot => {
+
+      },
+    );
   }
 
 }
