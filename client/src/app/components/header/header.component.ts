@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '../../shared/services/auth.service';
+import { BlogInformation } from '../../shared/models/blog-information';
+import { BlogInformationService } from '../../shared/services/blog-information.service';
 
 @Component({
   selector: 'app-header',
@@ -8,25 +10,37 @@ import { AuthService } from '../../shared/services/auth.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  login_state: boolean;
+  loginState: boolean;
+  blogInformation: BlogInformation;
+  blogInformationLoaded: boolean;
 
   constructor(private authService: AuthService,
-              private cookieService: CookieService) { }
+              private cookieService: CookieService,
+              private blogInformationService: BlogInformationService) { }
 
   ngOnInit() {
-    this.login_state  = false;
+    this.blogInformationLoaded = false;
+    this.getBlogInformation();
+    this.loginState  = false;
     const loginEmail = this.cookieService.get('login_email');
     if (!!loginEmail) {
-      this.login_state = this.authService.loginState().then(
+      this.loginState = this.authService.loginState().then(
         response => {
-          this.login_state = response['login_state'];
+          this.loginState = response['login_state'];
         },
       );
     }
   }
 
-  loginState() {
-    return this.login_state;
-  }
+  getBlogInformation() {
+    this.blogInformationService.getBlogInformation().subscribe(
+      response => {
+        this.blogInformation = response;
+        this.blogInformationLoaded = true;
+      },
+      error => {
 
+      },
+    );
+  }
 }
