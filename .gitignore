@@ -7,8 +7,11 @@
 # Ignore bundler config.
 /.bundle
 /vendor/bundle
+
+# my_setting
 .vscode/
 /my_scripts
+/master_data
 
 # Ignore all logfiles and tempfiles.
 /log/*
