@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "name", null: false
     t.text "pc_link", null: false
     t.text "sp_link", null: false
+    t.integer "display_flag", null: false
   end
 
   create_table "article_upload_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|

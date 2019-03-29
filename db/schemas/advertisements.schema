@@ -2,4 +2,5 @@ create_table "advertisements", force: :cascade, options: "ENGINE=InnoDB DEFAULT 
   t.string "name", null: false
   t.text "pc_link", null: false
   t.text "sp_link", null: false
+  t.integer "display_flag", null: false
 end
