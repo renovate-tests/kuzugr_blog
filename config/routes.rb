@@ -20,6 +20,7 @@ Rails.application.routes.draw do
           get :with_number
         end
       end
+      resources :advertisements, only: [:index]
     end
   end
 end
