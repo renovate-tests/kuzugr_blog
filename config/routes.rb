@@ -21,6 +21,7 @@ Rails.application.routes.draw do
         end
       end
       resources :advertisements, only: [:index]
+      resources :blog_informations, only: [:index]
     end
   end
 end
