@@ -1,20 +1,23 @@
-<div class='search-article-body'>
+<div class='search-article-body' *ngIf="articleLoaded">
+  <div *ngIf="articles.length > 0; else empty">
   <ng-container *ngFor='let article of articles;'>
     <table>
-      <a href='/article/{{article.id}}'>
-        <div class='table-div'>
-          <tr>
-            <td class='image-td'>
-              <img src={{article.thumbnail_url}}>
-            </td>
-            <td>
-              <p>{{article.category}}</p>
-              <p>{{article.title}}</p>
-              <p class='date'>{{article.created_at | date:'yyyy/MM/dd HH:mm'}}</p>
-            </td>
-          </tr>
-        </div>
-      </a>
+      <div class='table-div' [routerLink]="['/article', article.id]">
+        <tr>
+          <td class='image-td'>
+            <img src={{article.thumbnail_url}}>
+          </td>
+          <td>
+            <p>{{article.category}}</p>
+            <p>{{article.title}}</p>
+            <p class='date'>{{article.created_at | date:'yyyy/MM/dd HH:mm'}}</p>
+          </td>
+        </tr>
+      </div>
     </table>
   </ng-container>
+  </div>
+  <ng-template #empty>
+    検索条件に当てはまる記事はありません。
+  </ng-template>
 </div>

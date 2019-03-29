@@ -15,4 +15,8 @@ export class CategoryService {
   getCategories(): Observable<Array<Category>> {
     return this.http.get<Array<Category>>(`${this.apiEndpoint}/categories`);
   }
+
+  getCategoriesWithNumber(): Observable<Array<Category>> {
+    return this.http.get<Array<Category>>(`${this.apiEndpoint}/categories/with_number`);
+  }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ArticleService } from '../article.service';
-import { CategoryService } from 'src/app/shared/services/category-service.service';
+import { CategoryService } from 'src/app/shared/services/category.service';
 import { Article } from 'src/app/shared/models/article';
 import { Category } from 'src/app/shared/models/category';
 import { Router, ActivatedRoute } from '@angular/router';
