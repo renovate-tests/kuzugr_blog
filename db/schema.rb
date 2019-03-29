@@ -12,6 +12,12 @@
 
 ActiveRecord::Schema.define(version: 0) do
 
+  create_table "advertisements", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
+    t.string "name", null: false
+    t.text "pc_link", null: false
+    t.text "sp_link", null: false
+  end
+
   create_table "article_upload_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
     t.integer "article_id", null: false
     t.integer "upload_file_id", null: false
