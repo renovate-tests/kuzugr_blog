@@ -1,5 +1,5 @@
 <div class='category'>
-  <p>カテゴリ</p>
+  <h4>カテゴリ</h4>
   <ul *ngFor="let category of categories">
     <li (click)="searchWithCategory(category.id)">{{category.name}}（{{category.number_of_articles}}）</li>
   </ul>
