@@ -1,4 +1,5 @@
-<div class='search-article-body'>
+<div class='search-article-body' *ngIf="articleLoaded">
+  <div *ngIf="articles.length > 0; else empty">
   <ng-container *ngFor='let article of articles;'>
     <table>
       <div class='table-div' [routerLink]="['/article', article.id]">
@@ -15,4 +16,8 @@
       </div>
     </table>
   </ng-container>
+  </div>
+  <ng-template #empty>
+    検索条件に当てはまる記事はありません。
+  </ng-template>
 </div>

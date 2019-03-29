@@ -15,20 +15,27 @@ export class SearchArticleComponent implements OnInit {
 
   params: any;
   articles: Array<Article>;
+  articleLoaded: boolean;
 
   ngOnInit() {
+    this.articleLoaded = false;
+    this.getParams();
+
+  }
+
+  getParams() {
     this.route.queryParams.subscribe(
       params => {
         this.params = params;
         this.searchArticle();
-      },
-    );
+      });
   }
 
   searchArticle() {
     this.articleService.searchArticle(this.params).subscribe(
       response => {
         this.articles = response;
+        this.articleLoaded = true;
       },
       error => {
       },
