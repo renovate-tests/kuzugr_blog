@@ -46,7 +46,11 @@ module Api
       end
 
       def search
-        @articles = Article.by_keyword(params[:keyword])
+        if params[:category]
+          @articles = Article.by_category(params[:category])
+        else
+          @articles = Article.by_keyword(params[:keyword])
+        end
         render status: 200, json: @articles, each_serializer: ArticleSerializer
       end
 
