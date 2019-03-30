@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '@services/article.service';
 import { Article } from '@models/article';
-import { CookieService } from 'ngx-cookie-service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -15,7 +14,6 @@ export class ArticleComponent implements OnInit {
   articleLoaded: boolean;
 
   constructor(private articleService: ArticleService,
-              private cookieService: CookieService,
               private router: Router,
               private route: ActivatedRoute) { }
 
