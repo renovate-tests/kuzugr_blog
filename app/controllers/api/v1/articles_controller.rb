@@ -8,6 +8,7 @@ module Api
       before_action :upload_files, only: [:create]
 
       def index
+        limit = params[:limit] || 5
         @articles = Article.order('created_at desc').limit(params[:limit])
         render status: 200, json: @articles, each_serializer: ArticleSerializer
       end
