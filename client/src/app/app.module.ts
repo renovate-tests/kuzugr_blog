@@ -9,7 +9,7 @@ import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
 import { MarkdownModule } from 'ngx-markdown';
 import { AdsenseModule } from 'ng2-adsense';
 
-import { HttpsInterceptor } from './shared/services/http.interceptor';
+import { HttpsInterceptor } from '@services/http.interceptor';
 
 import { AppComponent } from './app.component';
 import { ArticleComponent } from './components/article/article.component';

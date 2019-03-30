@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogInformation } from '../../shared/models/blog-information';
-import { BlogInformationService} from '../../shared/services/blog-information.service';
+import { BlogInformation } from '@models/blog-information';
+import { BlogInformationService} from '@services/blog-information.service';
 
 @Component({
   selector: 'app-profile',

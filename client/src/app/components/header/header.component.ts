@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { AuthService } from '../../shared/services/auth.service';
-import { BlogInformation } from '../../shared/models/blog-information';
-import { BlogInformationService } from '../../shared/services/blog-information.service';
+import { AuthService } from '@services/auth.service';
+import { BlogInformation } from '@models/blog-information';
+import { BlogInformationService } from '@services/blog-information.service';
 
 @Component({
   selector: 'app-header',

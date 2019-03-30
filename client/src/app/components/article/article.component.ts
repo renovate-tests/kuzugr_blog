@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from './article.service';
-import { Article } from 'src/app/shared/models/article';
+import { ArticleService } from '@services/article.service';
+import { Article } from '@models/article';
 import { CookieService } from 'ngx-cookie-service';
 import { Router, ActivatedRoute } from '@angular/router';
 

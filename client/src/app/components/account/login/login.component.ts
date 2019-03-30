@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { SessionService } from '../session.service';
-import { User } from 'src/app/shared/models/user';
+import { User } from '@models/user';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 

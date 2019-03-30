@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ArticleService } from '../article.service';
-import { CategoryService } from 'src/app/shared/services/category.service';
-import { Article } from 'src/app/shared/models/article';
-import { Category } from 'src/app/shared/models/category';
+import { ArticleService } from '@services/article.service';
+import { CategoryService } from '@services/category.service';
+import { Article } from '@models/article';
+import { Category } from '@models/category';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MarkdownService } from 'ngx-markdown';
-import { environment } from '../../../../environments/environment';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-create-article',
