@@ -7,6 +7,7 @@ import { LoginComponent } from './components/account/login/login.component';
 import { CreateArticleComponent } from './components/article/create-article/create-article.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { SearchArticleComponent } from './components/article/search-article/search-article.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
   { path: '', component: ArticleComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
     ],
   },
   { path: 'search', component: SearchArticleComponent },
+  { path: 'contact', component: ContactComponent },
 ];
 
 @NgModule({
