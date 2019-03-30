@@ -1,13 +1,13 @@
 <div class='menu-block'>
   <div></div>
   <div class='blog-menu'>
-    <p [routerLink]="['/']" (click)="scrollToMainBody()">ブログ記事</p>
+    <p [routerLink]="['/']" fragment="top">ブログ記事</p>
   </div>
   <div class='profile-menu'>
-    <p [routerLink]="['/profile']" (click)="scrollToMainBody()">プロフィール</p>
+    <p [routerLink]="['/profile']" fragment="top">プロフィール</p>
   </div>
-  <div class='contact-menu' (click)="scrollToMainBody()">
-    <p [routerLink]="['/contact']">お問い合わせ</p>
+  <div class='contact-menu'>
+    <p [routerLink]="['/contact']" fragment="top">お問い合わせ</p>
   </div>
   <div></div>
 </div>
