@@ -5,3 +5,12 @@ body {
   font-size: 16px;
   margin: 0;
 }
+
+.form-errors {
+  margin-top: 5px;
+  position: relative;
+  padding: 5px;
+  color: #fff;
+  background: #e54545;
+  border-radius: 4px;
+}
