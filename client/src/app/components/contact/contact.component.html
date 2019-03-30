@@ -1,0 +1,41 @@
+<div class='contact-body'>
+  <h2>お問い合わせ</h2>
+  <div class='contact-main' *ngIf="!sendSuccess; else contactDone">
+    <div class='detail'>
+      <p>ブログおよびkuzugrに関するお問い合わせページです</p>
+      <p>ご意見はこちらのフォームへお願いいたします。</p>
+      <p>お問い合わせ内容を確認後、こちらからご連絡させていただく場合があります。</p>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class='contact-part-first'>
+        <h4>お名前（必須）</h4>
+        <input type='text' formControlName="name" class='form-part'>
+        <div *ngIf="formErrors['name']" class="form-errors">
+          {{ formErrors['name'].join(" ") }}
+        </div>
+      </div>
+      <div class='contact-part'>
+        <h4>メールアドレス（必須）</h4>
+        <input type="email" formControlName="email" class='form-part'>
+        <div *ngIf="formErrors['email']" class="form-errors">
+          {{ formErrors['email'].join(" ") }}
+        </div>
+      </div>
+      <div class='contact-part'>
+        <h4>お問い合わせ内容（必須）</h4>
+        <textarea cols='70' rows='10' formControlName="content"></textarea>
+        <div *ngIf="formErrors['content']" class="form-errors">
+          {{ formErrors['content'].join(" ") }}
+        </div>
+      </div>
+      <input type='submit' value='送信' class='contact-button fa' [class.disabled]="isDisabled" [disabled]="isDisabled">
+      <p *ngIf="gotError" class='form-errors'>エラーが発生しました。再読み込みし、再度入力をお願い致します。</p>
+    </form>
+  </div>
+  <ng-template #contactDone>
+    <div class='contact-main'>
+      <h4>お問い合わせありがとうございました。</h4>
+      <p>お問い合わせ内容を確認後、こちらからご連絡させていただく場合があります。</p>
+    </div>
+  </ng-template>
+</div>
