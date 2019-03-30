@@ -21,7 +21,7 @@ class UploadFile < ApplicationRecord
 
     def s3_bucket_name
       # TODO: envか何かに移行
-      RAILS_ENV == 'production' ? 'kuzugr-blog' : 'kuzugr-blog-development'
+      ENV['RAILS_ENV'] == 'production' ? 'kuzugr-blog' : 'kuzugr-blog-development'
     end
   end
 end
