@@ -22,6 +22,7 @@ export class CreateArticleComponent implements OnInit {
   uploadFileUuids = [];
   uploadFileEndpoint: string;
   categories: Array<Category>;
+  categoryLoaded: boolean;
 
   constructor(private articleService: ArticleService,
               private categoryService: CategoryService,
@@ -32,12 +33,13 @@ export class CreateArticleComponent implements OnInit {
             ) { }
 
   ngOnInit() {
+    this.categoryLoaded = false;
     this.uploadFileEndpoint = environment.uploadFileEndpoint;
     this.loginCheck();
     this.articleLoaded = false;
     this.articleId = this.route.snapshot.params['article_id'];
     this.loadArticle();
-    this.getCategories();
+    this.loadCategories();
   }
 
   onSubmit() {
@@ -124,14 +126,13 @@ export class CreateArticleComponent implements OnInit {
     return this.articleLoaded;
   }
 
-  getCategories() {
-    this.categoryService.getCategories().subscribe(
-      response => {
-        this.categories = response;
-      },
-      error => {
-      },
-    );
+  async loadCategories() {
+    this.categoryService.loadCategories().then((categories) => {
+      if (!!categories) {
+        this.categories = categories;
+        this.categoryLoaded = true;
+      }
+    });
   }
 // tslint:disable-next-line:max-file-line-count
 }

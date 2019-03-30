@@ -9,21 +9,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./search-category.component.scss'],
 })
 export class SearchCategoryComponent implements OnInit {
+  categoryLoaded: boolean;
+  categories: Array<Category>;
 
   constructor(private categoryService: CategoryService,
               private router: Router) { }
 
-  categories: Array<Category>;
-
   ngOnInit() {
-    this.categoryService.getCategoriesWithNumber().subscribe(
-      response => {
-        this.categories = response;
-      },
-      error => {
+    this.categoryLoaded = false;
+    this.loadCategories();
+  }
 
-      },
-    );
+  async loadCategories() {
+    this.categoryService.loadCategories().then((categories) => {
+      if (!!categories) {
+        this.categories = categories;
+        this.categoryLoaded = true;
+      }
+    })
   }
 
   searchWithCategory(categoryId: number) {
