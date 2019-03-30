@@ -31,7 +31,7 @@ export class ArticleComponent implements OnInit {
   }
 
   getArticles() {
-    this.articleService.getArticles({ limit: 5 }).subscribe(
+    this.articleService.getArticles({ limit: 1 }).subscribe(
       response => {
         if (response.length > 0) {
           this.articles = response;
