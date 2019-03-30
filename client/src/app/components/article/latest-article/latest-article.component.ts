@@ -10,45 +10,41 @@ import 'rxjs/add/observable/interval';
   styleUrls: ['./latest-article.component.scss'],
 })
 export class LatestArticleComponent implements OnInit {
-  articles: Array<Article>;
+  latestArticles: Array<Article>;
   article: Article;
-  articleLoaded: boolean;
+  latestArticleLoaded: boolean;
   index: number;
 
   constructor(private articleService: ArticleService) { }
 
   ngOnInit() {
-    this.articleLoaded = false;
-    this.getArticles();
+    this.latestArticleLoaded = false;
+    this.loadLatestArtciles();
   }
 
-  getArticles() {
-    this.articleService.getArticles({ limit: 5 }).subscribe(
-      response => {
-        this.articles = response;
-        if (this.articles[0]) {
+  setArticle() {
+    this.article = this.latestArticles[this.index];
+    this.latestArticleLoaded = true;
+  }
+
+  async loadLatestArtciles() {
+    this.articleService.loadLatestArticles().then((articles) => {
+      if (!!articles) {
+        this.latestArticles = articles;
+        if (this.latestArticles[0]) {
           this.index = 0;
           this.setArticle();
           Observable.interval(3000).subscribe(
             () => {
               this.index = this.index + 1;
-              if (!this.articles[this.index]) {
+              if (!this.latestArticles[this.index]) {
                 this.index = 0;
               }
               this.setArticle();
             },
           );
         }
-      },
-    );
-  }
-
-  setArticle() {
-    this.article = this.articles[this.index];
-    this.articleLoaded = true;
-  }
-
-  dataLoaded(): boolean {
-    return this.articleLoaded;
+      }
+    });
   }
 }

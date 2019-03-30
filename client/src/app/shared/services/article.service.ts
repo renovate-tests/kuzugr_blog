@@ -9,6 +9,7 @@ import { environment } from '@environments/environment';
 })
 export class ArticleService {
   apiEndpoint = environment.apiEndpoint;
+  latestArticles: any;
 
   constructor(private http: HttpClient) { }
 
@@ -30,5 +31,24 @@ export class ArticleService {
 
   searchArticle(params = {}): Observable<Array<Article>> {
     return this.http.get<Array<Article>>(`${this.apiEndpoint}/articles/search`, { params: params }  );
+  }
+
+  async loadLatestArticles() {
+    const articles = await this.getLatesAticles();
+    return articles.map(item => Object.assign(new Article, item));
+  }
+
+  async getLatesAticles(): Promise<Array<Article>> {
+    if (this.latestArticles && this.latestArticles.length > 0) {
+      return this.latestArticles;
+    }
+    return this.doRequest();
+  }
+
+  private async doRequest(): Promise<Array<Article>> {
+    const url = `${this.apiEndpoint}/articles`;
+    const response = await this.http.get(url).toPromise();
+    this.latestArticles = response;
+    return this.latestArticles;
   }
 }
