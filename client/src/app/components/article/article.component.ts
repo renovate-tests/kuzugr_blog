@@ -50,8 +50,4 @@ export class ArticleComponent implements OnInit {
       },
     );
   }
-
-  dataLoaded(): boolean {
-    return this.articleLoaded;
-  }
 }

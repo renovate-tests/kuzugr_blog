@@ -1,7 +1,7 @@
 <div class='create-article-body'>
   <h2 class='title'>新規投稿</h2>
   <div class='form-block'>
-    <form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="onSubmit()" *ngIf="dataLoaded()">
+    <form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="onSubmit()" *ngIf="articleLoaded">
       <div>
         <div class='label-div'>
           <label>タイトル</label>

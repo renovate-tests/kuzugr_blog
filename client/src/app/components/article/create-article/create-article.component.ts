@@ -117,13 +117,8 @@ export class CreateArticleComponent implements OnInit {
         this.articleLoaded = true;
       },
       error => {
-        this.articleLoaded = true;
       },
     );
-  }
-
-  dataLoaded(): boolean {
-    return this.articleLoaded;
   }
 
   async loadCategories() {
