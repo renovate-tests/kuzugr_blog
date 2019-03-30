@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from './article.service';
-import { Article } from 'src/app/shared/models/article';
+import { ArticleService } from '@services/article.service';
+import { Article } from '@models/article';
 import { CookieService } from 'ngx-cookie-service';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -31,7 +31,7 @@ export class ArticleComponent implements OnInit {
   }
 
   getArticles() {
-    this.articleService.getArticles({ limit: 5 }).subscribe(
+    this.articleService.getArticles({ limit: 1 }).subscribe(
       response => {
         if (response.length > 0) {
           this.articles = response;
@@ -49,9 +49,5 @@ export class ArticleComponent implements OnInit {
         this.articleLoaded = true;
       },
     );
-  }
-
-  dataLoaded(): boolean {
-    return this.articleLoaded;
   }
 }

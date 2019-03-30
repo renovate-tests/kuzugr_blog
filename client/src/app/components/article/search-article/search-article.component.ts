@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from '../article.service';
-import { Article } from '../../../shared/models/article';
+import { ArticleService } from '@services/article.service';
+import { Article } from '@models/article';
 
 @Component({
   selector: 'app-search-article',

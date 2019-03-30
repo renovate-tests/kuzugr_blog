@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Advertisement } from '../../../shared/models/advertisement';
-import { AdvertisementService } from '../../../shared/services/advertisement.service';
+import { Advertisement } from '@models/advertisement';
+import { AdvertisementService } from '@services/advertisement.service';
 
 @Component({
   selector: 'app-advertisement',

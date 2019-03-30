@@ -1,4 +1,4 @@
-import { Article } from 'src/app/shared/models/article';
+import { Article } from '@models/article';
 
 export interface ArticlesResponse {
   articles: Array<Article>;

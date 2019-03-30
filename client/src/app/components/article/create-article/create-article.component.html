@@ -1,7 +1,7 @@
 <div class='create-article-body'>
   <h2 class='title'>新規投稿</h2>
   <div class='form-block'>
-    <form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="onSubmit()" *ngIf="dataLoaded()">
+    <form [formGroup]="form" enctype="multipart/form-data" (ngSubmit)="onSubmit()" *ngIf="articleLoaded">
       <div>
         <div class='label-div'>
           <label>タイトル</label>
@@ -36,7 +36,7 @@
             <div class='label-div'>
               <img [src]="uploadResult?.downloadURL || ''">
             </div>
-            <select class='category label-div' formControlName="category_id">
+            <select class='category label-div' formControlName="category_id" *ngIf="categoryLoaded">
               <option [ngValue]="null">カテゴリを選択</option>
               <option *ngFor="let category of categories" [ngValue]="category.id">
                 {{category.name}}

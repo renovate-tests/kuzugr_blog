@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { ArticleService } from '../article.service';
-import { CategoryService } from 'src/app/shared/services/category.service';
-import { Article } from 'src/app/shared/models/article';
-import { Category } from 'src/app/shared/models/category';
+import { ArticleService } from '@services/article.service';
+import { CategoryService } from '@services/category.service';
+import { Article } from '@models/article';
+import { Category } from '@models/category';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { MarkdownService } from 'ngx-markdown';
-import { environment } from '../../../../environments/environment';
+import { environment } from '@environments/environment';
 
 @Component({
   selector: 'app-create-article',
@@ -22,6 +22,7 @@ export class CreateArticleComponent implements OnInit {
   uploadFileUuids = [];
   uploadFileEndpoint: string;
   categories: Array<Category>;
+  categoryLoaded: boolean;
 
   constructor(private articleService: ArticleService,
               private categoryService: CategoryService,
@@ -32,12 +33,13 @@ export class CreateArticleComponent implements OnInit {
             ) { }
 
   ngOnInit() {
+    this.categoryLoaded = false;
     this.uploadFileEndpoint = environment.uploadFileEndpoint;
     this.loginCheck();
     this.articleLoaded = false;
     this.articleId = this.route.snapshot.params['article_id'];
     this.loadArticle();
-    this.getCategories();
+    this.loadCategories();
   }
 
   onSubmit() {
@@ -115,23 +117,17 @@ export class CreateArticleComponent implements OnInit {
         this.articleLoaded = true;
       },
       error => {
-        this.articleLoaded = true;
       },
     );
   }
 
-  dataLoaded(): boolean {
-    return this.articleLoaded;
-  }
-
-  getCategories() {
-    this.categoryService.getCategories().subscribe(
-      response => {
-        this.categories = response;
-      },
-      error => {
-      },
-    );
+  async loadCategories() {
+    this.categoryService.loadCategories().then((categories) => {
+      if (!!categories) {
+        this.categories = categories;
+        this.categoryLoaded = true;
+      }
+    });
   }
 // tslint:disable-next-line:max-file-line-count
 }

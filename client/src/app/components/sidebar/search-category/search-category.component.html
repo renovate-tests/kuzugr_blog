@@ -1,4 +1,4 @@
-<div class='category'>
+<div class='category' *ngIf="categoryLoaded">
   <h4>カテゴリ</h4>
   <ul *ngFor="let category of categories">
     <li (click)="searchWithCategory(category.id)">{{category.name}}（{{category.number_of_articles}}）</li>
