@@ -15,11 +15,7 @@ Rails.application.routes.draw do
       end
       resources :upload_files, only: [:create]
       resources :thumbnails, only: [:create]
-      resources :categories, only: [:index] do
-        collection do
-          get :with_number
-        end
-      end
+      resources :categories, only: [:index]
       resources :advertisements, only: [:index]
       resources :blog_informations, only: [:index]
       post 'contacts/send_contact', to: 'contacts#send_contact'
