@@ -11,9 +11,4 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  scrollToMainBody() {
-    window.scrollTo(0, 1000);
-  }
-
 }
