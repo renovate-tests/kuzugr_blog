@@ -1,0 +1,52 @@
+.contact-body {
+  width: 70%;
+  margin-top: 10%;
+  margin-left: 5%;
+}
+
+h2 {
+  border-bottom: 1px solid black;
+}
+
+.detail {
+  margin-top: 5%;
+}
+
+.contact-part-first {
+  margin-top: 5%;
+}
+
+.contact-part {
+  margin-top: 3%;
+
+  textarea {
+    border: 1px solid #ccc;
+  }
+}
+
+.contact-main {
+  margin-left: 5%;
+}
+
+.contact-button {
+  margin-top: 5%;
+  color: #fff;
+  border-color: #1a3d66;
+  background-color: #214d7f;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 10rem;
+  height: 4rem;
+}
+
+.disabled {
+  color:#ccc;
+  border-color:#eee;
+  background-color:#eee;
+  cursor: not-allowed;
+}
+
+.form-part {
+  width: 40%;
+}

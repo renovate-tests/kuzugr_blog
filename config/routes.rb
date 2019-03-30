@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       end
       resources :advertisements, only: [:index]
       resources :blog_informations, only: [:index]
+      post 'contacts/send_contact', to: 'contacts#send_contact'
     end
   end
 end
