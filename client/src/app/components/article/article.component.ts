@@ -19,13 +19,13 @@ export class ArticleComponent implements OnInit {
 
   ngOnInit() {
     this.articleLoaded = false;
-    const articleId = this.route.snapshot.params['article_id'];
-
-    if (articleId) {
-      this.getArticle(articleId);
-    } else {
-      this.getArticles();
-    }
+    this.route.params.subscribe(params => {
+      if (params['article_id']) {
+        this.getArticle(params['article_id']);
+      } else {
+        this.getArticles();
+      }
+    })
   }
 
   getArticles() {

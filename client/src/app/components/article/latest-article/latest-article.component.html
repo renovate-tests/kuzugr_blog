@@ -3,7 +3,12 @@
     <img class='latest-article-img' src={{article.thumbnail_url}}>
     <div class='article-detail-block'>
       <p class='article-title'>{{article.title}}</p>
-      <input type='button' class='article-page-button click-util' value='READ MORE'>
+      <input
+        type='button'
+        class='article-page-button click-util'
+        [routerLink]="['/article', article.id]"
+        fragment="top"
+        value='READ MORE'>
     </div>
   </div>
 </div>
