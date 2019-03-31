@@ -35,7 +35,8 @@ export class SearchArticleComponent implements OnInit {
       params => {
         this.params = params;
         this.searchArticle();
-      });
+      }
+    );
   }
 
   searchArticle() {
