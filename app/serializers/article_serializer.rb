@@ -5,7 +5,7 @@ class ArticleSerializer < ActiveModel::Serializer
              :thumbnail_url, :category, :category_id
 
   def thumbnail_url
-    return nil unless object.thumbnail
+    return BlogInformation.first.profile_image unless object.thumbnail
     "https://#{UploadFile.s3_bucket_name}.s3.ap-northeast-1.amazonaws.com/images/#{object.thumbnail.uuid}"
   end
 

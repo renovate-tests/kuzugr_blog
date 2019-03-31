@@ -27,16 +27,13 @@ module Api
 
       def update
         article = Article.find(params[:id])
+        set_upload_files_and_thumbnail(article)
         article.update(article_params) if article.user_id == current_user.id
       end
 
       def create
-        upload_files_params = upload_files
         article = Article.new(article_params)
-        article_upload_files = UploadFile.where(uuid: upload_files_params).order(:id)
-        article.upload_files = article_upload_files
-        article.thumbnail = Thumbnail.new(file_name: article_upload_files[0].file_name,
-                                          uuid: article_upload_files[0].uuid)
+        article = set_upload_files_and_thumbnail(article) if params[:article][:upload_file_uuids].present?
         article.user_id = current_user.id
         article.save!
       end
@@ -80,6 +77,15 @@ module Api
         end
         UploadFile.where(uuid: remove_files).destroy_all if remove_files
         params[:article][:upload_file_uuids] - remove_files
+      end
+
+      def set_upload_files_and_thumbnail(article)
+        upload_files_params = upload_files
+        article_upload_files = UploadFile.where(uuid: upload_files_params).order(:id)
+        article.upload_files << article_upload_files
+        article.thumbnail = Thumbnail.new(file_name: article_upload_files[0].file_name,
+                                          uuid: article_upload_files[0].uuid) unless article.thumbnail
+        article
       end
     end
   end
