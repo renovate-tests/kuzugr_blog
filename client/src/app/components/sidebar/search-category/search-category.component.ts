@@ -28,9 +28,4 @@ export class SearchCategoryComponent implements OnInit {
       }
     });
   }
-
-  searchWithCategory(categoryId: number) {
-    this.router.navigateByUrl(`/search?category=${categoryId}`);
-  }
-
 }
