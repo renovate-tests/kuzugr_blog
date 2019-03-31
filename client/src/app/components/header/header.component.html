@@ -1,5 +1,7 @@
 <div class='header-block'>
   <div class='title-block'>
-    <h1 class='click-util' [routerLink]="['/']" *ngIf="blogInformationLoaded">{{blogInformation.title}}</h1>
+    <h1 *ngIf="blogInformationLoaded">
+      <span class='click-util' [routerLink]="['/']">{{blogInformation.title}}</span>
+    </h1>
   </div>
 </div>
