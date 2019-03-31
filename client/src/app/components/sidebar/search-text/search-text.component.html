@@ -3,5 +3,8 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <input type='text' formControlName='keyword'>
     <input class='search-button' type='submit' value='検索'>
+    <div *ngIf="formErrors['keyword']" class="form-errors">
+      {{ formErrors['keyword'].join(" ") }}
+    </div>
   </form>
 </div>
