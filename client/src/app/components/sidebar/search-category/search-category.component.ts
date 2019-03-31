@@ -26,7 +26,7 @@ export class SearchCategoryComponent implements OnInit {
         this.categories = categories;
         this.categoryLoaded = true;
       }
-    })
+    });
   }
 
   searchWithCategory(categoryId: number) {
