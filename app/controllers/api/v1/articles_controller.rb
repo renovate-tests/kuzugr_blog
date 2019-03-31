@@ -27,7 +27,7 @@ module Api
 
       def update
         article = Article.find(params[:id])
-        set_upload_files_and_thumbnail(article)
+        set_upload_files_and_thumbnail(article) if params[:article][:upload_file_uuids].present?
         article.update(article_params) if article.user_id == current_user.id
       end
 
