@@ -3,7 +3,7 @@
   <div *ngIf="articles.length > 0; else empty">
   <ng-container *ngFor='let article of articles;'>
     <table>
-      <div class='table-div click-util' [routerLink]="['/article', article.id]" fragment="top">
+      <div class='click-util' [routerLink]="['/article', article.id]" fragment="top">
         <tr>
           <td class='image-td'>
             <img src={{article.thumbnail_url}}>

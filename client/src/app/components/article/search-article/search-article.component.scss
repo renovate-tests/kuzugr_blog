@@ -3,11 +3,6 @@
   margin-top: 5%;
 }
 
-.table-div {
-  border: solid 2px #999999;
-  width: 60rem;
-}
-
 table {
   border-collapse: separate;
   border-spacing: 2rem 2rem;
@@ -20,4 +15,14 @@ table {
 img{
   width: 10rem;
   height: 10rem
+}
+
+.click-util {
+  border: solid 2px #999999;
+  width: 60rem;
+}
+
+.click-util:hover {
+  color: #0088c7;
+  border: solid 1px #0088c7;
 }
