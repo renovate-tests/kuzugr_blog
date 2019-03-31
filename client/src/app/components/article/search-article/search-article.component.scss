@@ -4,8 +4,10 @@
 }
 
 .table-div {
-  border: solid 1px;
+  border: solid 2px #999999;
   width: 60rem;
+  cursor: pointer;
+  outline:none;
 }
 
 table {
