@@ -11,39 +11,39 @@
         </div>
       </div>
       <div id='form-input'>
-            <div class='label-div'>
-              <label>本文</label>
-            </div>
-            <!--<div class='form-parts'>
-              <textarea class='content' rows=30 formControlName="content"></textarea>
-            </div>-->
-            <div class='form-parts form-parts-content'>
-              <angular-markdown-editor
-                textareaId="editor1" rows="30"
-                class='content'
-                name="markdownText" formControlName="mark_content"
-                [options]="editorOptions">
-              </angular-markdown-editor>
-            </div>
-            <image-upload
-              url="{{ this.uploadFileEndpoint }}"
-              [withCredentials]
-              buttonCaption="SELECT IMAGE"
-              dropBoxMessage="DROP IMAGE"
-              clearButtonCaption="CLEAR IMAGES"
-              (uploadFinished)="onUploadFinished($event)">
-            </image-upload>
-            <div class='label-div'>
-              <img [src]="uploadResult?.downloadURL || ''">
-            </div>
-            <select class='category label-div' formControlName="category_id" *ngIf="categoryLoaded">
-              <option [ngValue]="null">カテゴリを選択</option>
-              <option *ngFor="let category of categories" [ngValue]="category.id">
-                {{category.name}}
-              </option>
-            </select>
+        <div class='label-div'>
+          <label>本文</label>
+        </div>
+        <!--<div class='form-parts'>
+          <textarea class='content' rows=30 formControlName="content"></textarea>
+        </div>-->
+        <div class='form-parts form-parts-content'>
+          <angular-markdown-editor
+            textareaId="editor1" rows="30"
+            class='content'
+            name="markdownText" formControlName="mark_content"
+            [options]="editorOptions">
+          </angular-markdown-editor>
+        </div>
+        <image-upload
+          url="{{ this.uploadFileEndpoint }}"
+          [withCredentials]
+          buttonCaption="SELECT IMAGE"
+          dropBoxMessage="DROP IMAGE"
+          clearButtonCaption="CLEAR IMAGES"
+          (uploadFinished)="onUploadFinished($event)">
+        </image-upload>
+        <div class='label-div'>
+          <img [src]="uploadResult?.downloadURL || ''">
+        </div>
+        <select class='category label-div' formControlName="category_id" *ngIf="categoryLoaded">
+          <option [ngValue]="null">カテゴリを選択</option>
+          <option *ngFor="let category of categories" [ngValue]="category.id">
+            {{category.name}}
+          </option>
+        </select>
       </div>
-      <button class='create-btn fa' type="submit">
+      <button class='create-btn fa click-util' type="submit">
         <i class="fa fa-sign-in" aria-hidden="true"></i>投稿
       </button>
     </form>

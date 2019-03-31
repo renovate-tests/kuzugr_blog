@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '@services/article.service';
 import { Article } from '@models/article';
-import { CookieService } from 'ngx-cookie-service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -15,19 +14,18 @@ export class ArticleComponent implements OnInit {
   articleLoaded: boolean;
 
   constructor(private articleService: ArticleService,
-              private cookieService: CookieService,
               private router: Router,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.articleLoaded = false;
-    const articleId = this.route.snapshot.params['article_id'];
-
-    if (articleId) {
-      this.getArticle(articleId);
-    } else {
-      this.getArticles();
-    }
+    this.route.params.subscribe(params => {
+      if (params['article_id']) {
+        this.getArticle(params['article_id']);
+      } else {
+        this.getArticles();
+      }
+    })
   }
 
   getArticles() {
