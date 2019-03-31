@@ -1,4 +1,5 @@
 <div class='search-article-body' *ngIf="articleLoaded">
+  <p *ngIf="searchTypeLoaded">{{searcyType}}：{{searchTypeValue}}</p>
   <div *ngIf="articles.length > 0; else empty">
   <ng-container *ngFor='let article of articles;'>
     <table>
