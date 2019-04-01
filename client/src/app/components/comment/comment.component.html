@@ -1,0 +1,39 @@
+<div class='comment-body'>
+  <h3>コメント</h3>
+  <div class='comment-list'>
+    <div>
+      <div class='commented-div' *ngFor="let comment of comments">
+        <span class='commented-name'>{{comment.name}}</span>
+        <span class='comented-date'>{{comment.created_at | date:"yyyy/MM/dd HH:mm"}}</span>
+        <p class='commented-content'>{{comment.content}}</p>
+      </div>
+    </div>
+    <div *ngIf="!sendSuccess && readyCommentForm; else sendDone">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class='comment-part-first'>
+          <h5>お名前（必須）</h5>
+          <input type='text' formControlName="name">
+          <div *ngIf="formErrors['name']" class="form-errors">
+            {{ formErrors['name'].join(" ") }}
+          </div>
+        </div>
+        <div class='comment-part'>
+          <h5>コメント内容（必須）</h5>
+          <textarea cols='70' rows='10' formControlName="content"></textarea>
+          <div *ngIf="formErrors['content']" class="form-errors">
+            {{ formErrors['content'].join(" ") }}
+          </div>
+        </div>
+        <div class='comment-part'>
+          <input type='submit' value='送信' class='comment-button fa click-util' [class.disabled]="isDisabled" [disabled]="isDisabled">
+        </div>
+        <p *ngIf="gotError" class='form-errors'>エラーが発生しました。再読み込みし、再度入力をお願い致します。</p>
+      </form>
+    </div>
+    <ng-template #sendDone>
+      <div class='contact-main'>
+        <p>コメントを送信しました。</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
