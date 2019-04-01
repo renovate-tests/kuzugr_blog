@@ -2,7 +2,7 @@
 
 class ArticleSerializer < ActiveModel::Serializer
   attributes :id, :title, :html_content, :mark_content, :user_id, :created_at, :updated_at,
-             :thumbnail_url, :category, :category_id
+             :thumbnail_url, :category, :category_id, :comments
 
   def thumbnail_url
     return BlogInformation.first.profile_image unless object.thumbnail

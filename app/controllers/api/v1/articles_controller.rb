@@ -9,12 +9,13 @@ module Api
 
       def index
         limit = params[:limit] || 5
-        @articles = Article.order('created_at desc').limit(params[:limit])
+        @articles = Article.eager_load(:upload_files, :comments).order('articles.created_at desc, comments.created_at asc').limit(params[:limit])
         render status: 200, json: @articles, each_serializer: ArticleSerializer
       end
 
       def show
-        @article = Article.find(params[:id])
+        @article = Article.includes(:upload_files, :comments)
+                          .order('comments.created_at asc').find(params[:id])
         render status: 200, json: @article, serializer: ArticleSerializer
       end
 
