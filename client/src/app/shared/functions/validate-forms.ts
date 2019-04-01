@@ -1,4 +1,4 @@
-import { FormGroup, FormArray } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 export function ValidateForm(form: FormGroup, checkDirty = false, validationMessages = {}) {
   const formErrors = {};
