@@ -30,6 +30,7 @@ import { SearchCategoryComponent } from './components/sidebar/search-category/se
 import { AdvertisementComponent } from './components/sidebar/advertisement/advertisement.component';
 import { SearchArticleComponent } from './components/article/search-article/search-article.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ContactComponent } from './components/contact/contact.component';
     AdvertisementComponent,
     SearchArticleComponent,
     ContactComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

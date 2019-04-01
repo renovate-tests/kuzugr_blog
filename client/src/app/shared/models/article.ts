@@ -1,3 +1,5 @@
+import { Comment } from '@models/comment';
+
 export class Article {
   id: number;
   title: string;
@@ -10,4 +12,5 @@ export class Article {
   thumbnail_url: string;
   category: string;
   category_id: number;
+  comments: Array<Comment>;
 }
