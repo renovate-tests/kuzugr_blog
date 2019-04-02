@@ -2,7 +2,9 @@
 
 class ArticleSerializer < ActiveModel::Serializer
   attributes :id, :title, :html_content, :mark_content, :user_id, :created_at, :updated_at,
-             :thumbnail_url, :category, :category_id, :comments
+             :category, :category_id
+  attribute :thumbnail_url, if: :include_thumbnail?
+  attribute :comments, if: :include_comments?
 
   def thumbnail_url
     return BlogInformation.first.profile_image unless object.thumbnail
@@ -12,5 +14,13 @@ class ArticleSerializer < ActiveModel::Serializer
   def category
     article_category = object.category
     article_category&.name
+  end
+
+  def include_comments?
+    instance_options[:include_comments] == true
+  end
+
+  def include_thumbnail?
+    instance_options[:include_thumbnail] == true
   end
 end
