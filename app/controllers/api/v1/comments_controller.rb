@@ -4,7 +4,7 @@ module Api
   module V1
     class CommentsController < ApplicationController
       skip_before_action :authenticate_user_from_token!, only: [:index]
-      skip_before_action :verify_authenticity_token, only: [:create]
+      skip_before_action :verify_authenticity_token, only: [:create, :destroy]
 
       def index
         comments = Comment.where(article_id: params[:article_id])
@@ -14,6 +14,11 @@ module Api
       def create
         comment = Comment.new(comment_params)
         comment.save!
+      end
+
+      def destroy
+        comment = Comment.find(params[:id])
+        comment.destroy
       end
 
       private
