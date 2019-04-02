@@ -9,14 +9,18 @@ module Api
 
       def index
         limit = params[:limit] || 5
-        @articles = Article.eager_load(:upload_files, :comments).order('articles.created_at desc, comments.created_at asc').limit(params[:limit])
-        render status: 200, json: @articles, each_serializer: ArticleSerializer
+        @articles = Article.eager_load(:comments, :thumbnail)
+                           .order('articles.created_at desc, comments.created_at asc')
+                           .limit(params[:limit])
+        include_option = params[:limit] == '1' ? true : false
+        render status: 200, json: @articles, each_serializer: ArticleSerializer,
+          include_comments: include_option, include_thumbnail: !include_option
       end
 
       def show
-        @article = Article.includes(:upload_files, :comments)
+        @article = Article.includes(:comments)
                           .order('comments.created_at asc').find(params[:id])
-        render status: 200, json: @article, serializer: ArticleSerializer
+        render status: 200, json: @article, serializer: ArticleSerializer, include_comments: true
       end
 
       def new
@@ -34,7 +38,8 @@ module Api
 
       def create
         article = Article.new(article_params)
-        article = set_upload_files_and_thumbnail(article) if params[:article][:upload_file_uuids].present?
+        article = set_upload_files_and_thumbnail(article)
+          if params[:article][:upload_file_uuids].present?
         article.user_id = current_user.id
         article.save!
       end
@@ -45,12 +50,12 @@ module Api
       end
 
       def search
-        if params[:category]
-          @articles = Article.by_category(params[:category])
+        if params[:category_id]
+          @articles = Article.includes(:thumbnail).order('articles.created_at desc').by_category(params[:category_id])
         else
-          @articles = Article.by_keyword(params[:keyword])
+          @articles = Article.includes(:thumbnail).order('articles.created_at desc').by_keyword(params[:keyword])
         end
-        render status: 200, json: @articles, each_serializer: ArticleSerializer
+        render status: 200, json: @articles, each_serializer: ArticleSerializer, include_thumbnail: true
       end
 
       def create_months
