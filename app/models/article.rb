@@ -8,6 +8,6 @@ class Article < ApplicationRecord
   belongs_to :category, optional: true
   has_many :comments, dependent: :destroy
 
-  scope :by_keyword, -> (keyword) { where('mark_content LIKE ?', "%#{keyword}%") }
+  scope :by_keyword, -> (keyword) { where('mark_content LIKE ? OR title LIKE ?', "%#{keyword}%", "%#{keyword}%") }
   scope :by_category, -> (category_id) { where(category_id: category_id) }
 end
