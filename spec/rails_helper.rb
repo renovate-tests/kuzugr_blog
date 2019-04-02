@@ -24,15 +24,9 @@ require 'rspec/rails'
 
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
-begin
-  ActiveRecord::Migration.maintain_test_schema!
-rescue ActiveRecord::PendingMigrationError => e
-  puts e.to_s.strip
-  exit 1
-end
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
@@ -59,4 +53,16 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include Devise::TestHelpers, type: :controller
+  config.include FactoryBot::Syntax::Methods
+
+  config.before(:all) do
+    FactoryBot.reload
+  end
+
+  config.before :each do
+    allow(controller).to receive(:authenticate_user_from_token!).and_return true
+  end
+
+  Time.zone = "Tokyo"
+  ActiveRecord::Base.default_timezone = :local
 end
