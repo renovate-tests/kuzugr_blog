@@ -12,7 +12,7 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class='comment-part-first'>
           <h5>お名前（必須）</h5>
-          <input type='text' formControlName="name">
+          <input class='comment-name' type='text' formControlName="name">
           <div *ngIf="formErrors['name']" class="form-errors">
             {{ formErrors['name'].join(" ") }}
           </div>

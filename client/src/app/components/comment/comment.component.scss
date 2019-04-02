@@ -3,6 +3,7 @@ h3 {
 }
 
 .comment-body {
+  margin-top: 15%;
   width: 85%;
   margin-left: 9%;
 }
@@ -12,7 +13,7 @@ h3 {
 }
 
 .comment-part-first{
-  margin-top: 5%;
+  margin-top: 8%;
 }
 
 .comment-part {
@@ -23,6 +24,10 @@ h3 {
   }
 }
 
+.comment-name {
+  width: 25%;
+}
+
 .comment-button {
   color: #fff;
   border-color: #1a3d66;
@@ -31,6 +36,11 @@ h3 {
   font-weight: 700;
   width: 10rem;
   height: 4rem;
+}
+
+.comment-button:hover {
+  background-color: #0044cc;
+  border: solid 1px #0044cc;
 }
 
 .disabled {
