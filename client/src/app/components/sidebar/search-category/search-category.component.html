@@ -1,7 +1,7 @@
 <div class='category' *ngIf="categoryLoaded">
   <h4>カテゴリ</h4>
   <ul *ngFor="let category of categories">
-    <li class='click-util' [routerLink]="['/search', { category_id: category.id }]" fragment="top">
+    <li class='click-util' [routerLink]="['/search']" [queryParams]="{ category_id: category.id }" fragment="top">
       {{category.name}}（{{category.number_of_articles}}）
     </li>
   </ul>
