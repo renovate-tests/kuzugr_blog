@@ -38,8 +38,9 @@ module Api
 
       def create
         article = Article.new(article_params)
-        article = set_upload_files_and_thumbnail(article)
-          if params[:article][:upload_file_uuids].present?
+        if params[:article][:upload_file_uuids].present?
+          article = set_upload_files_and_thumbnail(article)
+        end
         article.user_id = current_user.id
         article.save!
       end
