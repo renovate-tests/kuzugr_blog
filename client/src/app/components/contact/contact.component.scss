@@ -38,6 +38,11 @@ h2 {
   height: 4rem;
 }
 
+.contact-button:hover {
+  background-color: #0044cc;
+  border: solid 1px #0044cc;
+}
+
 .disabled {
   color:#ccc;
   border-color:#eee;
