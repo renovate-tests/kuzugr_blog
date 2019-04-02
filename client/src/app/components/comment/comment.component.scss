@@ -70,3 +70,17 @@ h3 {
 .commented-div {
   margin-top: 2.5%;
 }
+
+.delete-btn {
+  float: right;
+  color: #fff;
+  border-color: #d24d4d;
+  background-color: #d24d4d;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.delete-btn:hover {
+  background-color: red;
+  border: solid 1px red;
+}

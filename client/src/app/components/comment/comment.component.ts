@@ -6,6 +6,7 @@ import { CommentService } from '@services/comment.service';
 import { AuthService } from '@services/auth.service';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { ConfirmDialogService } from '@services/confirm-dialog.service';
 
 @Component({
   selector: 'app-comment',
@@ -39,7 +40,8 @@ export class CommentComponent implements OnInit {
   constructor(private commentService: CommentService,
               private authService: AuthService,
               private router: Router,
-              private cookieService: CookieService) { }
+              private cookieService: CookieService,
+              private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit() {
     this.isDisabled = false;
@@ -120,5 +122,31 @@ export class CommentComponent implements OnInit {
         this.loginState = response['login_state'];
       },
     );
+  }
+
+  deleteComment(commentId: number) {
+    this.confirmDialogService.showConfirm({
+      title: 'コメント削除',
+      content: 'コメントを削除してよろしいですか？',
+      acceptButton: '削除する',
+      cancelButton: 'キャンセル',
+      isDanger: true,
+    }).subscribe(confirm => {
+      if (confirm) {
+        this.commentService.deleteComment(commentId).subscribe(
+          response => {
+            this.commentService.getComments(this.articleId).subscribe(
+              getReesponse => {
+                this.comments = getReesponse;
+              },
+              error => {
+              },
+            );
+          },
+          error => {
+          },
+        );
+      }
+    });
   }
 }
