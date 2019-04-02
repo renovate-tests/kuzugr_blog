@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       resources :advertisements, only: [:index]
       resources :blog_informations, only: [:index]
       post 'contacts/send_contact', to: 'contacts#send_contact'
-      resources :comments, only: [:index, :create]
+      resources :comments, only: [:index, :create, :destroy]
     end
   end
 end

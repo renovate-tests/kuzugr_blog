@@ -1,0 +1,16 @@
+<div class="modal" tabindex="-1" role="dialog" *ngIf="isShow">
+  <div class="modal-dialog">
+    <div class="inner-detail">
+      <p class="title">{{data['title']}}</p>
+      <p class='content' [innerHTML]="data['content']"></p>
+      <div class="modal-footer">
+        <a (click)="submitModal(false)">
+          {{data['cancelButton']}}
+        </a>
+        <a (click)="submitModal(true)">
+          {{data['acceptButton']}}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

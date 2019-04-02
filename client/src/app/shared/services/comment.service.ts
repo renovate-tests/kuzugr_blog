@@ -19,4 +19,8 @@ export class CommentService {
   createComment(comment: Comment): Observable<Comment> {
     return this.http.post<Comment>(`${this.apiEndpoint}/comments`, { comment: comment } );
   }
+
+  deleteComment(commentId: number): Observable<Comment> {
+    return this.http.delete<Comment>(`${this.apiEndpoint}/comments/${commentId}`);
+  }
 }

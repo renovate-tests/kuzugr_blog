@@ -32,6 +32,9 @@ import { SearchArticleComponent } from './components/article/search-article/sear
 import { ContactComponent } from './components/contact/contact.component';
 import { CommentComponent } from './components/comment/comment.component';
 
+import { ConfirmDialogService } from '@services/confirm-dialog.service';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +57,7 @@ import { CommentComponent } from './components/comment/comment.component';
     SearchArticleComponent,
     ContactComponent,
     CommentComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,6 +75,7 @@ import { CommentComponent } from './components/comment/comment.component';
   providers: [
     CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpsInterceptor, multi: true },
+    ConfirmDialogService,
   ],
   bootstrap: [AppComponent],
 })
