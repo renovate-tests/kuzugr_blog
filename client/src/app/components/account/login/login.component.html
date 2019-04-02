@@ -2,21 +2,17 @@
   <h2 class='title'>ログイン</h2>
   <div class='form-block'>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <ul>
-        <li>
-          <label>メールアドレス</label>
-          <input type="email" formControlName="email">
-        </li>
-        <li class='password-li'>
-          <label>パスワード</label>
-          <input type="password" formControlName="password">
-        </li>
-        <li class='login-btn-li'>
-          <button class='login-btn fa click-util' type="submit">
-            <i class="fa fa-sign-in" aria-hidden="true"></i> ログイン
-          </button>
-        </li>
-      </ul>
+      <div class='login-part-first'>
+        <h4>メールアドレス</h4>
+        <input type="email" formControlName="email">
+      </div>
+      <div class='login-part'>
+        <h4>パスワード</h4>
+        <input type="password" formControlName="password">
+        <button class='login-btn fa click-util' type="submit">
+          <i class="fa fa-sign-in" aria-hidden="true"></i> ログイン
+        </button>
+      </div>
     </form>
   </div>
 </div>
