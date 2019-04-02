@@ -33,8 +33,7 @@ export class LoginComponent implements OnInit {
         data => {
           this.cookieService.set( 'login_email', data['email'], 1 );
           this.cookieService.set( 'access_token', data['access_token'], 1 );
-          location.reload();
-          this.router.navigateByUrl(`/`);
+          location.href = '/';
         },
         error => {
           // エラーメッセージを出す

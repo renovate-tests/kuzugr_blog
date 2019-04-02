@@ -1,7 +1,6 @@
 .login-body {
-  display: inline-block;
-  width: 100%;
-  margin-left: 2%;
+  width: 85%;
+  margin-left: 5%;
 }
 
 .title {
@@ -10,39 +9,33 @@
 }
 
 .form-block {
-  width: 80%;
+  margin-left: 5%;
+}
 
-  ul li {
-    text-align: left;
-    list-style: none;
-  }
+.login-part-first {
+  margin-top: 5%;
+}
 
-  label {
-    margin-right: 5%;
-    width: 20%;
-    float: left;
-    font-weight: 700;
-  }
+.login-part {
+  margin-top: 3%;
+}
 
-  .password-li {
-    margin-bottom: 3%;
-  }
+.login-btn {
+  margin-left: 5%;
+  color: #fff;
+  border-color: #1a3d66;
+  background-color: #214d7f;
+  border-radius: 4px;
+  font-weight: 700;
+  height: 30px;
+}
 
-  .login-btn-li {
-    margin-left: 35%;
+.login-btn:hover {
+  background-color: #0044cc;
+  border: solid 1px #0044cc;
+}
 
-    button {
-      color: #fff;
-      border-color: #1a3d66;
-      background-color: #214d7f;
-      border-radius: 4px;
-      font-weight: 700;
-      height: 30px;
-    }
-  }
-
-  input {
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
+input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }

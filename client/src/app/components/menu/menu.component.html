@@ -9,5 +9,8 @@
   <div>
     <p class='click-util' [routerLink]="['/contact']" fragment="top">お問い合わせ</p>
   </div>
+  <div *ngIf="loginState">
+    <p class='click-util' [routerLink]="['/article/create']" fragment="top">記事作成</p>
+  </div>
   <div></div>
 </div>
