@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '@services/article.service';
 import { Article } from '@models/article';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-article',
@@ -12,20 +14,25 @@ export class ArticleComponent implements OnInit {
   articles: Array<Article>;
   article: Article;
   articleLoaded: boolean;
+  loginState: boolean;
 
   constructor(private articleService: ArticleService,
               private router: Router,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private cookieService: CookieService,
+              private authService: AuthService) { }
 
   ngOnInit() {
     this.articleLoaded = false;
+    this.loginState = false;
     this.route.params.subscribe(params => {
       if (params['article_id']) {
         this.getArticle(params['article_id']);
       } else {
         this.getArticles();
       }
-    })
+    });
+    this.getLoginState();
   }
 
   getArticles() {
@@ -47,5 +54,18 @@ export class ArticleComponent implements OnInit {
         this.articleLoaded = true;
       },
     );
+  }
+
+  getLoginState() {
+    const loginEmail = this.cookieService.get('login_email');
+    if (!!loginEmail) {
+      this.loginState = this.authService.loginState().then(
+        response => {
+          this.loginState = response['login_state'];
+        },
+        error => {
+        },
+      );
+    }
   }
 }
