@@ -5,6 +5,7 @@ import { Comment } from '@models/comment';
 import { CommentService } from '@services/comment.service';
 import { AuthService } from '@services/auth.service';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-comment',
@@ -37,7 +38,8 @@ export class CommentComponent implements OnInit {
 
   constructor(private commentService: CommentService,
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private cookieService: CookieService) { }
 
   ngOnInit() {
     this.isDisabled = false;
@@ -46,19 +48,24 @@ export class CommentComponent implements OnInit {
   }
 
   initializeForm() {
-    this.loginState = this.authService.loginState().then(
-      response => {
-        this.loginState = response['login_state'];
-        if (this.loginState) {
-          this.ownerForm();
-        } else {
+    const loginEmail = this.cookieService.get('login_email');
+    if (!!loginEmail) {
+      this.loginState = this.authService.loginState().then(
+        response => {
+          this.loginState = response['login_state'];
+          if (this.loginState) {
+            this.ownerForm();
+          } else {
+            this.commonForm();
+          }
+        },
+        error => {
           this.commonForm();
         }
-      },
-      error => {
-        this.commonForm();
-      }
-    );
+      );
+    } else {
+      this.commonForm();
+    }
   }
 
   commonForm() {
