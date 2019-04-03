@@ -9,21 +9,21 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class='contact-part-first'>
         <h4>お名前（必須）</h4>
-        <input type='text' formControlName="name" class='form-part'>
+        <input type='text' formControlName="name" class='form-part name'>
         <div *ngIf="formErrors['name']" class="form-errors">
           {{ formErrors['name'].join(" ") }}
         </div>
       </div>
       <div class='contact-part'>
         <h4>メールアドレス（必須）</h4>
-        <input type="email" formControlName="email" class='form-part'>
+        <input type="email" formControlName="email" class='form-part email'>
         <div *ngIf="formErrors['email']" class="form-errors">
           {{ formErrors['email'].join(" ") }}
         </div>
       </div>
       <div class='contact-part'>
         <h4>お問い合わせ内容（必須）</h4>
-        <textarea cols='70' rows='10' formControlName="content"></textarea>
+        <textarea cols='70' rows='10' formControlName="content" class='content'></textarea>
         <div *ngIf="formErrors['content']" class="form-errors">
           {{ formErrors['content'].join(" ") }}
         </div>

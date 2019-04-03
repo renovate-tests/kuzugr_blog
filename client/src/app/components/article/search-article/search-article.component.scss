@@ -1,3 +1,5 @@
+@import "mixins";
+
 .search-article-body {
   margin-left: 5%;
   margin-top: 5%;
@@ -6,6 +8,9 @@
 table {
   border-collapse: separate;
   border-spacing: 2rem 2rem;
+  @include respond-to(smartphone) {
+    border-spacing: 1rem 1rem;
+  }
 }
 
 .date {
@@ -14,12 +19,19 @@ table {
 
 img{
   width: 10rem;
-  height: 10rem
+  height: 10rem;
+  @include respond-to(smartphone) {
+    width: 7rem;
+    height: 7rem;
+  }
 }
 
 .click-util {
   border: solid 2px #999999;
   width: 60rem;
+  @include respond-to(smartphone) {
+    width: 27rem;
+  }
 }
 
 .click-util:hover {
