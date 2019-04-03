@@ -33,6 +33,10 @@ export class ArticleService {
     return this.http.get<Array<Article>>(`${this.apiEndpoint}/articles/search`, { params: params }  );
   }
 
+  changePublishStatus(articleId: number): Observable<Article> {
+    return this.http.post<Article>(`${this.apiEndpoint}/articles/update_publish_status`, { id: articleId }  );
+  }
+
   async loadLatestArticles() {
     const articles = await this.getLatesAticles();
     return articles.map(item => Object.assign(new Article, item));
