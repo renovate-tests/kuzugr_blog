@@ -6,8 +6,7 @@
 .latest-article-img {
   width: 100%;
   height: 40rem;
-  // SP 20rem
-  opacity: 0.6;
+  opacity: 0.3;
 }
 
 .article-detail-block {
@@ -20,7 +19,7 @@
 }
 
 .article-title {
-  color: #FFF;
+  color: cornflowerblue;
   white-space: nowrap;
   font-weight: bold;
   font-size: 2rem;
@@ -28,15 +27,16 @@
 
 .article-page-button {
   font-size: 1.5rem;
-  color: #FFF;
+  color: cornflowerblue;
   background: transparent;
-  border: solid 1px #FFF;
+  border: solid 1px cornflowerblue;
   border-radius: 4px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
   text-shadow: 0 1px 0 rgba(0,0,0,0.2);
 }
 
 .article-page-button:hover {
+  color: #fff;
   background-color: #0044cc;
   border: solid 1px #0044cc;
 }
