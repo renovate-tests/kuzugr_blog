@@ -1,13 +1,42 @@
+$breakpoints: (
+  smartphone: '(max-width: 480px)',
+);
+
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+        type-of($raw-query) == 'string',
+        unquote($raw-query),
+        inspect($raw-query)
+    );
+
+    @media screen and #{$query} {
+      @content;
+    }
+  }
+}
+
 .main-body {
   width: 100%;
   display: flex;
+  @include respond-to(smartphone) {
+    display: block;
+  }
   margin-bottom: 10%;
 }
 
 .app-sidebar {
   width: 22%;
+  @include respond-to(smartphonen) {
+    width: 100%;
+  }
 }
 
 .app-layout {
   width: 78%;
+  @include respond-to(smartphone) {
+    width: 100%;
+  }
 }
