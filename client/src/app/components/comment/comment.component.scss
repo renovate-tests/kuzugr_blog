@@ -1,3 +1,5 @@
+@import "mixins";
+
 h3 {
   border-bottom: solid 1px;
 }
@@ -27,6 +29,9 @@ h3 {
 .comment-name {
   border: 1px solid #ccc;
   width: 25%;
+  @include respond-to(smartphone) {
+    width: 60%;
+  }
 }
 
 .comment-button {
@@ -84,4 +89,10 @@ h3 {
 .delete-btn:hover {
   background-color: red;
   border: solid 1px red;
+}
+
+.content {
+  @include respond-to(smartphone) {
+    width: 100%;
+  }
 }

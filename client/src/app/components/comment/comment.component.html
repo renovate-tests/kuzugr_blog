@@ -22,7 +22,7 @@
         </div>
         <div class='comment-part'>
           <h5>コメント内容（必須）</h5>
-          <textarea cols='70' rows='10' formControlName="content"></textarea>
+          <textarea cols='70' rows='10' class='content' formControlName="content"></textarea>
           <div *ngIf="formErrors['content']" class="form-errors">
             {{ formErrors['content'].join(" ") }}
           </div>
