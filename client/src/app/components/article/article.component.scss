@@ -47,3 +47,19 @@
   background-color: #0044cc;
   border: solid 1px #0044cc;
 }
+
+.publish-btn {
+  color: #fff;
+  border-color: #d24d4d;
+  background-color: #d24d4d;
+  border-radius: 4px;
+  font-weight: 700;
+  width: 10rem;
+  height: 4rem;
+  margin-bottom: 2%;
+}
+
+.publish-btn:hover {
+  background-color: red;
+  border: solid 1px red;
+}

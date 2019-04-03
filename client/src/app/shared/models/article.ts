@@ -13,4 +13,5 @@ export class Article {
   category: string;
   category_id: number;
   comments: Array<Comment>;
+  published: boolean;
 }

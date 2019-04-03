@@ -4,6 +4,7 @@ import { Article } from '@models/article';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '@services/auth.service';
+import { ConfirmDialogService } from '@services/confirm-dialog.service';
 
 @Component({
   selector: 'app-article',
@@ -20,7 +21,8 @@ export class ArticleComponent implements OnInit {
               private router: Router,
               private route: ActivatedRoute,
               private cookieService: CookieService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit() {
     this.articleLoaded = false;
@@ -67,5 +69,26 @@ export class ArticleComponent implements OnInit {
         },
       );
     }
+  }
+
+  changePublishStatus(articleId: number) {
+    const dialogTitle = this.article.published ? '非公開' : '公開';
+    this.confirmDialogService.showConfirm({
+      title: '公開状況変更',
+      content: `${dialogTitle}に変更しますか？'`,
+      acceptButton: '変更する',
+      cancelButton: 'キャンセル',
+      isDanger: true,
+    }).subscribe(confirm => {
+      if (confirm) {
+        this.articleService.changePublishStatus(articleId).subscribe(
+          response => {
+            this.article = response;
+          },
+          error => {
+          },
+        );
+      }
+    });
   }
 }
