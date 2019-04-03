@@ -1,11 +1,22 @@
+@import "mixins";
+
 .search-text-div {
   margin-top: 10%;
+  width: 80%;
+  @include respond-to(smartphone) {
+    width: 100%;
+  }
 }
 
 h4 {
-  width: 80%;
   border-bottom: solid 1px;
   margin-bottom: 3rem;
+}
+
+.detail {
+  @include respond-to(smartphone) {
+    margin-left: 5%;
+  }
 }
 
 .keyword {
@@ -13,5 +24,8 @@ h4 {
 }
 
 .search {
+  @include respond-to(smartphone) {
+    margin-left: 3%;
+  }
   border: 1px solid #ccc;
 }

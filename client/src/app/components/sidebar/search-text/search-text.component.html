@@ -1,10 +1,12 @@
 <div class='search-text-div'>
-  <h4>ブログ内検索</h4>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <input type='text' class='keyword' formControlName='keyword'>
-    <input class='click-util search' type='submit' value='検索'>
-    <div *ngIf="formErrors['keyword']" class="form-errors">
-      {{ formErrors['keyword'].join(" ") }}
-    </div>
-  </form>
+   <h4>ブログ内検索</h4>
+  <div class='detail'>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <input type='text' class='keyword' formControlName='keyword'>
+      <input class='click-util search' type='submit' value='検索'>
+      <div *ngIf="formErrors['keyword']" class="form-errors">
+        {{ formErrors['keyword'].join(" ") }}
+      </div>
+    </form>
+  </div>
 </div>
