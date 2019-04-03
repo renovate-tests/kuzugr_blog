@@ -1,0 +1,19 @@
+$breakpoints: (
+  smartphone: '(max-width: 480px)',
+);
+
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+        type-of($raw-query) == 'string',
+        unquote($raw-query),
+        inspect($raw-query)
+    );
+
+    @media screen and #{$query} {
+      @content;
+    }
+  }
+}
