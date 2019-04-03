@@ -16,13 +16,14 @@
   transform: translate(-50%,-50%);
   top: 40%;
   left: 50%;
+  width: 100%;
 }
 
 .article-title {
   color: cornflowerblue;
-  white-space: nowrap;
   font-weight: bold;
   font-size: 2rem;
+  white-space: pre-wrap;
 }
 
 .article-page-button {
