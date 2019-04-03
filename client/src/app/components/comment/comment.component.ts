@@ -63,7 +63,7 @@ export class CommentComponent implements OnInit {
         },
         error => {
           this.commonForm();
-        }
+        },
       );
     } else {
       this.commonForm();
@@ -149,4 +149,5 @@ export class CommentComponent implements OnInit {
       }
     });
   }
+// tslint:disable-next-line:max-file-line-count
 }
