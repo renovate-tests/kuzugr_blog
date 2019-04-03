@@ -1,9 +1,14 @@
+@import "mixins";
+
 h2 {
   border-bottom: 1px solid black;
 }
 
 .profile-body {
   width: 70%;
+  @include respond-to(smartphone) {
+    width: 85%;
+  }
   text-align: left;
   margin-left: 5%;
   margin-top: 10%;
@@ -11,7 +16,6 @@ h2 {
 
 ul {
   margin-left: 5%;
-  width: 70%;
   list-style: none;
   padding-left: 0;
   word-wrap:break-word;
