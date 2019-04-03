@@ -1,5 +1,10 @@
+@import "mixins";
+
 .contact-body {
   width: 70%;
+  @include respond-to(smartphone) {
+    width: 85%;
+  }
   margin-top: 10%;
   margin-left: 5%;
 }
@@ -14,10 +19,16 @@ h2 {
 
 .contact-part-first {
   margin-top: 5%;
+  @include respond-to(smartphone) {
+    margin-top: 15%;
+  }
 }
 
 .contact-part {
   margin-top: 3%;
+  @include respond-to(smartphone) {
+    margin-top: 10%;
+  }
 
   textarea {
     border: 1px solid #ccc;
@@ -52,8 +63,17 @@ h2 {
 
 .form-part {
   width: 40%;
+  @include respond-to(smartphone) {
+    width: 60%;
+  }
 }
 
 .name, .email, .content {
   border: 1px solid #ccc;
+}
+
+.content {
+  @include respond-to(smartphone) {
+    width: 100%;
+  }
 }
