@@ -14,4 +14,14 @@ class User < ApplicationRecord
     self.access_token = "#{self.id}:#{Devise.friendly_token}"
     save
   end
+
+  class << self
+    def logged_in?(cookies)
+      auth_token = cookies[:access_token]
+      return false unless auth_token
+      user_id = auth_token.split(':').first
+      user = User.where(id: user_id).first
+      return user && Devise.secure_compare(user.access_token, auth_token)
+    end
+  end
 end

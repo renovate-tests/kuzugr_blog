@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         collection do
           get :search
           get :create_months
+          post :update_publish_status
         end
       end
       resources :upload_files, only: [:create]

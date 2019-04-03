@@ -2,7 +2,7 @@
 
 class ArticleSerializer < ActiveModel::Serializer
   attributes :id, :title, :html_content, :mark_content, :user_id, :created_at, :updated_at,
-             :category, :category_id
+             :published, :category, :category_id
   attribute :thumbnail_url, if: :include_thumbnail?
   attribute :comments, if: :include_comments?
 

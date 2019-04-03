@@ -4,12 +4,13 @@ module Api
   module V1
     class ArticlesController < ApplicationController
       skip_before_action :authenticate_user_from_token!, only: [:index, :show, :search, :create_months]
-      skip_before_action :verify_authenticity_token, only: [:create, :update]
+      skip_before_action :verify_authenticity_token, only: [:create, :update, :update_publish_status]
       before_action :upload_files, only: [:create]
 
       def index
         limit = params[:limit] || 5
         @articles = Article.eager_load(:comments, :thumbnail)
+                           .where(published: published_option)
                            .order('articles.created_at desc, comments.created_at asc')
                            .limit(params[:limit])
         include_option = params[:limit] == '1' ? true : false
@@ -19,6 +20,7 @@ module Api
 
       def show
         @article = Article.includes(:comments)
+                          .where(published: published_option)
                           .order('comments.created_at asc').find(params[:id])
         render status: 200, json: @article, serializer: ArticleSerializer, include_comments: true
       end
@@ -52,9 +54,11 @@ module Api
 
       def search
         if params[:category_id]
-          @articles = Article.includes(:thumbnail).order('articles.created_at desc').by_category(params[:category_id])
+          @articles = Article.includes(:thumbnail).where(published: published_option)
+                             .order('articles.created_at desc').by_category(params[:category_id])
         else
-          @articles = Article.includes(:thumbnail).order('articles.created_at desc').by_keyword(params[:keyword])
+          @articles = Article.includes(:thumbnail).where(published: published_option)
+                             .order('articles.created_at desc').by_keyword(params[:keyword])
         end
         render status: 200, json: @articles, each_serializer: ArticleSerializer, include_thumbnail: true
       end
@@ -64,9 +68,17 @@ module Api
         render status: 200, json: create_months
       end
 
+      def update_publish_status
+        article = Article.find(params[:id])
+        after_status = article.published ? false : true
+        article.published = after_status
+        article.save!
+        render status: 200, json: article, serializer: ArticleSerializer, include_comments: true
+      end
+
       private
       def article_params
-        params[:article].permit(:title, :mark_content, :html_content, :category_id)
+        params[:article].permit(:title, :mark_content, :html_content, :category_id, :published)
       end
 
       def move_to_index
@@ -93,6 +105,10 @@ module Api
         article.thumbnail = Thumbnail.new(file_name: article_upload_files[0].file_name,
                                           uuid: article_upload_files[0].uuid) unless article.thumbnail
         article
+      end
+
+      def published_option
+        User.logged_in?(cookies) ? [true, false] : true
       end
     end
   end
