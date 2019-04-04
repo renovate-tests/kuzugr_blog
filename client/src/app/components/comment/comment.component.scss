@@ -95,4 +95,7 @@ h3 {
   @include respond-to(smartphone) {
     width: 90%;
   }
+  @include respond-to(tablet) {
+    width: 90%;
+  }
 }
