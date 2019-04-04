@@ -8,6 +8,9 @@
         </div>
         <div class='form-parts'>
           <input class='title' type="text" formControlName="title">
+          <div *ngIf="formErrors['title']" class="form-errors">
+            {{ formErrors['title'].join(" ") }}
+          </div>
         </div>
       </div>
       <div id='form-input'>
@@ -24,6 +27,9 @@
             name="markdownText" formControlName="mark_content"
             [options]="editorOptions">
           </angular-markdown-editor>
+          <div *ngIf="formErrors['mark_content']" class="form-errors">
+            {{ formErrors['mark_content'].join(" ") }}
+          </div>
         </div>
         <image-upload
           url="{{ this.uploadFileEndpoint }}"
@@ -42,10 +48,14 @@
             {{category.name}}
           </option>
         </select>
+        <div *ngIf="formErrors['category_id']" class="form-errors">
+          {{ formErrors['category_id'].join(" ") }}
+        </div>
       </div>
       <button class='create-btn fa click-util' type="submit">
         <i class="fa fa-sign-in" aria-hidden="true"></i>投稿
       </button>
     </form>
+    <p *ngIf="gotError" class='form-errors'>エラーが発生しました。</p>
   </div>
 </div>

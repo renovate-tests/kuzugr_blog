@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ValidateForm } from '@functions/validate-forms';
 import { ArticleService } from '@services/article.service';
 import { CategoryService } from '@services/category.service';
 import { Article } from '@models/article';
@@ -23,6 +24,20 @@ export class CreateArticleComponent implements OnInit {
   uploadFileEndpoint: string;
   categories: Array<Category>;
   categoryLoaded: boolean;
+  gotError: boolean;
+  formErrors: {[key: string]: Array<string>} = {};
+  validationMessages = {
+    'title': {
+      'required': 'タイトルを入力してください。',
+      'maxlength': 'タイトルは50文字以内で入力してください。',
+    },
+    'mark_content': {
+      'required': '本文を入力してください。',
+    },
+    'category_id': {
+      'required': 'カテゴリを選択してください。',
+    },
+  };
 
   constructor(private articleService: ArticleService,
               private categoryService: CategoryService,
@@ -43,6 +58,8 @@ export class CreateArticleComponent implements OnInit {
   }
 
   onSubmit() {
+    this.gotError = false;
+    this.formErrors = {};
     if (this.form.valid) {
       this.article = this.form.value;
       // this.article.title = this.form.controls.title.value;
@@ -54,6 +71,8 @@ export class CreateArticleComponent implements OnInit {
       } else {
         this.createArticle();
       }
+    } else {
+      this.formErrors = ValidateForm(this.form, false, this.validationMessages);
     }
   }
 
@@ -73,7 +92,7 @@ export class CreateArticleComponent implements OnInit {
         this.router.navigateByUrl(`/`);
       },
       error => {
-        // エラーメッセージを出す
+        this.gotError = true;
       },
     );
   }
@@ -82,6 +101,9 @@ export class CreateArticleComponent implements OnInit {
     this.articleService.editArticle(this.article, this.articleId).subscribe(
       response => {
         this.router.navigateByUrl(`/article/${this.articleId}`);
+      },
+      error => {
+        this.gotError = true;
       },
     );
   }
@@ -98,9 +120,9 @@ export class CreateArticleComponent implements OnInit {
       this.getArticle(this.articleId);
     } else {
       this.form = new FormGroup({
-        title: new FormControl(),
-        mark_content: new FormControl(),
-        category_id: new FormControl(),
+        title: new FormControl('', [Validators.required, Validators.maxLength(50)]),
+        mark_content: new FormControl('', [Validators.required]),
+        category_id: new FormControl('', [Validators.required]),
       });
       this.articleLoaded = true;
     }
@@ -110,9 +132,9 @@ export class CreateArticleComponent implements OnInit {
     this.articleService.getArticle(articleId).subscribe(
       response => {
         this.form = new FormGroup({
-          title: new FormControl(response.title),
-          mark_content: new FormControl(response.mark_content),
-          category_id: new FormControl(response.category_id),
+          title: new FormControl(response.title, [Validators.required, Validators.maxLength(50)]),
+          mark_content: new FormControl(response.mark_content, [Validators.required]),
+          category_id: new FormControl(response.category_id, [Validators.required]),
         });
         this.articleLoaded = true;
       },
