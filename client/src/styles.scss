@@ -1,3 +1,5 @@
+@import "mixins";
+
 body {
   background-color: #ffffff;
   color: #333333;
@@ -19,4 +21,17 @@ body {
 .click-util {
   cursor: pointer;
   outline: none;
+}
+
+html {
+  @include respond-to(smartphone) {
+    h1 {
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 26px;
+    }
+  }
 }
