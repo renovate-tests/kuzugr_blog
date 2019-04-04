@@ -93,6 +93,6 @@ h3 {
 
 .content {
   @include respond-to(smartphone) {
-    width: 100%;
+    width: 90%;
   }
 }
