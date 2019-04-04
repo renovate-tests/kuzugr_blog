@@ -12,7 +12,6 @@ import { ConfirmDialogService } from '@services/confirm-dialog.service';
   styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent implements OnInit {
-  articles: Array<Article>;
   article: Article;
   articleLoaded: boolean;
   loginState: boolean;
@@ -31,17 +30,16 @@ export class ArticleComponent implements OnInit {
       if (params['article_id']) {
         this.getArticle(params['article_id']);
       } else {
-        this.getArticles();
+        this.getLatestArticle();
       }
     });
     this.getLoginState();
   }
 
-  getArticles() {
+  getLatestArticle() {
     this.articleService.getArticles({ limit: 1 }).subscribe(
       response => {
         if (response.length > 0) {
-          this.articles = response;
           this.article = response[0];
           this.articleLoaded = true;
         }

@@ -89,6 +89,7 @@ export class CommentComponent implements OnInit {
   onSubmit() {
     this.isDisabled = true;
     if (this.form.valid) {
+      this.formErrors = {};
       this.comment = this.form.value;
       this.comment.article_id = this.articleId;
       this.createComment();

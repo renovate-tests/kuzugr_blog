@@ -9,10 +9,10 @@ module Api
 
       def index
         limit = params[:limit] || 5
-        @articles = Article.eager_load(:comments, :thumbnail)
+        @articles = Article.joins(:comments, :thumbnail)
                            .where(published: published_option)
                            .order('articles.created_at desc, comments.created_at asc')
-                           .limit(params[:limit])
+                           .limit(limit)
         include_option = params[:limit] == '1' ? true : false
         render status: 200, json: @articles, each_serializer: ArticleSerializer,
           include_comments: include_option, include_thumbnail: !include_option
