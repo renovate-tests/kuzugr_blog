@@ -1573,6 +1573,7 @@ pre code {
   padding: 0;
   font-size: inherit;
   color: lightgray;
+  word-wrap: normal;
   white-space: pre;
   background-color: transparent;
   border-radius: 0;
