@@ -48,6 +48,7 @@ export class ContactComponent implements OnInit {
   onSubmit() {
     this.isDisabled = true;
     if (this.form.valid) {
+      this.formErrors = {};
       this.contact = this.form.value;
       this.sendEmail();
     } else {

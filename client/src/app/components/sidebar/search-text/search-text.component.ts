@@ -28,6 +28,7 @@ export class SearchTextComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
+      this.formErrors = {};
       this.router.navigateByUrl(`/search?keyword=${this.form.value['keyword']}#top`);
     } else {
       this.formErrors = ValidateForm(this.form, false, this.validationMessages);
