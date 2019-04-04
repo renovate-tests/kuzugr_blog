@@ -25,6 +25,7 @@ const routes: Routes = [
   },
   { path: 'search', component: SearchArticleComponent },
   { path: 'contact', component: ContactComponent },
+  { path: '**', component: ArticleComponent },
 ];
 
 @NgModule({
