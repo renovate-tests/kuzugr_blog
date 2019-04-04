@@ -1,3 +1,12 @@
+@import "mixins";
+
+h1 {
+  @include respond-to(smartphone) {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+}
+
 .header-block {
   width: 100%;
   text-align: center;
