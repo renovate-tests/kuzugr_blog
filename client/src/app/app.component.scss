@@ -14,11 +14,17 @@
   @include respond-to(smartphonen) {
     width: 100%;
   }
+  @include respond-to(tablet) {
+    width: 35%;
+  }
 }
 
 .app-layout {
   width: 78%;
   @include respond-to(smartphone) {
     width: 100%;
+  }
+  @include respond-to(tablet) {
+    width: 65%;
   }
 }
