@@ -1,0 +1,13 @@
+<div>
+  <h2>サイトマップ</h2>
+  <ul>
+  <li><a href="/">トップページ</a></li>
+  <li><a href="profile">プロフィールページ</a></li>
+  <li><a href="contact">お問い合わせページ</a></li>
+  <ng-container *ngIf="articleIdsLoaded">
+    <li *ngFor="let articleId of articleIds">
+      <a href="/article/{{articleId}}">アーティクル{{articleId}}</a>
+    </li>
+  </ng-container>
+  </ul>
+</div>
