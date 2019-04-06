@@ -6,7 +6,7 @@ namespace :sitemap do
     create_path = Rails.root.join('sitemap.xml')
     File.open(create_path, "w") do |file|
       file.puts('<?xml version="1.0" encoding="UTF-8"?>')
-      file.puts('<urlset xmlns=”http://www.sitemaps.org/schemas/sitemap/0.9″>')
+      file.puts('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
       path_list.each do |path|
         file.puts('  <url>')
         file.puts("    <loc>#{ENV['CORS_ALLOW_HOST']}#{path}</loc>")
