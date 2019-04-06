@@ -73,7 +73,7 @@ export class ArticleComponent implements OnInit {
     const dialogTitle = this.article.published ? '非公開' : '公開';
     this.confirmDialogService.showConfirm({
       title: '公開状況変更',
-      content: `${dialogTitle}に変更しますか？'`,
+      content: `${dialogTitle}に変更しますか？`,
       acceptButton: '変更する',
       cancelButton: 'キャンセル',
       isDanger: true,
