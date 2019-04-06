@@ -8,7 +8,6 @@ import { CreateArticleComponent } from './components/article/create-article/crea
 import { ProfileComponent } from './components/profile/profile.component';
 import { SearchArticleComponent } from './components/article/search-article/search-article.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { SitemapComponent } from '@components/sitemap/sitemap.component';
 
 const routes: Routes = [
   { path: '', component: ArticleComponent },
@@ -26,7 +25,6 @@ const routes: Routes = [
   },
   { path: 'search', component: SearchArticleComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'sitemap', component: SitemapComponent },
   { path: '**', component: ArticleComponent },
 ];
 

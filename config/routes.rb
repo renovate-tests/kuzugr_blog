@@ -11,7 +11,6 @@ Rails.application.routes.draw do
         collection do
           get :search
           get :create_months
-          get :article_ids_for_sitemap
           post :update_publish_status
         end
       end

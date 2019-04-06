@@ -34,7 +34,6 @@ import { CommentComponent } from './components/comment/comment.component';
 
 import { ConfirmDialogService } from '@services/confirm-dialog.service';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
-import { SitemapComponent } from './components/sitemap/sitemap.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +58,6 @@ import { SitemapComponent } from './components/sitemap/sitemap.component';
     ContactComponent,
     CommentComponent,
     ConfirmDialogComponent,
-    SitemapComponent,
   ],
   imports: [
     BrowserModule,
