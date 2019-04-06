@@ -63,11 +63,6 @@ module Api
         render status: 200, json: @articles, each_serializer: ArticleSerializer, include_thumbnail: true
       end
 
-      def article_ids_for_sitemap
-        article_ids = Article.order('created_at asc').ids
-        render status: 200, json: article_ids
-      end
-
       def create_months
         create_months = Article.select(:created_at).map{ |i| i.created_at.strftime('%Y年%m月') }.uniq
         render status: 200, json: create_months
