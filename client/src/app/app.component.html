@@ -6,4 +6,12 @@
   <app-sidebar class='app-sidebar'></app-sidebar>
 </div>
 <app-confirm-dialog></app-confirm-dialog>
+<div class='banner-ad'>
+  <p *ngIf="getDevice() !== 'sp'">
+      <iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&p=48&l=ur1&category=gift_certificates&banner=0FZJ5YF8XY2N5YDCYAR2&f=ifr&linkID=74ba0183601e94e7b5abe849aa4bc838&t=kuzugr-22&tracking_id=kuzugr-22" width="728" height="90" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+  </p>
+  <p *ngIf="getDevice() === 'sp'">
+    <iframe src="https://rcm-fe.amazon-adsystem.com/e/cm?o=9&p=48&l=ur1&category=gift_certificates&banner=0FZJ5YF8XY2N5YDCYAR2&f=ifr&linkID=74ba0183601e94e7b5abe849aa4bc838&t=kuzugr-22&tracking_id=kuzugr-22" width="728" height="90" scrolling="no" border="0" marginwidth="0" style="border:none;" frameborder="0"></iframe>
+  </p>
+</div>
 <app-footer class='app-footer'></app-footer>
