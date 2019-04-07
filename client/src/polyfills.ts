@@ -74,6 +74,9 @@
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
+// for legacy browser
+import 'babel-polyfill';
+
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
