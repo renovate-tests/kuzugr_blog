@@ -24,6 +24,7 @@
     "add": "^2.0.6",
     "angular-markdown-editor": "^2.0.2",
     "angular2-image-upload": "^1.0.0-rc.1",
+    "babel-polyfill": "^6.26.0",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "ng2-adsense": "^5.4.1",
