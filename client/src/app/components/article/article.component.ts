@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthService } from '@services/auth.service';
 import { ConfirmDialogService } from '@services/confirm-dialog.service';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-article',
@@ -21,7 +22,8 @@ export class ArticleComponent implements OnInit {
               private route: ActivatedRoute,
               private cookieService: CookieService,
               private authService: AuthService,
-              private confirmDialogService: ConfirmDialogService) { }
+              private confirmDialogService: ConfirmDialogService,
+              private metaService: Meta) { }
 
   ngOnInit() {
     this.articleLoaded = false;
@@ -41,6 +43,7 @@ export class ArticleComponent implements OnInit {
       response => {
         if (response.length > 0) {
           this.article = response[0];
+          this.setMetaTag();
           this.articleLoaded = true;
         }
       },
@@ -51,6 +54,7 @@ export class ArticleComponent implements OnInit {
     this.articleService.getArticle(articleId).subscribe(
       response => {
         this.article = response;
+        this.setMetaTag();
         this.articleLoaded = true;
       },
     );
@@ -89,4 +93,19 @@ export class ArticleComponent implements OnInit {
       }
     });
   }
+
+  setMetaTag() {
+    const articleContent = this.article.html_content.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '').trim();
+    this.metaService.addTag({name: 'description', content: articleContent});
+    this.metaService.addTag({property: 'og:title', content: this.article.title});
+    this.metaService.addTag({property: 'og:description', content: articleContent});
+    this.metaService.addTag({property: 'og:type', content: 'article'});
+    this.metaService.addTag({property: 'og:url', content: 'page author'});
+    this.metaService.addTag({property: 'og:image', content: this.article.thumbnail_url});
+    this.metaService.addTag({property: 'fb:app_id', content: '343030139677133'});
+    this.metaService.addTag({property: 'twitter:card', content: 'summary'});
+    this.metaService.addTag({property: 'twitter:site', content: '@kuzugr'});
+    this.metaService.addTag({property: 'twitter:creator', content: '@kuzugr'});
+  }
+// tslint:disable-next-line:max-file-line-count
 }
