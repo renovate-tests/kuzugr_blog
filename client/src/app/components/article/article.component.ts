@@ -95,12 +95,12 @@ export class ArticleComponent implements OnInit {
   }
 
   setMetaTag() {
-    const articleContent = this.article.html_content.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '').trim();
+    const articleContent = this.article.html_content.replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '').replace(/\r?\n/g, '').trim();
     this.metaService.addTag({name: 'description', content: articleContent});
     this.metaService.addTag({property: 'og:title', content: this.article.title});
     this.metaService.addTag({property: 'og:description', content: articleContent});
     this.metaService.addTag({property: 'og:type', content: 'article'});
-    this.metaService.addTag({property: 'og:url', content: 'page author'});
+    this.metaService.addTag({property: 'og:url', content: location.href});
     this.metaService.addTag({property: 'og:image', content: this.article.thumbnail_url});
     this.metaService.addTag({property: 'fb:app_id', content: '343030139677133'});
     this.metaService.addTag({property: 'twitter:card', content: 'summary'});
