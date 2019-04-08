@@ -9,7 +9,7 @@ module Api
 
       def index
         limit = params[:limit] || 5
-        articl_id = Article.order('created_at desc').limit(limit).ids
+        articl_id = Article.where(published: published_option).order('created_at desc').limit(limit).ids
         @articles = Article.eager_load(:comments, :thumbnail)
                            .where(published: published_option, id: articl_id)
                            .order('articles.created_at desc, comments.created_at asc')
