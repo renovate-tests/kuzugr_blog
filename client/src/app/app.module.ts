@@ -3,13 +3,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { CookieService } from 'ngx-cookie-service';
 import { ImageUploadModule } from 'angular2-image-upload';
 import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
 import { MarkdownModule } from 'ngx-markdown';
 import { AdsenseModule } from 'ng2-adsense';
 
-import { HttpsInterceptor } from '@services/http.interceptor';
+import { HttpsInterceptor } from './shared/services/http.interceptor';
 
 import { AppComponent } from './app.component';
 import { ArticleComponent } from './components/article/article.component';
@@ -32,7 +31,7 @@ import { SearchArticleComponent } from './components/article/search-article/sear
 import { ContactComponent } from './components/contact/contact.component';
 import { CommentComponent } from './components/comment/comment.component';
 
-import { ConfirmDialogService } from '@services/confirm-dialog.service';
+import { ConfirmDialogService } from './shared/services/confirm-dialog.service';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
@@ -73,7 +72,6 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     }),
   ],
   providers: [
-    CookieService,
     { provide: HTTP_INTERCEPTORS, useClass: HttpsInterceptor, multi: true },
     ConfirmDialogService,
   ],

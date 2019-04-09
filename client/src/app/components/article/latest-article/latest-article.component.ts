@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '@services/article.service';
-import { Article } from '@models/article';
+import { ArticleService } from '../../../shared/services/article.service';
+import { Article } from '../../../shared/models/article';
 import { Observable } from 'rxjs';
 import 'rxjs/add/observable/interval';
 

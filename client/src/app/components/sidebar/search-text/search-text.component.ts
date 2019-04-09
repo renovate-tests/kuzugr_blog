@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ValidateForm } from '@functions/validate-forms';
+import { ValidateForm } from '../../../shared/functions/validate-forms';
 import { Router } from '@angular/router';
 
 @Component({
