@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ValidateForm } from '@functions/validate-forms';
-import { ArticleService } from '@services/article.service';
-import { CategoryService } from '@services/category.service';
-import { Article } from '@models/article';
-import { Category } from '@models/category';
+import { ValidateForm } from '../../../shared/functions/validate-forms';
+import { ArticleService } from '../../../shared/services//article.service';
+import { CategoryService } from '../../../shared/services/category.service';
+import { Article } from '../../../shared/models/article';
+import { Category } from '../../../shared/models/category';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MarkdownService } from 'ngx-markdown';
-import { environment } from '@environments/environment';
-import { AuthService } from '@services/auth.service';
+import { environment } from '../../../../environments/environment';
+import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({
   selector: 'app-create-article',

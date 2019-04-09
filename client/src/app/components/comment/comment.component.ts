@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, PatternValidator } from '@angular/forms';
-import { ValidateForm } from '@functions/validate-forms';
-import { Comment } from '@models/comment';
-import { CommentService } from '@services/comment.service';
-import { AuthService } from '@services/auth.service';
-import { ConfirmDialogService } from '@services/confirm-dialog.service';
+import { ValidateForm } from '../../shared/functions/validate-forms';
+import { Comment } from '../../shared/models/comment';
+import { CommentService } from '../../shared/services/comment.service';
+import { AuthService } from '../../shared/services/auth.service';
+import { ConfirmDialogService } from '../../shared/services/confirm-dialog.service';
 
 @Component({
   selector: 'app-comment',

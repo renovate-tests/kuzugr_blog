@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '@services/article.service';
-import { Article } from '@models/article';
+import { ArticleService } from '../../shared/services/article.service';
+import { Article } from '../../shared/models/article';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from '@services/auth.service';
-import { ConfirmDialogService } from '@services/confirm-dialog.service';
+import { AuthService } from '../../shared/services/auth.service';
+import { ConfirmDialogService } from '../../shared/services//confirm-dialog.service';
 import { Meta } from '@angular/platform-browser';
 
 @Component({

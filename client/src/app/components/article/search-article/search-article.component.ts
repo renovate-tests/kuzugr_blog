@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from '@services/article.service';
-import { Article } from '@models/article';
-import { Category } from '@models/category';
-import { CategoryService } from '@services/category.service';
+import { ArticleService } from '../../../shared/services/article.service';
+import { Article } from '../../../shared/models/article';
+import { Category } from '../../../shared/models/category';
+import { CategoryService } from '../../../shared/services/category.service';
 
 @Component({
   selector: 'app-search-article',

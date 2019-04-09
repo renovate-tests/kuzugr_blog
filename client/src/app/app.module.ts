@@ -8,7 +8,7 @@ import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
 import { MarkdownModule } from 'ngx-markdown';
 import { AdsenseModule } from 'ng2-adsense';
 
-import { HttpsInterceptor } from '@services/http.interceptor';
+import { HttpsInterceptor } from './shared/services/http.interceptor';
 
 import { AppComponent } from './app.component';
 import { ArticleComponent } from './components/article/article.component';
@@ -31,7 +31,7 @@ import { SearchArticleComponent } from './components/article/search-article/sear
 import { ContactComponent } from './components/contact/contact.component';
 import { CommentComponent } from './components/comment/comment.component';
 
-import { ConfirmDialogService } from '@services/confirm-dialog.service';
+import { ConfirmDialogService } from './shared/services/confirm-dialog.service';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
