@@ -4,8 +4,6 @@ import { ValidateForm } from '@functions/validate-forms';
 import { Comment } from '@models/comment';
 import { CommentService } from '@services/comment.service';
 import { AuthService } from '@services/auth.service';
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { ConfirmDialogService } from '@services/confirm-dialog.service';
 
 @Component({
@@ -39,35 +37,29 @@ export class CommentComponent implements OnInit {
 
   constructor(private commentService: CommentService,
               private authService: AuthService,
-              private router: Router,
-              private cookieService: CookieService,
               private confirmDialogService: ConfirmDialogService) { }
 
   ngOnInit() {
     this.isDisabled = false;
+    this.loginState = false;
     this.readyCommentForm = false;
     this.initializeForm();
   }
 
   initializeForm() {
-    const loginEmail = this.cookieService.get('login_email');
-    if (!!loginEmail) {
-      this.loginState = this.authService.loginState().then(
-        response => {
-          this.loginState = response['login_state'];
-          if (this.loginState) {
-            this.ownerForm();
-          } else {
-            this.commonForm();
-          }
-        },
-        error => {
+    this.authService.loginState().then(
+      response => {
+        this.loginState = response['login_state'];
+        if (this.loginState) {
+          this.ownerForm();
+        } else {
           this.commonForm();
-        },
-      );
-    } else {
-      this.commonForm();
-    }
+        }
+      },
+      error => {
+        this.commonForm();
+      },
+    );
   }
 
   commonForm() {
@@ -118,7 +110,7 @@ export class CommentComponent implements OnInit {
   }
 
   getLoginState() {
-    this.loginState = this.authService.loginState().then(
+    this.authService.loginState().then(
       response => {
         this.loginState = response['login_state'];
       },

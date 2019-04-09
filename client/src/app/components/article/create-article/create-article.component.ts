@@ -6,9 +6,9 @@ import { CategoryService } from '@services/category.service';
 import { Article } from '@models/article';
 import { Category } from '@models/category';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { MarkdownService } from 'ngx-markdown';
 import { environment } from '@environments/environment';
+import { AuthService } from '@services/auth.service';
 
 @Component({
   selector: 'app-create-article',
@@ -42,15 +42,15 @@ export class CreateArticleComponent implements OnInit {
   constructor(private articleService: ArticleService,
               private categoryService: CategoryService,
               private router: Router,
-              private cookieService: CookieService,
               private route: ActivatedRoute,
               private markdownService: MarkdownService,
+              private authService: AuthService,
             ) { }
 
   ngOnInit() {
     this.categoryLoaded = false;
     this.uploadFileEndpoint = environment.uploadFileEndpoint;
-    this.loginCheck();
+    this.getLoginState();
     this.articleLoaded = false;
     this.articleId = this.route.snapshot.params['article_id'];
     this.loadArticle();
@@ -108,13 +108,6 @@ export class CreateArticleComponent implements OnInit {
     );
   }
 
-  // TODO: serviceに置き換える
-  loginCheck() {
-    if (!!!this.cookieService.get('login_email')) {
-      this.router.navigateByUrl(`/`);
-    }
-  }
-
   loadArticle() {
     if (this.articleId) {
       this.getArticle(this.articleId);
@@ -150,6 +143,18 @@ export class CreateArticleComponent implements OnInit {
         this.categoryLoaded = true;
       }
     });
+  }
+
+  getLoginState() {
+    this.authService.loginState().then(
+      response => {
+        if ( response['login_state'] === false ) {
+          this.router.navigateByUrl(`/`);
+        }
+      },
+      error => {
+      },
+    );
   }
 // tslint:disable-next-line:max-file-line-count
 }

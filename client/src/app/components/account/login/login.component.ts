@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidateForm } from '@functions/validate-forms';
 import { SessionService } from '../session.service';
 import { User } from '@models/user';
-import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -29,7 +28,6 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(private sessionService: SessionService,
-              private cookieService: CookieService,
               private router: Router) { }
 
   ngOnInit() {
@@ -46,9 +44,7 @@ export class LoginComponent implements OnInit {
       this.user = this.form.value;
 
       this.sessionService.login(this.user).subscribe(
-        data => {
-          this.cookieService.set( 'login_email', data['email'], 1 );
-          this.cookieService.set( 'access_token', data['access_token'], 1 );
+        response => {
           location.href = '/';
         },
         error => {
