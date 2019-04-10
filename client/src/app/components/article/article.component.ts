@@ -15,6 +15,7 @@ export class ArticleComponent implements OnInit {
   article: Article;
   articleLoaded: boolean;
   loginState: boolean;
+  articleId: number;
 
   constructor(private articleService: ArticleService,
               private route: ActivatedRoute,
@@ -27,6 +28,7 @@ export class ArticleComponent implements OnInit {
     this.loginState = false;
     this.route.params.subscribe(params => {
       if (params['article_id']) {
+        this.articleId = params['article_id'];
         this.getArticle(params['article_id']);
       } else {
         this.getLatestArticle();
@@ -94,7 +96,8 @@ export class ArticleComponent implements OnInit {
     this.metaService.addTag({property: 'og:title', content: this.article.title});
     this.metaService.addTag({property: 'og:description', content: articleContent});
     this.metaService.addTag({property: 'og:type', content: 'article'});
-    this.metaService.addTag({property: 'og:url', content: location.href});
+    const url = this.articleId ? `https://kuzugr.com/article/${this.articleId}` : 'https://kuzugr.com';
+    this.metaService.addTag({property: 'og:url', content: url});
     this.metaService.addTag({property: 'og:image', content: this.article.thumbnail_url});
     this.metaService.addTag({property: 'fb:app_id', content: '343030139677133'});
     this.metaService.addTag({property: 'twitter:card', content: 'summary'});
