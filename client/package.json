@@ -4,8 +4,9 @@
   "scripts": {
     "ng": "ng",
     "start": "cp src/assets/copied/bootstrap.css node_modules/bootstrap/dist/css/bootstrap.css && ng serve --disable-host-check",
-    "build": "cp src/assets/copied/bootstrap.css node_modules/bootstrap/dist/css/bootstrap.css && ng build && gulp add-querystring-to-index && ng run client:server && webpack --config webpack.server.config.js --progress --colors && node dist/server",
-    "build-prod": "cp src/assets/copied/bootstrap.css node_modules/bootstrap/dist/css/bootstrap.css && ng build --prod && gulp add-querystring-to-index && ng run client:server:production && webpack --config webpack.server.config.js --progress --colors && node dist/server",
+    "build": "cp src/assets/copied/bootstrap.css node_modules/bootstrap/dist/css/bootstrap.css && ng build && gulp add-querystring-to-index && ng run client:server && webpack --config webpack.server.config.js --progress --colors",
+    "server": "node dist/server",
+    "build-prod": "cp src/assets/copied/bootstrap.css node_modules/bootstrap/dist/css/bootstrap.css && ng build --prod && gulp add-querystring-to-index && ng run client:server:production && webpack --config webpack.server.config.js --progress --colors",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
