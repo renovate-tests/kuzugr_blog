@@ -100,7 +100,7 @@ export class ArticleComponent implements OnInit {
     this.metaService.addTag({property: 'og:url', content: url});
     this.metaService.addTag({property: 'og:image', content: this.article.thumbnail_url});
     this.metaService.addTag({property: 'fb:app_id', content: '343030139677133'});
-    this.metaService.addTag({property: 'twitter:card', content: 'summary_large_image'});
+    this.metaService.addTag({property: 'twitter:card', content: 'summary'});
     this.metaService.addTag({property: 'twitter:site', content: '@kuzugr'});
     this.metaService.addTag({property: 'twitter:creator', content: '@kuzugr'});
   }
