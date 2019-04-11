@@ -4,6 +4,7 @@ module Api
   module V1
     class SessionsController < ApplicationController
       skip_before_action :authenticate_user_from_token!
+      protect_from_forgery except: :create
 
       # POST /v1/login
       def create
@@ -12,8 +13,8 @@ module Api
 
         if @user.valid_password?(user_params[:password])
           sign_in :user, @user
-          cookies[:access_token] = @user.access_token
-          cookies[:email] = @user.email
+          cookies[:access_token] = { value: @user.access_token, secure: Rails.env.production? }
+          cookies[:email] = { value: @user.email, secure: Rails.env.production? }
           render json: @user, serializer: SessionSerializer, root: nil
         else
           invalid_password
