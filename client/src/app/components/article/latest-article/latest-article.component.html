@@ -1,4 +1,4 @@
-<div class='latest-article-content' *ngIf="latestArticleLoaded">
+<div class='latest-article-content' *ngIf="latestArticleLoaded" (mouseover)="changeImage()" (touchstart)="changeImage()">
   <div class='latest-article-img-block'>
     <img class='latest-article-img' src={{article.thumbnail_url}}>
     <div class='article-detail-block'>

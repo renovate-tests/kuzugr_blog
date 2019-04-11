@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ValidateForm } from '@functions/validate-forms';
-import { Contact } from '@models/contact';
-import { ContactService } from '@services/contact.service';
+import { ValidateForm } from '../../shared/functions/validate-forms';
+import { Contact } from '../../shared/models/contact';
+import { ContactService } from '../../shared/services/contact.service';
 
 @Component({
   selector: 'app-contact',

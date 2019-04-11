@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleService } from '@services/article.service';
-import { Article } from '@models/article';
-import { Router, ActivatedRoute } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
-import { AuthService } from '@services/auth.service';
-import { ConfirmDialogService } from '@services/confirm-dialog.service';
+import { ArticleService } from '../../shared/services/article.service';
+import { Article } from '../../shared/models/article';
+import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../../shared/services/auth.service';
+import { ConfirmDialogService } from '../../shared/services//confirm-dialog.service';
 import { Meta } from '@angular/platform-browser';
 
 @Component({
@@ -16,11 +15,10 @@ export class ArticleComponent implements OnInit {
   article: Article;
   articleLoaded: boolean;
   loginState: boolean;
+  articleId: number;
 
   constructor(private articleService: ArticleService,
-              private router: Router,
               private route: ActivatedRoute,
-              private cookieService: CookieService,
               private authService: AuthService,
               private confirmDialogService: ConfirmDialogService,
               private metaService: Meta) { }
@@ -30,6 +28,7 @@ export class ArticleComponent implements OnInit {
     this.loginState = false;
     this.route.params.subscribe(params => {
       if (params['article_id']) {
+        this.articleId = params['article_id'];
         this.getArticle(params['article_id']);
       } else {
         this.getLatestArticle();
@@ -61,16 +60,13 @@ export class ArticleComponent implements OnInit {
   }
 
   getLoginState() {
-    const loginEmail = this.cookieService.get('login_email');
-    if (!!loginEmail) {
-      this.loginState = this.authService.loginState().then(
-        response => {
-          this.loginState = response['login_state'];
-        },
-        error => {
-        },
-      );
-    }
+    this.authService.loginState().then(
+      response => {
+        this.loginState = response['login_state'];
+      },
+      error => {
+      },
+    );
   }
 
   changePublishStatus(articleId: number) {
@@ -100,7 +96,8 @@ export class ArticleComponent implements OnInit {
     this.metaService.addTag({property: 'og:title', content: this.article.title});
     this.metaService.addTag({property: 'og:description', content: articleContent});
     this.metaService.addTag({property: 'og:type', content: 'article'});
-    this.metaService.addTag({property: 'og:url', content: location.href});
+    const url = this.articleId ? `https://kuzugr.com/article/${this.articleId}` : 'https://kuzugr.com';
+    this.metaService.addTag({property: 'og:url', content: url});
     this.metaService.addTag({property: 'og:image', content: this.article.thumbnail_url});
     this.metaService.addTag({property: 'fb:app_id', content: '343030139677133'});
     this.metaService.addTag({property: 'twitter:card', content: 'summary'});
