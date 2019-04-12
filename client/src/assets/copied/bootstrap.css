@@ -1171,7 +1171,27 @@ hr {
 [role="button"] {
   cursor: pointer;
 }
-h1, h2, h3, h4, h5, h6{
+.article-body h1{
+  padding-bottom: .1em;
+  border-bottom: 1px solid #ddd;
+}
+.article-body h2{
+  padding-bottom: .1em;
+  border-bottom: 1px solid #ddd;
+}
+.article-body h3{
+  padding-bottom: .1em;
+  border-bottom: 1px solid #ddd;
+}
+.article-body h4{
+  padding-bottom: .1em;
+  border-bottom: 1px solid #ddd;
+}
+.article-body h5{
+  padding-bottom: .1em;
+  border-bottom: 1px solid #ddd;
+}
+.article-body h6{
   padding-bottom: .1em;
   border-bottom: 1px solid #ddd;
 }
