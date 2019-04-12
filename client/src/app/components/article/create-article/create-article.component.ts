@@ -29,7 +29,7 @@ export class CreateArticleComponent implements OnInit {
   validationMessages = {
     'title': {
       'required': 'タイトルを入力してください。',
-      'maxlength': 'タイトルは100文字以内で入力してください。',
+      'maxlength': 'タイトルは300文字以内で入力してください。',
     },
     'mark_content': {
       'required': '本文を入力してください。',
@@ -113,7 +113,7 @@ export class CreateArticleComponent implements OnInit {
       this.getArticle(this.articleId);
     } else {
       this.form = new FormGroup({
-        title: new FormControl('', [Validators.required, Validators.maxLength(100)]),
+        title: new FormControl('', [Validators.required, Validators.maxLength(300)]),
         mark_content: new FormControl('', [Validators.required]),
         category_id: new FormControl('', [Validators.required]),
       });
