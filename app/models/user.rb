@@ -16,8 +16,8 @@ class User < ApplicationRecord
   end
 
   class << self
-    def logged_in?(cookies)
-      auth_token = cookies[:access_token]
+    def logged_in?(session)
+      auth_token = session[:access_token]
       return false unless auth_token
       user_id = auth_token.split(':').first
       user = User.where(id: user_id).first
