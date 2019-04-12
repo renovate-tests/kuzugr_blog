@@ -4,7 +4,6 @@ module Api
   module V1
     class SessionsController < ApplicationController
       skip_before_action :authenticate_user_from_token!
-      protect_from_forgery except: :create
 
       # POST /v1/login
       def create
