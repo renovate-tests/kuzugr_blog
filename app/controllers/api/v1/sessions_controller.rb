@@ -12,8 +12,8 @@ module Api
 
         if @user.valid_password?(user_params[:password])
           sign_in :user, @user
-          cookies[:access_token] = { value: @user.access_token, secure: Rails.env.production? }
-          cookies[:email] = { value: @user.email, secure: Rails.env.production? }
+          session[:access_token] = @user.access_token
+          session[:email] = @user.email
           render json: @user, serializer: SessionSerializer, root: nil
         else
           invalid_password
@@ -21,7 +21,7 @@ module Api
       end
 
       def login_state
-        auth_token = cookies[:access_token]
+        auth_token = session[:access_token]
         login_state = auth_token ? authenticate_with_auth_token(auth_token) : false
         render json: { login_state: login_state }
       end

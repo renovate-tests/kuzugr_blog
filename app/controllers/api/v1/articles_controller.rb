@@ -107,7 +107,7 @@ module Api
       end
 
       def published_option
-        User.logged_in?(cookies) ? [true, false] : true
+        User.logged_in?(session) ? [true, false] : true
       end
     end
   end
