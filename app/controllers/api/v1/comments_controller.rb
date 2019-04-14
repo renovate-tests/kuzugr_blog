@@ -3,7 +3,7 @@
 module Api
   module V1
     class CommentsController < ApplicationController
-      skip_before_action :authenticate_user_from_token!, only: [:index]
+      skip_before_action :authenticate_user_from_token!, only: [:index, :create]
 
       def index
         comments = Comment.where(article_id: params[:article_id])
