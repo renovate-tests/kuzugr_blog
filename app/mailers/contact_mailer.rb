@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ContactMailer < ActionMailer::Base
   def send_contact(params)
     @content = "#{params[:content]}\n\n#{params[:email]}"

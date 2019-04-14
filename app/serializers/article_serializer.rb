@@ -8,7 +8,9 @@ class ArticleSerializer < ActiveModel::Serializer
 
   def thumbnail_url
     return BlogInformation.first.profile_image unless object.thumbnail
-    "https://#{UploadFile.s3_bucket_name}.s3.ap-northeast-1.amazonaws.com/images/#{object.thumbnail.uuid}"
+    bucket_name = UploadFile.s3_bucket_name
+    uuid = object.thumbnail.uuid
+    "https://#{bucket_name}.s3.ap-northeast-1.amazonaws.com/images/#{uuid}"
   end
 
   def category

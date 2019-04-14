@@ -7,12 +7,14 @@ AllCops:
     - 'db/**/*'
     - 'bin/**/*'
     - 'config/**/*'
+    - 'spec/**/*'
+    - 'master_data/*'
 
 Rails:
   Enabled: true
 
 Metrics/AbcSize:
-  Max: 15
+  Max: 20
 
 Metrics/CyclomaticComplexity:
   Max: 10
@@ -60,9 +62,6 @@ Rails/FindEach:
   Enabled: true
 
 Rails/HasAndBelongsToMany:
-  Enabled: true
-
-Rails/HasManyOrHasOneDependent:
   Enabled: true
 
 Rails/HttpStatus:
