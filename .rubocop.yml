@@ -63,9 +63,6 @@ Rails/FindEach:
 Rails/HasAndBelongsToMany:
   Enabled: true
 
-Rails/HasManyOrHasOneDependent:
-  Enabled: true
-
 Rails/HttpStatus:
   EnforcedStyle: numeric
 
