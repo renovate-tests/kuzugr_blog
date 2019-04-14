@@ -3,15 +3,14 @@
 module Api
   module V1
     class ArticlesController < ApplicationController
-      skip_before_action :authenticate_user_from_token!, only: [:index, :show, :search, :create_months]
+      skip_before_action :authenticate_user_from_token!,
+        only: [:index, :show, :search, :create_months]
       before_action :upload_files, only: [:create]
 
       def index
         limit = params[:limit] || 5
-        articl_id = Article.where(published: published_option).order('created_at desc').limit(limit).ids
-        @articles = Article.eager_load(:comments, :thumbnail)
-                           .where(published: published_option, id: articl_id)
-                           .order('articles.created_at desc, comments.created_at asc')
+        articl_ids = Article.latest_ids(published_option, limit)
+        @articles = Article.with_comments_and_thumbnail(published_option, articl_ids)
         include_option = params[:limit] == '1' ? true : false
         render status: 200, json: @articles, each_serializer: ArticleSerializer,
           include_comments: include_option, include_thumbnail: !include_option
@@ -53,13 +52,12 @@ module Api
 
       def search
         if params[:category_id]
-          @articles = Article.includes(:thumbnail).where(published: published_option)
-                             .order('articles.created_at desc').by_category(params[:category_id])
+          @articles = Article.with_thumbnail(published_option).by_category(params[:category_id])
         else
-          @articles = Article.includes(:thumbnail).where(published: published_option)
-                             .order('articles.created_at desc').by_keyword(params[:keyword])
+          @articles = Article.with_thumbnail(published_option).by_keyword(params[:keyword])
         end
-        render status: 200, json: @articles, each_serializer: ArticleSerializer, include_thumbnail: true
+        render status: 200, json: @articles, each_serializer: ArticleSerializer,
+          include_thumbnail: true
       end
 
       def create_months
@@ -102,7 +100,7 @@ module Api
         article_upload_files = UploadFile.where(uuid: upload_files_params).order(:id)
         article.upload_files << article_upload_files
         article.thumbnail = Thumbnail.new(file_name: article_upload_files[0].file_name,
-                                          uuid: article_upload_files[0].uuid) unless article.thumbnail
+          uuid: article_upload_files[0].uuid) unless article.thumbnail
         article
       end
 
