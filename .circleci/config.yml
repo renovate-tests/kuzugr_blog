@@ -52,6 +52,10 @@ jobs:
     - run: bundle install --path vendor/bundle --jobs=4 --retry=3
     - save_cache: *save_gems_cache
 
+    - run:
+        name: Wait for db
+        command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m -wait-retry-interval 5s
+
     - run: bin/rails db:create && bin/rake ridgepole:apply
 
     - run: bundle exec rspec spec
