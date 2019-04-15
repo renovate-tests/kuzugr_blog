@@ -1,0 +1,78 @@
+restore_gems_cache: &restore_gems_cache
+  keys:
+  - v2-gems-{{ checksum "Gemfile.lock" }}
+
+save_gems_cache: &save_gems_cache
+  key: v2-gems-{{ checksum "Gemfile.lock" }}
+  paths:
+  - vendor/bundle
+
+restore_npm_packages_cache: &restore_npm_packages_cache
+  keys:
+  - v2-npm-{{ checksum "client/yarn.lock" }}
+
+save_npm_packages_cache: &save_npm_packages_cache
+  key: v2-npm-{{ checksum "client/yarn.lock" }}
+  paths:
+  - client/node_modules
+
+version: 2
+jobs:
+
+  build:
+    working_directory: ~/app
+    parallelism: 1
+    shell: /bin/bash --login
+
+    docker:
+      - image: circleci/ruby:2.4.1-node-browsers
+        environment:
+          CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
+          CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
+          TZ: /usr/share/zoneinfo/Asia/Tokyo
+          RAILS_ENV: test
+          NODE_ENV: test
+          DB_SERVERNAME: 127.0.0.1
+          DB_USERNAME: root
+
+      - image: mysql:5.7
+        command: mysqld --innodb_file_format=Barracuda --innodb_file_per_table=1 --innodb_large_prefix=true --sql_mode=TRADITIONAL,NO_AUTO_VALUE_ON_ZERO,ONLY_FULL_GROUP_BY
+        environment:
+          TZ: /usr/share/zoneinfo/Asia/Tokyo
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_DATABASE: root
+
+    steps:
+    - checkout
+
+    - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
+
+    - restore_cache: *restore_gems_cache
+    - run: bundle install --path vendor/bundle --jobs=4 --retry=3
+    - save_cache: *save_gems_cache
+
+    - run:
+        name: Wait for db
+        command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m -wait-retry-interval 5s
+
+    - run: bin/rails db:create && bin/rake ridgepole:apply
+
+    - run: bundle exec rspec spec
+
+    - run: bundle exec rubocop
+
+    - restore_cache: *restore_npm_packages_cache
+    - run: sudo npm install -g n && sudo n 10.9.0
+    - run: cd client && sudo npm install -g yarn && sudo yarn global add @angular/cli@latest && sudo ng set --global packageManager=yarn && yarn
+    - save_cache: *save_npm_packages_cache
+
+    - run: cd client && yarn build-prod
+
+    - store_test_results:
+        path: /tmp/circleci-test-results
+    - store_artifacts:
+        path: /tmp/circleci-artifacts
+    - store_artifacts:
+        path: /tmp/circleci-test-results
+
