@@ -12,6 +12,8 @@ module Api
 
       def create
         comment = Comment.new(comment_params)
+        mailer_params = { name: comment_params[:name], content: comment_params[:content]  }
+        CommentMailer.send_comment_mail(mailer_params).deliver_later if request.host == ENV['CORS_ALLOW_HOST']
         comment.save!
       end
 
