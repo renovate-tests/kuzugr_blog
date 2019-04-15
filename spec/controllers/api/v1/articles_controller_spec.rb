@@ -89,7 +89,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
     end
   end
 
-  describe 'GET /update' do
+  describe 'PATCH /update' do
     let(:params) do
       {
         article:
@@ -108,7 +108,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user)
       patch "/api/v1/articles/#{params[:article][:id]}", params: params
     end
-    it 'success' do
+    it '更新に成功する' do
       changed_article = Article.find(article.id)
       expect(changed_article.title).to eq params[:article][:title]
       expect(changed_article.mark_content).to eq params[:article][:mark_content]

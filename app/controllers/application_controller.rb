@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user_from_token!
 
   rescue_from Exception, with: :server_error
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
@@ -47,6 +48,13 @@ class ApplicationController < ActionController::Base
   # Renders a 401 error
   def authenticate_error
     render json: { error: t('devise.failure.unauthenticated') }, status: 401
+  end
+
+  def render_not_found(exception = nil)
+    render status: 404, json: {
+      error_code: 404,
+      message: exception.message || 'サーバ内部にエラーが発生しました。',
+    }
   end
 
   def server_error(exception = nil)
