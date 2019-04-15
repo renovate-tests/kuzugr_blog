@@ -74,7 +74,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       end
       it 'エラーが返る' do
         article_response = JSON.parse(response.body)
-        expect(article_response['error_code']).to eq 500
+        expect(article_response['error_code']).to eq 404
       end
     end
 
@@ -110,6 +110,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
     end
     it '更新に成功する' do
       changed_article = Article.find(article.id)
+      expect(response.code).to eq '204'
       expect(changed_article.title).to eq params[:article][:title]
       expect(changed_article.mark_content).to eq params[:article][:mark_content]
       expect(changed_article.html_content).to eq params[:article][:html_content]
