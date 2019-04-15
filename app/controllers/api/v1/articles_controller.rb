@@ -5,7 +5,6 @@ module Api
     class ArticlesController < ApplicationController
       skip_before_action :authenticate_user_from_token!,
         only: [:index, :show, :search, :create_months]
-      before_action :upload_files, only: [:create]
 
       def index
         limit = params[:limit] || 5
@@ -84,6 +83,7 @@ module Api
 
       # 最終的に記事に乗せない画像を削除する
       def upload_files
+        return unless params[:article][:upload_file_uuids]
         remove_files = []
         params[:article][:upload_file_uuids].each do |uuid|
           unless params[:article][:mark_content].include?(uuid)
