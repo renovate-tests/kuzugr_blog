@@ -4,7 +4,7 @@ module Api
   module V1
     class ArticlesController < ApplicationController
       skip_before_action :authenticate_user_from_token!,
-        only: [:index, :show, :search, :create_months, :monthly_archive]
+        only: [:index, :show, :search, :monthly_archive]
 
       def index
         limit = params[:limit] || 5
