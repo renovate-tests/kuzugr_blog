@@ -1,24 +1,14 @@
 <div class='monthly-archive'>
   <h4>月別アーカイブ</h4>
   <div class='dates'>
-    <div class="year click-util" (click)="onAccordion()">
+    <div class="year click-util" (click)="onAccordion(archive[0])" *ngFor="let archive of archives">
       <i [ngClass]="showDetail ? 'fa fa-minus-circle' : 'fa fa-plus-circle'"></i>
-      &nbsp;2019
-    </div>
-    <!-- アコーディオンの中身 -->
-    <div class='months' *ngIf="showDetail" [@accordion]>
-      <p class='click-util'>2019/01</p>
-      <p class='click-util'>2019/02</p>
-      <p class='click-util'>2019/03</p>
-      <p class='click-util'>2019/04</p>
-      <p class='click-util'>2019/05</p>
-      <p class='click-util'>2019/06</p>
-      <p class='click-util'>2019/07</p>
-      <p class='click-util'>2019/08</p>
-      <p class='click-util'>2019/09</p>
-      <p class='click-util'>2019/10</p>
-      <p class='click-util'>2019/11</p>
-      <p class='click-util'>2019/12</p>
+      &nbsp;{{ archive[0] }}（{{ archive[1]['count'] }}）
+      <ng-container *ngIf="showDetail == archive[0]">
+        <div class='months' [@accordion] *ngFor="let month of getMonths(archive[1]['monthly_archives'])">
+          <p>{{month[0]}}（{{month[1]}}）</p>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>

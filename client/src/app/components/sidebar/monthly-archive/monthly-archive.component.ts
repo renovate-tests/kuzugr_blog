@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, style, animate, transition } from '@angular/animations';
+import { ArticleService } from '../../../shared/services/article.service';
 
 @Component({
   selector: 'app-monthly-archive',
@@ -9,24 +10,39 @@ import { trigger, style, animate, transition } from '@angular/animations';
     trigger('accordion', [
       transition(':enter', [
         style({ height: '0', opacity: 0, overflow: 'hidden' }),
-        animate('500ms', style({ height: '*', opacity: 1 })),
+        animate('200ms', style({ height: '*', opacity: 1 })),
       ]),
       transition(':leave', [
         style({ height: '*', opacity: '1', overflow: 'hidden' }),
-        animate('500ms', style({ height: '0' })),
+        animate('200ms', style({ height: '0' })),
       ]),
     ]),
   ],
 })
 export class MonthlyArchiveComponent implements OnInit {
   showDetail: boolean;
+  years: Array<string>;
+  archives: any;
 
-  constructor() { }
+  constructor(private articleService: ArticleService) { }
 
   ngOnInit() {
+    this.articleService.getArchives().subscribe(
+      response => {
+        this.archives = Object.entries(response);
+      },
+    );
   }
 
-  onAccordion() {
-    this.showDetail = !this.showDetail;
+  onAccordion(year) {
+    if ( this.showDetail === year ) {
+      this.showDetail = null;
+    } else {
+      this.showDetail = year;
+    }
+  }
+
+  getMonths(year) {
+    return Object.entries(year);
   }
 }
