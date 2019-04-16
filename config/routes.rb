@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :articles do
         collection do
           get :search
-          get :monthly_archive
+          get :archive
           post :update_publish_status
         end
       end

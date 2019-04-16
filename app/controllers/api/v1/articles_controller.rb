@@ -4,7 +4,7 @@ module Api
   module V1
     class ArticlesController < ApplicationController
       skip_before_action :authenticate_user_from_token!,
-        only: [:index, :show, :search, :monthly_archive]
+        only: [:index, :show, :search, :archive]
 
       def index
         limit = params[:limit] || 5
@@ -62,9 +62,10 @@ module Api
           include_thumbnail: true
       end
 
-      def monthly_archive
+      def archive
         archives = Article.where(published: true).monthly_archive
-        render status: 200, json: monthly_archive_response(archives)
+        archive_response_service = Articles::ArchiveResponseService.new(archives)
+        render status: 200, json: archive_response_service.call
       end
 
       def update_publish_status
@@ -113,15 +114,6 @@ module Api
 
       def search_parms_valid?
         params[:category_id].present? || params[:keyword].present?
-      end
-
-      def monthly_archive_response(archives)
-        years = []
-        archives.keys.each do |key|
-          years << key[0..3]
-        end
-        years.uniq!
-        { years: years, archives: archives }
       end
     end
   end
