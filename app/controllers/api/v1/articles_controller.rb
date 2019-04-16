@@ -42,6 +42,7 @@ module Api
         end
         article.user_id = current_user.id
         article.save!
+        render status: 201, json: { article_id: article.id }
       end
 
       def destroy
@@ -50,6 +51,8 @@ module Api
       end
 
       def search
+        render_invalid_request && return unless search_parms_valid?
+
         if params[:category_id]
           @articles = Article.with_thumbnail(published_option).by_category(params[:category_id])
         else
@@ -59,6 +62,7 @@ module Api
           include_thumbnail: true
       end
 
+      # TODO: 現状使っていない
       def create_months
         create_months = Article.select(:created_at).map{ |i| i.created_at.strftime('%Y年%m月') }.uniq
         render status: 200, json: create_months
@@ -106,6 +110,10 @@ module Api
 
       def published_option
         User.logged_in?(session) ? [true, false] : true
+      end
+
+      def search_parms_valid?
+        params[:category_id].present? || params[:keyword].present?
       end
     end
   end
