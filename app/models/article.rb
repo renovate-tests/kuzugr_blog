@@ -31,8 +31,8 @@ class Article < ApplicationRecord
     end
 
     def monthly_archive
-      self.group("DATE_FORMAT(created_at, '%Y%m')")
-          .order("DATE_FORMAT(created_at, '%Y%m') desc").count
+      self.group("DATE_FORMAT(created_at, '%Y/%m')")
+          .order("DATE_FORMAT(created_at, '%Y/%m') desc").count
     end
   end
 end

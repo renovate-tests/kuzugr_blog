@@ -334,9 +334,9 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       end
       it '月別アーカイブのhashが返る' do
         expect(response.code).to eq '200'
-        article_date = article.created_at.strftime('%Y%m')
-        expected_response = {}
-        expected_response[article_date] = 1
+        article_year = article.created_at.strftime('%Y')
+        article_month = article.created_at.strftime('%Y/%m')
+        expected_response = { 'years' => [article_year], 'archives' => { article_month => 1 } }
         expect(JSON.parse(response.body)).to eq expected_response
       end
     end
