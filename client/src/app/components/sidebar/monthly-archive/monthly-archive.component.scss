@@ -1,0 +1,27 @@
+@import "../../../../assets/styles/mixins";
+
+.monthly-archive {
+  margin-top: 15%;
+  width: 80%;
+  @include respond-to(smartphone) {
+    width: 100%;
+  }
+}
+
+h4 {
+  border-bottom: solid 1px;
+  margin-bottom: 3rem;
+}
+
+.dates {
+  margin-left: 5%;
+}
+
+.months {
+  margin-top: 2%;
+  margin-left: 12%;
+}
+
+.click-util:hover {
+  color: #0088c7;
+}

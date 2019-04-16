@@ -7,6 +7,7 @@ import { ImageUploadModule } from 'angular2-image-upload';
 import { AngularMarkdownEditorModule } from 'angular-markdown-editor';
 import { MarkdownModule } from 'ngx-markdown';
 import { AdsenseModule } from 'ng2-adsense';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HttpsInterceptor } from './shared/services/http.interceptor';
 
@@ -33,6 +34,7 @@ import { CommentComponent } from './components/comment/comment.component';
 
 import { ConfirmDialogService } from './shared/services/confirm-dialog.service';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { MonthlyArchiveComponent } from './components/sidebar/monthly-archive/monthly-archive.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     ContactComponent,
     CommentComponent,
     ConfirmDialogComponent,
+    MonthlyArchiveComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -70,6 +73,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     AdsenseModule.forRoot({
       adClient: 'ca-pub-4015300938527195',
     }),
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpsInterceptor, multi: true },
