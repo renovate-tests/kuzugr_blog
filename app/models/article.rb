@@ -8,6 +8,11 @@ class Article < ApplicationRecord
   belongs_to :category, optional: true
   has_many :comments, dependent: :destroy
 
+  validates :title, presence: true
+  validates :mark_content, presence: true
+  validates :html_content, presence: true
+  validates :user_id, presence: true
+
   scope :by_keyword, -> (keyword) do
     where('mark_content LIKE ? OR title LIKE ?', "%#{keyword}%", "%#{keyword}%")
   end

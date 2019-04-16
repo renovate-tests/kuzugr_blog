@@ -4,8 +4,10 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate_user_from_token!
 
-  rescue_from Exception, with: :server_error
+  rescue_from Exception, with: :render_server_error
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+  rescue_from ActiveRecord::NotNullViolation, with: :render_invalid_request
+  rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_request
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
@@ -47,20 +49,30 @@ class ApplicationController < ActionController::Base
   # Authentication Failure
   # Renders a 401 error
   def authenticate_error
-    render json: { error: t('devise.failure.unauthenticated') }, status: 401
+    render status: 401, json: {
+      error_code: 401,
+      message: t('devise.failure.unauthenticated'),
+    }
   end
 
   def render_not_found(exception = nil)
     render status: 404, json: {
       error_code: 404,
-      message: exception.message || 'サーバ内部にエラーが発生しました。',
+      message: 'not found.',
     }
   end
 
-  def server_error(exception = nil)
+  def render_server_error(exception = nil)
     render status: 500, json: {
       error_code: 500,
-      message: exception.message || 'サーバ内部にエラーが発生しました。',
+      message: 'internal server error.',
+    }
+  end
+
+  def render_invalid_request()
+    render status: 400, json: {
+      error_code: 400,
+      message: 'bad request.',
     }
   end
 end
