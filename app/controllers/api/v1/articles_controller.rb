@@ -4,7 +4,7 @@ module Api
   module V1
     class ArticlesController < ApplicationController
       skip_before_action :authenticate_user_from_token!,
-        only: [:index, :show, :search, :create_months]
+        only: [:index, :show, :search, :create_months, :monthly_archive]
 
       def index
         limit = params[:limit] || 5
@@ -62,10 +62,9 @@ module Api
           include_thumbnail: true
       end
 
-      # TODO: 現状使っていない
-      def create_months
-        create_months = Article.select(:created_at).map{ |i| i.created_at.strftime('%Y年%m月') }.uniq
-        render status: 200, json: create_months
+      def monthly_archive
+        archive = Article.where(published: true).monthly_archive
+        render status: 200, json: archive
       end
 
       def update_publish_status

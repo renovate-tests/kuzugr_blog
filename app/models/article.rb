@@ -29,5 +29,10 @@ class Article < ApplicationRecord
     def latest_ids(published_option, limit)
       self.where(published: published_option).order('created_at desc').limit(limit).ids
     end
+
+    def monthly_archive
+      self.group("DATE_FORMAT(created_at, '%Y%m')")
+          .order("DATE_FORMAT(created_at, '%Y%m') desc").count
+    end
   end
 end

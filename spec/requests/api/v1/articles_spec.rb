@@ -315,8 +315,32 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       end
     end
   end
-  # TODO: 使っていないAPIなので変更・削除する際にテストも編集する
-  # describe 'GET /api/v1/articles/create_months' do
+
+  describe 'GET /api/v1/articles/monthly_archive' do
+    context '記事がない場合' do
+      before do
+        Article.destroy_all
+        get '/api/v1/articles/monthly_archive'
+      end
+      it '空のhashが返る' do
+        expect(response.code).to eq '200'
+        expect(JSON.parse(response.body)).to be {}
+      end
+    end
+
+    context '記事がある場合' do
+      before do
+        get '/api/v1/articles/monthly_archive'
+      end
+      it '月別アーカイブのhashが返る' do
+        expect(response.code).to eq '200'
+        article_date = article.created_at.strftime('%Y%m')
+        expected_response = {}
+        expected_response[article_date] = 1
+        expect(JSON.parse(response.body)).to eq expected_response
+      end
+    end
+  end
 
   describe 'POST /api/v1/articles/update_publish_status' do
     let(:params) { { id: article.id } }
