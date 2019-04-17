@@ -267,6 +267,18 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       end
     end
 
+    context '日付での検索' do
+      let(:params) { { date: article.created_at.strftime('%Y/%m') } }
+      before do
+        get '/api/v1/articles/search', params: params
+      end
+      it '検索に成功する' do
+        expect(response.code).to eq '200'
+        search_response = JSON.parse(response.body)
+        expect(search_response[0]['id']).to eq article.id
+      end
+    end
+
     context 'カテゴリでの検索' do
       let(:params) { { category_id: category.id } }
       before do

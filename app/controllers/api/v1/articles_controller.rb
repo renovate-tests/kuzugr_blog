@@ -53,11 +53,7 @@ module Api
       def search
         render_invalid_request && return unless search_parms_valid?
 
-        if params[:category_id]
-          @articles = Article.with_thumbnail(published_option).by_category(params[:category_id])
-        else
-          @articles = Article.with_thumbnail(published_option).by_keyword(params[:keyword])
-        end
+        @articles = searched_articles
         render status: 200, json: @articles, each_serializer: ArticleSerializer,
           include_thumbnail: true
       end
@@ -113,7 +109,17 @@ module Api
       end
 
       def search_parms_valid?
-        params[:category_id].present? || params[:keyword].present?
+        params[:category_id].present? || params[:keyword].present? || params[:date].present?
+      end
+
+      def searched_articles
+        if params[:date]
+          Article.with_thumbnail(published_option).by_date(params[:date])
+        elsif params[:category_id]
+          Article.with_thumbnail(published_option).by_category(params[:category_id])
+        else
+          Article.with_thumbnail(published_option).by_keyword(params[:keyword])
+        end
       end
     end
   end
