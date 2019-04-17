@@ -13,20 +13,25 @@ module Articles
     def call
       initialize_response
       create_response
-      @response
+      response = []
+      @response.each { |res| response << res[1] }
+      response
     end
 
     def initialize_response
       @years.each do |year|
-        @response[year.to_sym] = { count: 0, monthly_archives: {} }
+        @response[year] = { year: year, count: 0, monthly_archives: [] }
       end
     end
 
     def create_response
       @archives.each do |archive|
-        key = archive[0][0..3].to_sym
-        @response[key][:count] = @response[key][:count] + archive[1]
-        @response[key][:monthly_archives][archive[0].to_sym] = archive[1]
+        # NOTE: @archives = { '2019/04' => 1, '2019/05' => 3 }
+        #       archive[0] = '2019/04'
+        #       archive[1] = 1
+        year = archive[0][0..3]
+        @response[year][:count] = @response[year][:count] + archive[1]
+        @response[year][:monthly_archives] << { month: archive[0], count: archive[1]}
       end
     end
   end

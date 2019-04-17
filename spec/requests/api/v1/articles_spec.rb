@@ -336,14 +336,18 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
         expect(response.code).to eq '200'
         article_year = article.created_at.strftime('%Y')
         article_month = article.created_at.strftime('%Y/%m')
-        expected_response = {
-          article_year => {
+        expected_response = [
+          {
+            'year' => article_year,
             'count' => 1,
-            'monthly_archives' => {
-              article_month => 1
-            }
+            'monthly_archives' => [
+              {
+                'month' => article_month,
+                'count' => 1,
+              }
+            ]
           }
-        }
+        ]
         expect(JSON.parse(response.body)).to eq expected_response
       end
     end
