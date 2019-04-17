@@ -29,7 +29,7 @@ export class MonthlyArchiveComponent implements OnInit {
   ngOnInit() {
     this.articleService.getArchives().subscribe(
       response => {
-        this.archives = Object.entries(response);
+        this.archives = response;
       },
     );
   }
@@ -40,9 +40,5 @@ export class MonthlyArchiveComponent implements OnInit {
     } else {
       this.showDetail = year;
     }
-  }
-
-  getMonths(year) {
-    return Object.entries(year);
   }
 }
