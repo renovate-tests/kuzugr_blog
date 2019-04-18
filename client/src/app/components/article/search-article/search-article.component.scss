@@ -29,11 +29,11 @@ img{
 .click-util {
   border: solid 2px #999999;
   width: 60rem;
-  @include respond-to(smartphone) {
-    width: 27rem;
-  }
   @include respond-to(tablet) {
     width: 40rem;
+  }
+  @include respond-to(smartphone) {
+    width: 27rem;
   }
 }
 
