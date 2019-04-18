@@ -12,14 +12,16 @@ module Api
         @articles = Article.with_comments_and_thumbnail(published_option, articl_ids)
         include_option = params[:limit] == '1' ? true : false
         render status: 200, json: @articles, each_serializer: ArticleSerializer,
-          include_comments: include_option, include_thumbnail: !include_option
+          include_comments: include_option,include_thumbnail: !include_option,
+          include_next: include_option
       end
 
       def show
         @article = Article.includes(:comments)
                           .where(published: published_option)
                           .order('comments.created_at asc').find(params[:id])
-        render status: 200, json: @article, serializer: ArticleSerializer, include_comments: true
+        render status: 200, json: @article,
+          serializer: ArticleSerializer, include_comments: true, include_next: true
       end
 
       def new
