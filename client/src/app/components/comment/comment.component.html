@@ -4,7 +4,7 @@
     <div>
       <div class='commented-div' *ngFor="let comment of comments">
         <span class='commented-name'>{{comment.name}}</span>
-        <span class='comented-date'>{{comment.created_at | date:"yyyy/MM/dd HH:mm"}}</span>
+        <span class='comented-date'>{{comment.created_at | date:"yyyy/MM/dd HH:mm" : '+0000'}}</span>
         <p class='commented-content'>
           {{comment.content}}
           <button *ngIf="loginState" (click)="deleteComment(comment.id)" class='click-util delete-btn'>削除</button>
