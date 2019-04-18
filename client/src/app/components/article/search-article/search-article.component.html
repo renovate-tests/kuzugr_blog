@@ -1,4 +1,4 @@
-<div class='search-article-body' *ngIf="articleLoaded">
+<div class='search-article-body' *ngIf="articleLoaded; else loading">
   <p *ngIf="searchTypeLoaded">{{searcyType}}：{{searchTypeValue}}</p>
   <div *ngIf="articles.length > 0; else empty">
   <ng-container *ngFor='let article of articles;'>
@@ -22,3 +22,6 @@
     検索条件に当てはまる記事はありません。
   </ng-template>
 </div>
+<ng-template #loading>
+  <div class='loading'></div>
+</ng-template>

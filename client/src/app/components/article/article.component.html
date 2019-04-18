@@ -1,4 +1,4 @@
-<div *ngIf="articleLoaded">
+<div *ngIf="articleLoaded; else loading">
   <div class='article-body'>
     <h2 class='title'>{{article.title}}</h2>
     <div>
@@ -29,3 +29,6 @@
                [comments]="article.comments">
   </app-comment>
 </div>
+<ng-template #loading>
+  <div class='loading'></div>
+</ng-template>
