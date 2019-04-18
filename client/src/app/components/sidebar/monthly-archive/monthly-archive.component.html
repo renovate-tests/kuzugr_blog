@@ -3,10 +3,10 @@
   <div class='dates'>
     <div class="year" *ngFor="let archive of archives">
       <p class='click-util' (click)="onAccordion(archive['year'])">
-        <i [ngClass]="showDetail ? 'fa fa-minus-circle' : 'fa fa-plus-circle'"></i>
+        <i [ngClass]="showDetail === archive['year'] ? 'fa fa-minus-circle' : 'fa fa-plus-circle'"></i>
         &nbsp;{{ archive['year'] }}（{{ archive['count'] }}）
       </p>
-      <ng-container *ngIf="showDetail == archive['year']">
+      <ng-container *ngIf="showDetail === archive['year']">
         <div class='months' [@accordion] *ngFor="let month of archive['monthly_archives']">
           <p class='click-util' [routerLink]="['/search']" [queryParams]="{ date: month['month'] }" fragment="top">
             {{month['month']}}（{{month['count']}}）
