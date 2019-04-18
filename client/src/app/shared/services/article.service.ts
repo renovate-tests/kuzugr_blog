@@ -37,6 +37,10 @@ export class ArticleService {
     return this.http.post<Article>(`${this.apiEndpoint}/articles/update_publish_status`, { id: articleId }  );
   }
 
+  getArchives(): Observable<any> {
+    return this.http.get<any>(`${this.apiEndpoint}/articles/archive`);
+  }
+
   async loadLatestArticles() {
     const articles = await this.getLatesAticles();
     return articles.map(item => Object.assign(new Article, item));

@@ -24,10 +24,19 @@ class Article < ApplicationRecord
   scope :with_thumbnail, -> (published_option) do
     includes(:thumbnail).where(published: published_option).order('articles.created_at desc')
   end
+  scope :by_date, -> (date) do
+    formated_date = Date.strptime(date, '%Y/%m')
+    where("DATE_FORMAT(created_at, '%Y%m') = DATE_FORMAT('#{formated_date }', '%Y%m')")
+  end
 
   class << self
     def latest_ids(published_option, limit)
       self.where(published: published_option).order('created_at desc').limit(limit).ids
+    end
+
+    def monthly_archive
+      self.group("DATE_FORMAT(created_at, '%Y/%m')")
+          .order("DATE_FORMAT(created_at, '%Y/%m') desc").count
     end
   end
 end

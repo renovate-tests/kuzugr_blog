@@ -267,6 +267,18 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       end
     end
 
+    context '日付での検索' do
+      let(:params) { { date: article.created_at.strftime('%Y/%m') } }
+      before do
+        get '/api/v1/articles/search', params: params
+      end
+      it '検索に成功する' do
+        expect(response.code).to eq '200'
+        search_response = JSON.parse(response.body)
+        expect(search_response[0]['id']).to eq article.id
+      end
+    end
+
     context 'カテゴリでの検索' do
       let(:params) { { category_id: category.id } }
       before do
@@ -315,8 +327,43 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       end
     end
   end
-  # TODO: 使っていないAPIなので変更・削除する際にテストも編集する
-  # describe 'GET /api/v1/articles/create_months' do
+
+  describe 'GET /api/v1/articles/archive' do
+    context '記事がない場合' do
+      before do
+        Article.destroy_all
+        get '/api/v1/articles/archive'
+      end
+      it '空のhashが返る' do
+        expect(response.code).to eq '200'
+        expect(JSON.parse(response.body)).to be {}
+      end
+    end
+
+    context '記事がある場合' do
+      before do
+        get '/api/v1/articles/archive'
+      end
+      it '月別アーカイブのhashが返る' do
+        expect(response.code).to eq '200'
+        article_year = article.created_at.strftime('%Y')
+        article_month = article.created_at.strftime('%Y/%m')
+        expected_response = [
+          {
+            'year' => article_year,
+            'count' => 1,
+            'monthly_archives' => [
+              {
+                'month' => article_month,
+                'count' => 1,
+              }
+            ]
+          }
+        ]
+        expect(JSON.parse(response.body)).to eq expected_response
+      end
+    end
+  end
 
   describe 'POST /api/v1/articles/update_publish_status' do
     let(:params) { { id: article.id } }

@@ -32,6 +32,9 @@ img{
   @include respond-to(smartphone) {
     width: 27rem;
   }
+  @include respond-to(tablet) {
+    width: 40rem;
+  }
 }
 
 .click-util:hover {

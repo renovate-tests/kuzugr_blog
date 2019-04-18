@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class='article-element'>
-        <span>投稿日時: {{article.created_at | date:"yyyy/MM/dd HH:mm"}}</span>
+        <span>投稿日時: {{article.created_at | date:"yyyy/MM/dd HH:mm" : '+0000'}}</span>
       </div>
       <div class='article-element category' *ngIf="article.category">
         <span>{{article.category}}</span>
