@@ -43,18 +43,21 @@ export class SearchArticleComponent implements OnInit {
     this.articleService.searchArticle(this.params).subscribe(
       response => {
         this.articles = response;
-        if ( this.params['category'] ) {
+        if ( this.params['category_id'] ) {
           this.searcyType = 'カテゴリ';
           this.categoryService.loadCategories().then((categories) => {
             if (!!categories) {
               this.setCategoryName(categories);
             }
           });
-        } else {
+        } else if ( this.params['keyword'] ) {
           if ( this.params['keyword'] ) {
             this.searcyType = 'キーワード';
             this.searchTypeValue = this.params['keyword'];
           }
+        } else {
+          this.searcyType = '月別アーカイブ';
+          this.searchTypeValue = this.params['date'];
         }
         this.articleLoaded = true;
       },
@@ -66,7 +69,7 @@ export class SearchArticleComponent implements OnInit {
   setCategoryName(categories: Array<Category>) {
     if (!!categories) {
       categories.forEach(category => {
-        if ( category.id === Number(this.params['category']) ) {
+        if ( category.id === Number(this.params['category_id']) ) {
           this.searchTypeValue = category.name;
           this.searchTypeLoaded = true;
           return;
