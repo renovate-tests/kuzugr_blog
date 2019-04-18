@@ -50,7 +50,7 @@ export class SearchArticleComponent implements OnInit {
               this.setCategoryName(categories);
             }
           });
-        } else if this.params['keyword'] {
+        } else if ( this.params['keyword'] ) {
           if ( this.params['keyword'] ) {
             this.searcyType = 'キーワード';
             this.searchTypeValue = this.params['keyword'];
