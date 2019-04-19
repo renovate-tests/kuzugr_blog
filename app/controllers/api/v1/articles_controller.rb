@@ -88,10 +88,9 @@ module Api
         return unless params[:article][:upload_file_uuids]
         remove_files = []
         params[:article][:upload_file_uuids].each do |uuid|
-          unless params[:article][:mark_content].include?(uuid)
-            remove_files.push(uuid)
-            UploadFile.remove_upload_file(uuid)
-          end
+          next if params[:article][:mark_content].include?(uuid)
+          remove_files.push(uuid)
+          UploadFile.remove_upload_file(uuid)
         end
         UploadFile.where(uuid: remove_files).destroy_all if remove_files
         params[:article][:upload_file_uuids] - remove_files
