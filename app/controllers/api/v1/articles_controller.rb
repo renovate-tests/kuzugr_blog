@@ -49,7 +49,12 @@ module Api
 
       def destroy
         article = Article.find(params[:id])
-        article.destroy if article.user_id === current_user.id
+        render_invalid_request && return unless article.user_id == current_user.id
+
+        article.upload_files.each do |upload_file|
+          UploadFile.remove_upload_file(upload_file.uuid)
+        end
+        article.destroy
       end
 
       def search
