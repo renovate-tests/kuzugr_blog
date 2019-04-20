@@ -39,9 +39,7 @@ module Api
 
       def create
         article = Article.new(article_params)
-        if params[:article][:upload_file_uuids].present?
-          article = set_upload_files_and_thumbnail(article)
-        end
+        set_upload_files_and_thumbnail(article) if params[:article][:upload_file_uuids].present?
         article.user_id = current_user.id
         article.save!
         render status: 201, json: { article_id: article.id }
@@ -88,10 +86,9 @@ module Api
         return unless params[:article][:upload_file_uuids]
         remove_files = []
         params[:article][:upload_file_uuids].each do |uuid|
-          unless params[:article][:mark_content].include?(uuid)
-            remove_files.push(uuid)
-            UploadFile.remove_upload_file(uuid)
-          end
+          next if params[:article][:mark_content].include?(uuid)
+          remove_files.push(uuid)
+          UploadFile.remove_upload_file(uuid)
         end
         UploadFile.where(uuid: remove_files).destroy_all if remove_files
         params[:article][:upload_file_uuids] - remove_files
@@ -100,9 +97,11 @@ module Api
       def set_upload_files_and_thumbnail(article)
         upload_files_params = upload_files
         article_upload_files = UploadFile.where(uuid: upload_files_params).order(:id)
-        article.upload_files << article_upload_files
-        article.thumbnail = Thumbnail.new(file_name: article_upload_files[0].file_name,
-          uuid: article_upload_files[0].uuid) unless article.thumbnail
+        if article_upload_files.present?
+          article.upload_files << article_upload_files
+          article.thumbnail = Thumbnail.new(file_name: article_upload_files[0].file_name,
+            uuid: article_upload_files[0].uuid) unless article.thumbnail
+        end
         article
       end
 
