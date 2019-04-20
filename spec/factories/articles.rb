@@ -6,4 +6,3 @@ FactoryBot.define do
     published { 1 }
   end
 end
-
