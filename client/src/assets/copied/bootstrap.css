@@ -1498,6 +1498,7 @@ abbr[data-original-title] {
   text-transform: uppercase;
 }
 blockquote {
+  color: #777;
   padding: 10px 20px;
   margin: 0 0 20px;
   font-size: 17.5px;
