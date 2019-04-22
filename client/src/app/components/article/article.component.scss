@@ -71,7 +71,11 @@
 }
 
 .change-article {
-  margin-left: 5%;
+  width: 45%;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: #337ab7;
 }
 
@@ -81,5 +85,10 @@
 }
 
 .next-article {
+  text-align: right;
   float: right;
+}
+
+.previous-artcile {
+  margin-left: 5%;
 }
