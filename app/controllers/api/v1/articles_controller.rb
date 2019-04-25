@@ -74,7 +74,8 @@ module Api
         after_status = article.published ? false : true
         article.published = after_status
         article.save!
-        render status: 200, json: article, serializer: ArticleSerializer, include_comments: true
+        render status: 200, json: article,
+          serializer: ArticleSerializer, include_comments: true, include_next: true
       end
 
       private

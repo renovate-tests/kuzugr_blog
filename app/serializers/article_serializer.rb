@@ -52,10 +52,12 @@ class ArticleSerializer < ActiveModel::Serializer
 
   private
   def previous_article
-    Article.where('created_at < ?', object.created_at).order('created_at desc').first
+    Article.where(published: true).where('created_at < ?', object.created_at)
+           .order('created_at desc').first
   end
 
   def next_article
-    Article.where('created_at > ?', object.created_at).order(:created_at).first
+    Article.where(published: true).where('created_at > ?', object.created_at)
+           .order(:created_at).first
   end
 end
