@@ -56,6 +56,7 @@ class ApplicationController < ActionController::Base
   end
 
   def render_not_found(exception = nil)
+    notify_error(exception)
     render status: 404, json: {
       error_code: 404,
       message: 'not found.',
@@ -63,16 +64,24 @@ class ApplicationController < ActionController::Base
   end
 
   def render_server_error(exception = nil)
+    notify_error(exception)
     render status: 500, json: {
       error_code: 500,
       message: 'internal server error.',
     }
   end
 
-  def render_invalid_request()
+  def render_invalid_request(exception = nil)
+    notify_error(exception)
     render status: 400, json: {
       error_code: 400,
       message: 'bad request.',
     }
+  end
+
+  def notify_error(e)
+    return unless e
+    logger.error e.message
+    logger.error e.backtrace.join("\n")
   end
 end
