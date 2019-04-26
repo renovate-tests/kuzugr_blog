@@ -12,8 +12,7 @@ export class SearchCategoryComponent implements OnInit {
   categoryLoaded: boolean;
   categories: Array<Category>;
 
-  constructor(private categoryService: CategoryService,
-              private router: Router) { }
+  constructor(private categoryService: CategoryService, private router: Router) {}
 
   ngOnInit() {
     this.categoryLoaded = false;

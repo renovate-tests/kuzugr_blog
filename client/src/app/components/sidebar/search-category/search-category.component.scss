@@ -1,8 +1,9 @@
-@import "../../../../assets/styles/mixins";
+@import '../../../../assets/styles/mixins';
 
 .category {
   margin-top: 15%;
   width: 80%;
+
   @include respond-to(smartphone) {
     width: 100%;
   }

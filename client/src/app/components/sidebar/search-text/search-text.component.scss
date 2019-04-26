@@ -1,8 +1,9 @@
-@import "../../../../assets/styles/mixins";
+@import '../../../../assets/styles/mixins';
 
 .search-text-div {
   margin-top: 10%;
   width: 80%;
+
   @include respond-to(smartphone) {
     width: 100%;
   }
@@ -27,5 +28,6 @@ h4 {
   @include respond-to(smartphone) {
     margin-left: 3%;
   }
+
   border: 1px solid #ccc;
 }

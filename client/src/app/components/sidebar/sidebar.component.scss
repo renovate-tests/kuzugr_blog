@@ -1,11 +1,13 @@
-@import "../../../assets/styles/mixins";
+@import '../../../assets/styles/mixins';
 
 .sidebar {
   width: 100%;
+
   @include respond-to(smartphone) {
     margin-left: 5%;
     width: 85%;
   }
+
   overflow: hidden;
   margin-top: 5%;
 }

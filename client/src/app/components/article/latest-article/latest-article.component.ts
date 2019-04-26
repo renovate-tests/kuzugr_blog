@@ -16,7 +16,7 @@ export class LatestArticleComponent implements OnInit {
   index: number;
   startFlag: boolean;
 
-  constructor(private articleService: ArticleService) { }
+  constructor(private articleService: ArticleService) {}
 
   ngOnInit() {
     this.startFlag = false;
@@ -47,14 +47,12 @@ export class LatestArticleComponent implements OnInit {
     } else {
       this.startFlag = true;
     }
-    Observable.interval(3000).subscribe(
-      () => {
-        this.index = this.index + 1;
-        if (!this.latestArticles[this.index]) {
-          this.index = 0;
-        }
-        this.setArticle();
-      },
-    );
+    Observable.interval(3000).subscribe(() => {
+      this.index = this.index + 1;
+      if (!this.latestArticles[this.index]) {
+        this.index = 0;
+      }
+      this.setArticle();
+    });
   }
 }

@@ -16,7 +16,7 @@ function validateFormGroup(formErrors = {}, form: FormGroup, checkDirty = false,
     const isStringControl = typeof controlValue === 'string' || controlValue instanceof String;
     if (isRequired && isStringControl && controlValue.trim() === '') {
       controlIsInvalid = true;
-      control.setErrors(Object.assign({required: true}, control.errors));
+      control.setErrors(Object.assign({ required: true }, control.errors));
     }
     if (checkDirty) {
       controlIsInvalid = controlIsInvalid && control.dirty;

@@ -10,15 +10,15 @@ import { Router } from '@angular/router';
 })
 export class SearchTextComponent implements OnInit {
   form: FormGroup;
-  formErrors: {[key: string]: Array<string>} = {};
+  formErrors: { [key: string]: Array<string> } = {};
   validationMessages = {
-    'keyword': {
-      'required': 'キーワードを入力してください。',
-      'maxlength': 'キーワードは50文字以内で入力してください。',
+    keyword: {
+      required: 'キーワードを入力してください。',
+      maxlength: 'キーワードは50文字以内で入力してください。',
     },
   };
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -34,5 +34,4 @@ export class SearchTextComponent implements OnInit {
       this.formErrors = ValidateForm(this.form, false, this.validationMessages);
     }
   }
-
 }

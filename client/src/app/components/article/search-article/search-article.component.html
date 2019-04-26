@@ -1,22 +1,22 @@
 <div class='search-article-body' *ngIf="articleLoaded; else loading">
   <p *ngIf="searchTypeLoaded">{{searcyType}}：{{searchTypeValue}}</p>
   <div *ngIf="articles.length > 0; else empty">
-  <ng-container *ngFor='let article of articles;'>
-    <table>
-      <div class='click-util' [routerLink]="['/article', article.id]" fragment="top">
-        <tr>
-          <td class='image-td'>
-            <img src={{article.thumbnail_url}}>
-          </td>
-          <td>
-            <p>{{article.category}}</p>
-            <p>{{article.title}}</p>
-            <p class='date'>{{article.created_at | date:'yyyy/MM/dd HH:mm' : '+0000'}}</p>
-          </td>
-        </tr>
-      </div>
-    </table>
-  </ng-container>
+    <ng-container *ngFor='let article of articles;'>
+      <table>
+        <div class='click-util' [routerLink]="['/article', article.id]" fragment="top">
+          <tr>
+            <td class='image-td'>
+              <img src={{article.thumbnail_url}}>
+            </td>
+            <td>
+              <p>{{article.category}}</p>
+              <p>{{article.title}}</p>
+              <p class='date'>{{article.created_at | date:'yyyy/MM/dd HH:mm' : '+0000'}}</p>
+            </td>
+          </tr>
+        </div>
+      </table>
+    </ng-container>
   </div>
   <ng-template #empty>
     検索条件に当てはまる記事はありません。

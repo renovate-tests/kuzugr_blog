@@ -1,4 +1,4 @@
-@import "../../../assets/styles/mixins";
+@import '../../../assets/styles/mixins';
 
 .article-body {
   width: 85%;
@@ -8,6 +8,7 @@
 .title {
   text-align: left;
   margin-bottom: 3%;
+
   @include respond-to(smartphone) {
     margin-bottom: 7%;
   }
@@ -31,10 +32,10 @@
 
 /deep/ .content {
   img {
-      max-width: 95%;
-      height: auto;
-      overflow: hidden;
-      margin-bottom: 30px;
+    max-width: 95%;
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 30px;
   }
 }
 

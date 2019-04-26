@@ -15,16 +15,14 @@ export class ConfirmDialogComponent implements OnInit {
   };
   acceptButtonClass = 'is-danger';
 
-  constructor(private confirmDialogService: ConfirmDialogService) { }
+  constructor(private confirmDialogService: ConfirmDialogService) {}
 
   ngOnInit() {
-    this.confirmDialogService.eventShow.subscribe(
-      obj => {
-        Object.assign(this.data, obj || {});
-        this.setAcceptButtonClass(obj);
-        this.confirmDialogService.isShow = true;
-      }
-    );
+    this.confirmDialogService.eventShow.subscribe((obj) => {
+      Object.assign(this.data, obj || {});
+      this.setAcceptButtonClass(obj);
+      this.confirmDialogService.isShow = true;
+    });
   }
 
   submitModal(value: boolean) {

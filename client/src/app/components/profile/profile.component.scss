@@ -1,4 +1,4 @@
-@import "../../../assets/styles/mixins";
+@import '../../../assets/styles/mixins';
 
 h2 {
   border-bottom: 1px solid black;
@@ -6,9 +6,11 @@ h2 {
 
 .profile-body {
   width: 70%;
+
   @include respond-to(smartphone) {
     width: 85%;
   }
+
   text-align: left;
   margin-left: 5%;
   margin-top: 10%;
@@ -18,7 +20,7 @@ ul {
   margin-left: 5%;
   list-style: none;
   padding-left: 0;
-  word-wrap:break-word;
+  word-wrap: break-word;
 }
 
 .profile-ul {

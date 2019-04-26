@@ -14,21 +14,20 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   user: User;
   gotError: boolean;
-  formErrors: {[key: string]: Array<string>} = {};
+  formErrors: { [key: string]: Array<string> } = {};
   validationMessages = {
-    'email': {
-      'required': 'メールアドレスを入力してください。',
-      'maxlength': 'メールアドレスは100文字以内で入力してください。',
-      'email': '無効なメールアドレスの形式です。',
+    email: {
+      required: 'メールアドレスを入力してください。',
+      maxlength: 'メールアドレスは100文字以内で入力してください。',
+      email: '無効なメールアドレスの形式です。',
     },
-    'password': {
-      'required': 'パスワードを入力してください。',
-      'maxlength': 'パスワードは50文字以内で入力してください。',
+    password: {
+      required: 'パスワードを入力してください。',
+      maxlength: 'パスワードは50文字以内で入力してください。',
     },
   };
 
-  constructor(private sessionService: SessionService,
-              private router: Router) { }
+  constructor(private sessionService: SessionService, private router: Router) {}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -44,10 +43,10 @@ export class LoginComponent implements OnInit {
       this.user = this.form.value;
 
       this.sessionService.login(this.user).subscribe(
-        response => {
+        (response) => {
           location.href = '/';
         },
-        error => {
+        (error) => {
           this.gotError = true;
         },
       );
