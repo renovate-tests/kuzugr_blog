@@ -16,7 +16,7 @@ export class CommentComponent implements OnInit {
   @Input() articleId: number;
 
   form: FormGroup;
-  formErrors: {[key: string]: Array<string>} = {};
+  formErrors: { [key: string]: Array<string> } = {};
   gotError: boolean;
   sendSuccess: boolean;
   isDisabled: boolean;
@@ -24,20 +24,22 @@ export class CommentComponent implements OnInit {
   loginState: boolean;
   readyCommentForm: boolean;
   validationMessages = {
-    'name': {
-      'required': '名前を入力してください。',
-      'maxlength': '名前は50文字以内で入力してください。',
-      'pattern': '名前に使用できない文字が含まれています。',
+    name: {
+      required: '名前を入力してください。',
+      maxlength: '名前は50文字以内で入力してください。',
+      pattern: '名前に使用できない文字が含まれています。',
     },
-    'content': {
-      'required': 'コメント内容を入力してください。',
-      'maxlength': 'コメント内容は500文字以内で入力してください。',
+    content: {
+      required: 'コメント内容を入力してください。',
+      maxlength: 'コメント内容は500文字以内で入力してください。',
     },
   };
 
-  constructor(private commentService: CommentService,
-              private authService: AuthService,
-              private confirmDialogService: ConfirmDialogService) { }
+  constructor(
+    private commentService: CommentService,
+    private authService: AuthService,
+    private confirmDialogService: ConfirmDialogService,
+  ) {}
 
   ngOnInit() {
     this.isDisabled = false;
@@ -48,7 +50,7 @@ export class CommentComponent implements OnInit {
 
   initializeForm() {
     this.authService.loginState().then(
-      response => {
+      (response) => {
         this.loginState = response['login_state'];
         if (this.loginState) {
           this.ownerForm();
@@ -56,7 +58,7 @@ export class CommentComponent implements OnInit {
           this.commonForm();
         }
       },
-      error => {
+      (error) => {
         this.commonForm();
       },
     );
@@ -64,7 +66,7 @@ export class CommentComponent implements OnInit {
 
   commonForm() {
     this.form = new FormGroup({
-      name: new FormControl('', [Validators.required, Validators.maxLength(50),  Validators.pattern(/^(?!.*kuzugr).*$/)]),
+      name: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.pattern(/^(?!.*kuzugr).*$/)]),
       content: new FormControl('', [Validators.required, Validators.maxLength(500)]),
     });
     this.readyCommentForm = true;
@@ -93,54 +95,51 @@ export class CommentComponent implements OnInit {
 
   createComment() {
     this.commentService.createComment(this.comment).subscribe(
-      response => {
+      (response) => {
         this.sendSuccess = true;
         this.commentService.getComments(this.articleId).subscribe(
-          getReesponse => {
+          (getReesponse) => {
             this.comments = getReesponse;
           },
-          error => {
-          },
+          (error) => {},
         );
       },
-      error => {
+      (error) => {
         this.gotError = true;
       },
     );
   }
 
   getLoginState() {
-    this.authService.loginState().then(
-      response => {
-        this.loginState = response['login_state'];
-      },
-    );
+    this.authService.loginState().then((response) => {
+      this.loginState = response['login_state'];
+    });
   }
 
   deleteComment(commentId: number) {
-    this.confirmDialogService.showConfirm({
-      title: 'コメント削除',
-      content: 'コメントを削除してよろしいですか？',
-      acceptButton: '削除する',
-      cancelButton: 'キャンセル',
-      isDanger: true,
-    }).subscribe(confirm => {
-      if (confirm) {
-        this.commentService.deleteComment(commentId).subscribe(
-          response => {
-            this.commentService.getComments(this.articleId).subscribe(
-              getReesponse => {
-                this.comments = getReesponse;
-              },
-              error => {
-              },
-            );
-          },
-          error => {
-          },
-        );
-      }
-    });
+    this.confirmDialogService
+      .showConfirm({
+        title: 'コメント削除',
+        content: 'コメントを削除してよろしいですか？',
+        acceptButton: '削除する',
+        cancelButton: 'キャンセル',
+        isDanger: true,
+      })
+      .subscribe((confirm) => {
+        if (confirm) {
+          this.commentService.deleteComment(commentId).subscribe(
+            (response) => {
+              this.commentService.getComments(this.articleId).subscribe(
+                (getReesponse) => {
+                  this.comments = getReesponse;
+                },
+                (error) => {},
+              );
+            },
+            (error) => {},
+          );
+        }
+      });
   }
-// tslint:disable-next-line:max-file-line-count
+  // tslint:disable-next-line:max-file-line-count
 }

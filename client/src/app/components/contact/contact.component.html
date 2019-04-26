@@ -29,7 +29,8 @@
         </div>
       </div>
       <div class='contact-part'>
-        <input type='submit' value='送信' class='contact-button fa click-util' [class.disabled]="isDisabled" [disabled]="isDisabled">
+        <input type='submit' value='送信' class='contact-button fa click-util' [class.disabled]="isDisabled"
+          [disabled]="isDisabled">
       </div>
       <p *ngIf="gotError" class='form-errors'>エラーが発生しました。再読み込みし、再度入力をお願い致します。</p>
     </form>

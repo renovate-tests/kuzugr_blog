@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BlogInformation } from '../../shared/models/blog-information';
-import { BlogInformationService} from '../../shared/services/blog-information.service';
+import { BlogInformationService } from '../../shared/services/blog-information.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
   blogInformation: BlogInformation;
   blogInformationLoaded: boolean;
 
-  constructor(private blogInformationService: BlogInformationService) { }
+  constructor(private blogInformationService: BlogInformationService) {}
 
   ngOnInit() {
     this.blogInformationLoaded = false;
@@ -20,14 +20,11 @@ export class ProfileComponent implements OnInit {
 
   getBlogInformation() {
     this.blogInformationService.getBlogInformation().subscribe(
-      response => {
+      (response) => {
         this.blogInformation = response;
         this.blogInformationLoaded = true;
       },
-      errot => {
-
-      },
+      (errot) => {},
     );
   }
-
 }

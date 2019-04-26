@@ -10,14 +10,14 @@ import { environment } from '../../../environments/environment';
 export class CommentService {
   apiEndpoint = environment.apiEndpoint;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getComments(articleId: number): Observable<Array<Comment>> {
     return this.http.get<Array<Comment>>(`${this.apiEndpoint}/comments?article_id=${articleId}`);
   }
 
   createComment(comment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(`${this.apiEndpoint}/comments`, { comment: comment } );
+    return this.http.post<Comment>(`${this.apiEndpoint}/comments`, { comment: comment });
   }
 
   deleteComment(commentId: number): Observable<Comment> {

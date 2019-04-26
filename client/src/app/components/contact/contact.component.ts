@@ -12,27 +12,27 @@ import { ContactService } from '../../shared/services/contact.service';
 export class ContactComponent implements OnInit {
   form: FormGroup;
   contact: Contact;
-  formErrors: {[key: string]: Array<string>} = {};
+  formErrors: { [key: string]: Array<string> } = {};
   validationMessages = {
-    'name': {
-      'required': '名前を入力してください。',
-      'maxlength': '名前は50文字以内で入力してください。',
+    name: {
+      required: '名前を入力してください。',
+      maxlength: '名前は50文字以内で入力してください。',
     },
-    'content': {
-      'required': 'お問い合わせ内容を入力してください。',
-      'maxlength': 'お問い合わせ内容は5000文字以内で入力してください。',
+    content: {
+      required: 'お問い合わせ内容を入力してください。',
+      maxlength: 'お問い合わせ内容は5000文字以内で入力してください。',
     },
-    'email': {
-      'required': 'メールアドレスを入力してください。',
-      'maxlength': 'メールアドレスは256文字以内で入力してください。',
-      'email': '無効なメールアドレスの形式です。',
+    email: {
+      required: 'メールアドレスを入力してください。',
+      maxlength: 'メールアドレスは256文字以内で入力してください。',
+      email: '無効なメールアドレスの形式です。',
     },
   };
   isDisabled: boolean;
   gotError: boolean;
   sendSuccess: boolean;
 
-  constructor(private contactService: ContactService) { }
+  constructor(private contactService: ContactService) {}
 
   ngOnInit() {
     this.sendSuccess = false;
@@ -59,15 +59,14 @@ export class ContactComponent implements OnInit {
 
   sendEmail() {
     this.contactService.sendEmail(this.contact).subscribe(
-      response => {
-        if ( response['result'] === true ) {
+      (response) => {
+        if (response['result'] === true) {
           this.sendSuccess = true;
         }
       },
-      error => {
+      (error) => {
         this.gotError = true;
       },
     );
   }
-
 }

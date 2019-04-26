@@ -10,11 +10,11 @@ export class CategoryService {
   apiEndpoint = environment.apiEndpoint;
   categories: any = null;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   async loadCategories() {
     const categories = await this.getCategories();
-    return categories.map(item => Object.assign(new Category, item));
+    return categories.map((item) => Object.assign(new Category(), item));
   }
 
   async getCategories(): Promise<Array<Category>> {

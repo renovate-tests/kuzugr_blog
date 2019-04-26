@@ -11,10 +11,7 @@ import { CategoryService } from '../../../shared/services/category.service';
   styleUrls: ['./search-article.component.scss'],
 })
 export class SearchArticleComponent implements OnInit {
-
-  constructor(private route: ActivatedRoute,
-              private articleService: ArticleService,
-              private categoryService: CategoryService) { }
+  constructor(private route: ActivatedRoute, private articleService: ArticleService, private categoryService: CategoryService) {}
 
   params: any;
   articles: Array<Article>;
@@ -27,31 +24,28 @@ export class SearchArticleComponent implements OnInit {
     this.articleLoaded = false;
     this.searchTypeLoaded = false;
     this.getParams();
-
   }
 
   getParams() {
-    this.route.queryParams.subscribe(
-      params => {
-        this.params = params;
-        this.searchArticle();
-      }
-    );
+    this.route.queryParams.subscribe((params) => {
+      this.params = params;
+      this.searchArticle();
+    });
   }
 
   searchArticle() {
     this.articleService.searchArticle(this.params).subscribe(
-      response => {
+      (response) => {
         this.articles = response;
-        if ( this.params['category_id'] ) {
+        if (this.params['category_id']) {
           this.searcyType = 'カテゴリ';
           this.categoryService.loadCategories().then((categories) => {
             if (!!categories) {
               this.setCategoryName(categories);
             }
           });
-        } else if ( this.params['keyword'] ) {
-          if ( this.params['keyword'] ) {
+        } else if (this.params['keyword']) {
+          if (this.params['keyword']) {
             this.searcyType = 'キーワード';
             this.searchTypeValue = this.params['keyword'];
           }
@@ -61,15 +55,14 @@ export class SearchArticleComponent implements OnInit {
         }
         this.articleLoaded = true;
       },
-      error => {
-      },
+      (error) => {},
     );
   }
 
   setCategoryName(categories: Array<Category>) {
     if (!!categories) {
-      categories.forEach(category => {
-        if ( category.id === Number(this.params['category_id']) ) {
+      categories.forEach((category) => {
+        if (category.id === Number(this.params['category_id'])) {
           this.searchTypeValue = category.name;
           this.searchTypeLoaded = true;
           return;

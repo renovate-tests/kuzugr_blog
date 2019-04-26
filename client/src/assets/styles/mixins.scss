@@ -1,17 +1,14 @@
-$breakpoints: (
-  smartphone: '(max-width: 700px)',
-  tablet: '(max-width: 1150px)',
+$breakpoints: (smartphone: '(max-width: 700px)',
+tablet: '(max-width: 1150px)',
 );
 
 @mixin respond-to($breakpoint) {
   $raw-query: map-get($breakpoints, $breakpoint);
 
   @if $raw-query {
-    $query: if(
-        type-of($raw-query) == 'string',
-        unquote($raw-query),
-        inspect($raw-query)
-    );
+    $query: if(type-of($raw-query)=='string',
+      unquote($raw-query),
+      inspect($raw-query));
 
     @media screen and #{$query} {
       @content;

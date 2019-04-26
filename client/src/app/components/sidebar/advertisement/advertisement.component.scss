@@ -1,7 +1,8 @@
-@import "../../../../assets/styles/mixins";
+@import '../../../../assets/styles/mixins';
 
 .advertisement-body {
   margin-top: 15%;
+
   @include respond-to(smartphone) {
     width: 100%;
     margin-left: 7%;

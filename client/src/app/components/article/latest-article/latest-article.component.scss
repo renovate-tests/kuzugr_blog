@@ -11,9 +11,9 @@
 
 .article-detail-block {
   position: absolute;
-  -ms-transform: translate(-50%,-50%);
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   top: 40%;
   left: 50%;
   width: 100%;
@@ -32,8 +32,8 @@
   background: transparent;
   border: solid 1px cornflowerblue;
   border-radius: 4px;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
-  text-shadow: 0 1px 0 rgba(0,0,0,0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 
 .article-page-button:hover {

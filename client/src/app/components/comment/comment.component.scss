@@ -1,4 +1,4 @@
-@import "../.././../assets/styles/mixins";
+@import '../.././../assets/styles/mixins';
 
 h3 {
   border-bottom: solid 1px;
@@ -14,7 +14,7 @@ h3 {
   margin-left: 2%;
 }
 
-.comment-part-first{
+.comment-part-first {
   margin-top: 8%;
 }
 
@@ -29,6 +29,7 @@ h3 {
 .comment-name {
   border: 1px solid #ccc;
   width: 25%;
+
   @include respond-to(smartphone) {
     width: 60%;
   }
@@ -50,13 +51,13 @@ h3 {
 }
 
 .disabled {
-  color:#ccc;
-  border-color:#eee;
-  background-color:#eee;
+  color: #ccc;
+  border-color: #eee;
+  background-color: #eee;
   cursor: not-allowed;
 }
 
-.commented-content{
+.commented-content {
   margin-top: 0.5%;
   border: 1px solid #ccc;
   padding: 10px;
@@ -96,6 +97,7 @@ h3 {
   @include respond-to(smartphone) {
     width: 90%;
   }
+
   @include respond-to(tablet) {
     width: 90%;
   }

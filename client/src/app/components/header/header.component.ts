@@ -11,7 +11,7 @@ export class HeaderComponent implements OnInit {
   blogInformation: BlogInformation;
   blogInformationLoaded: boolean;
 
-  constructor(private blogInformationService: BlogInformationService) { }
+  constructor(private blogInformationService: BlogInformationService) {}
 
   ngOnInit() {
     this.blogInformationLoaded = false;
@@ -20,13 +20,11 @@ export class HeaderComponent implements OnInit {
 
   getBlogInformation() {
     this.blogInformationService.getBlogInformation().subscribe(
-      response => {
+      (response) => {
         this.blogInformation = response;
         this.blogInformationLoaded = true;
       },
-      error => {
-
-      },
+      (error) => {},
     );
   }
 }

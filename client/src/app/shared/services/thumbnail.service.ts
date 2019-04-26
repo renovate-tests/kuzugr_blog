@@ -8,9 +8,9 @@ import { environment } from '../../../environments/environment';
 export class ThumbnailService {
   apiEndpoint = environment.apiEndpoint;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   uploadThumbnail(params: any): any {
-    return this.http.post(`${this.apiEndpoint}/thumbnails/create`, params );
+    return this.http.post(`${this.apiEndpoint}/thumbnails/create`, params);
   }
 }

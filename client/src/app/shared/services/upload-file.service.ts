@@ -8,9 +8,9 @@ import { environment } from '../../../environments/environment';
 export class UploadFileService {
   apiEndpoint = environment.apiEndpoint;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   uploadFile(params: any): any {
-    return this.http.post(`${this.apiEndpoint}/upload_files/create`, params );
+    return this.http.post(`${this.apiEndpoint}/upload_files/create`, params);
   }
 }

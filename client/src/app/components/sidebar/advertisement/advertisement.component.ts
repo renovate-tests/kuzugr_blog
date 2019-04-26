@@ -10,17 +10,14 @@ import { AdvertisementService } from '../../../shared/services/advertisement.ser
 export class AdvertisementComponent implements OnInit {
   advertisements: Array<Advertisement>;
 
-  constructor(private advertisementService: AdvertisementService) { }
+  constructor(private advertisementService: AdvertisementService) {}
 
   ngOnInit() {
     this.advertisementService.getAdvertisements().subscribe(
-      response => {
+      (response) => {
         this.advertisements = response;
       },
-      error => {
-
-      },
+      (error) => {},
     );
   }
-
 }

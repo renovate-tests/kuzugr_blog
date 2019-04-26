@@ -9,7 +9,7 @@ import { Contact } from '../models/contact';
 export class ContactService {
   apiEndpoint = environment.apiEndpoint;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   sendEmail(contact: Contact): any {
     return this.http.post<any>(`${this.apiEndpoint}/contacts/send_contact`, { contact: contact });

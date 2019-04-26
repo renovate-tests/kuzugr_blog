@@ -75,10 +75,7 @@ import { MonthlyArchiveComponent } from './components/sidebar/monthly-archive/mo
     }),
     BrowserAnimationsModule,
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpsInterceptor, multi: true },
-    ConfirmDialogService,
-  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpsInterceptor, multi: true }, ConfirmDialogService],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

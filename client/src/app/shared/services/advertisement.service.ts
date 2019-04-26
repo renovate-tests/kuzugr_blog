@@ -10,7 +10,7 @@ import { Advertisement } from '../models/advertisement';
 export class AdvertisementService {
   apiEndpoint = environment.apiEndpoint;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAdvertisements(): Observable<Array<Advertisement>> {
     return this.http.get<Array<Advertisement>>(`${this.apiEndpoint}/advertisements`);

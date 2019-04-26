@@ -67,6 +67,7 @@ jobs:
     - run: cd client && sudo npm install -g yarn && sudo yarn global add @angular/cli@latest && sudo ng set --global packageManager=yarn && yarn
     - save_cache: *save_npm_packages_cache
 
+    - run: cd client && yarn format:check
     - run: cd client && yarn build-prod
 
     - store_test_results:

@@ -21,23 +21,15 @@
           <textarea class='content' rows=30 formControlName="content"></textarea>
         </div>-->
         <div class='form-parts form-parts-content'>
-          <angular-markdown-editor
-            textareaId="editor1" rows="30"
-            class='content'
-            name="markdownText" formControlName="mark_content"
-            [options]="editorOptions">
+          <angular-markdown-editor textareaId="editor1" rows="30" class='content' name="markdownText"
+            formControlName="mark_content" [options]="editorOptions">
           </angular-markdown-editor>
           <div *ngIf="formErrors['mark_content']" class="form-errors">
             {{ formErrors['mark_content'].join(" ") }}
           </div>
         </div>
-        <image-upload
-          url="{{ this.uploadFileEndpoint }}"
-          [withCredentials]
-          buttonCaption="SELECT IMAGE"
-          dropBoxMessage="DROP IMAGE"
-          clearButtonCaption="CLEAR IMAGES"
-          (uploadFinished)="onUploadFinished($event)">
+        <image-upload url="{{ this.uploadFileEndpoint }}" [withCredentials] buttonCaption="SELECT IMAGE"
+          dropBoxMessage="DROP IMAGE" clearButtonCaption="CLEAR IMAGES" (uploadFinished)="onUploadFinished($event)">
         </image-upload>
         <div class='label-div'>
           <img [src]="uploadResult?.downloadURL || ''">

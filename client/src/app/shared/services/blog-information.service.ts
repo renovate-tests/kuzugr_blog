@@ -10,7 +10,7 @@ import { BlogInformation } from '../models/blog-information';
 export class BlogInformationService {
   apiEndpoint = environment.apiEndpoint;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getBlogInformation(): Observable<BlogInformation> {
     return this.http.get<BlogInformation>(`${this.apiEndpoint}/blog_informations`);

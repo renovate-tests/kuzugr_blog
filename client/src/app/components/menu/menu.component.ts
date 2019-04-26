@@ -9,7 +9,7 @@ import { AuthService } from '../../shared/services/auth.service';
 export class MenuComponent implements OnInit {
   loginState: boolean;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.loginState = false;
@@ -18,11 +18,10 @@ export class MenuComponent implements OnInit {
 
   getLoginState() {
     this.authService.loginState().then(
-      response => {
+      (response) => {
         this.loginState = response['login_state'];
       },
-      error => {
-      },
+      (error) => {},
     );
   }
 }

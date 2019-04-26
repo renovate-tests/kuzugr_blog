@@ -25,27 +25,28 @@ export class CreateArticleComponent implements OnInit {
   categories: Array<Category>;
   categoryLoaded: boolean;
   gotError: boolean;
-  formErrors: {[key: string]: Array<string>} = {};
+  formErrors: { [key: string]: Array<string> } = {};
   validationMessages = {
-    'title': {
-      'required': 'タイトルを入力してください。',
-      'maxlength': 'タイトルは100文字以内で入力してください。',
+    title: {
+      required: 'タイトルを入力してください。',
+      maxlength: 'タイトルは100文字以内で入力してください。',
     },
-    'mark_content': {
-      'required': '本文を入力してください。',
+    mark_content: {
+      required: '本文を入力してください。',
     },
-    'category_id': {
-      'required': 'カテゴリを選択してください。',
+    category_id: {
+      required: 'カテゴリを選択してください。',
     },
   };
 
-  constructor(private articleService: ArticleService,
-              private categoryService: CategoryService,
-              private router: Router,
-              private route: ActivatedRoute,
-              private markdownService: MarkdownService,
-              private authService: AuthService,
-            ) { }
+  constructor(
+    private articleService: ArticleService,
+    private categoryService: CategoryService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private markdownService: MarkdownService,
+    private authService: AuthService,
+  ) {}
 
   ngOnInit() {
     this.categoryLoaded = false;
@@ -78,7 +79,7 @@ export class CreateArticleComponent implements OnInit {
 
   onUploadFinished(response) {
     // NOTE: 使用する画像のuuidを配列で保持しておく、また自動的に画像を入力欄に挿入する
-    if ( response.serverResponse.status === 200 ) {
+    if (response.serverResponse.status === 200) {
       const responseBody = JSON.parse(response.serverResponse.response._body);
       this.uploadFileUuids.push(responseBody.uuid);
       const markDownImage = `![image description](${responseBody.public_url} "image title")`;
@@ -88,10 +89,10 @@ export class CreateArticleComponent implements OnInit {
 
   createArticle() {
     this.articleService.createArticle(this.article).subscribe(
-      response => {
+      (response) => {
         this.router.navigateByUrl(`/`);
       },
-      error => {
+      (error) => {
         this.gotError = true;
       },
     );
@@ -99,10 +100,10 @@ export class CreateArticleComponent implements OnInit {
 
   editArticle() {
     this.articleService.editArticle(this.article, this.articleId).subscribe(
-      response => {
+      (response) => {
         this.router.navigateByUrl(`/article/${this.articleId}`);
       },
-      error => {
+      (error) => {
         this.gotError = true;
       },
     );
@@ -123,7 +124,7 @@ export class CreateArticleComponent implements OnInit {
 
   getArticle(articleId: number) {
     this.articleService.getArticle(articleId).subscribe(
-      response => {
+      (response) => {
         this.form = new FormGroup({
           title: new FormControl(response.title, [Validators.required, Validators.maxLength(100)]),
           mark_content: new FormControl(response.mark_content, [Validators.required]),
@@ -131,8 +132,7 @@ export class CreateArticleComponent implements OnInit {
         });
         this.articleLoaded = true;
       },
-      error => {
-      },
+      (error) => {},
     );
   }
 
@@ -147,14 +147,13 @@ export class CreateArticleComponent implements OnInit {
 
   getLoginState() {
     this.authService.loginState().then(
-      response => {
-        if ( response['login_state'] === false ) {
+      (response) => {
+        if (response['login_state'] === false) {
           this.router.navigateByUrl(`/`);
         }
       },
-      error => {
-      },
+      (error) => {},
     );
   }
-// tslint:disable-next-line:max-file-line-count
+  // tslint:disable-next-line:max-file-line-count
 }

@@ -11,10 +11,10 @@ export class ArticleService {
   apiEndpoint = environment.apiEndpoint;
   latestArticles: any;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getArticles(params = {}): Observable<Array<Article>> {
-    return this.http.get<Array<Article>>(`${this.apiEndpoint}/articles`, { params: params } );
+    return this.http.get<Array<Article>>(`${this.apiEndpoint}/articles`, { params: params });
   }
 
   getArticle(articleId: number): Observable<Article> {
@@ -22,19 +22,19 @@ export class ArticleService {
   }
 
   createArticle(article: Article): Observable<Article> {
-    return this.http.post<Article>(`${this.apiEndpoint}/articles/`, { article: article } );
+    return this.http.post<Article>(`${this.apiEndpoint}/articles/`, { article: article });
   }
 
   editArticle(article: Article, articleId: number): Observable<Article> {
-    return this.http.patch<Article>(`${this.apiEndpoint}/articles/${articleId}`, { article: article } );
+    return this.http.patch<Article>(`${this.apiEndpoint}/articles/${articleId}`, { article: article });
   }
 
   searchArticle(params = {}): Observable<Array<Article>> {
-    return this.http.get<Array<Article>>(`${this.apiEndpoint}/articles/search`, { params: params }  );
+    return this.http.get<Array<Article>>(`${this.apiEndpoint}/articles/search`, { params: params });
   }
 
   changePublishStatus(articleId: number): Observable<Article> {
-    return this.http.post<Article>(`${this.apiEndpoint}/articles/update_publish_status`, { id: articleId }  );
+    return this.http.post<Article>(`${this.apiEndpoint}/articles/update_publish_status`, { id: articleId });
   }
 
   getArchives(): Observable<any> {
@@ -43,7 +43,7 @@ export class ArticleService {
 
   async loadLatestArticles() {
     const articles = await this.getLatesAticles();
-    return articles.map(item => Object.assign(new Article, item));
+    return articles.map((item) => Object.assign(new Article(), item));
   }
 
   async getLatesAticles(): Promise<Array<Article>> {

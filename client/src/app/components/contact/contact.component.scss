@@ -1,10 +1,12 @@
-@import "../../../assets/styles/mixins";
+@import '../../../assets/styles/mixins';
 
 .contact-body {
   width: 70%;
+
   @include respond-to(smartphone) {
     width: 85%;
   }
+
   margin-top: 10%;
   margin-left: 5%;
 }
@@ -20,6 +22,7 @@ h2 {
 
 .contact-part-first {
   margin-top: 5%;
+
   @include respond-to(smartphone) {
     margin-top: 15%;
   }
@@ -27,6 +30,7 @@ h2 {
 
 .contact-part {
   margin-top: 3%;
+
   @include respond-to(smartphone) {
     margin-top: 10%;
   }
@@ -56,20 +60,23 @@ h2 {
 }
 
 .disabled {
-  color:#ccc;
-  border-color:#eee;
-  background-color:#eee;
+  color: #ccc;
+  border-color: #eee;
+  background-color: #eee;
   cursor: not-allowed;
 }
 
 .form-part {
   width: 40%;
+
   @include respond-to(smartphone) {
     width: 60%;
   }
 }
 
-.name, .email, .content {
+.name,
+.email,
+.content {
   border: 1px solid #ccc;
 }
 
@@ -77,6 +84,7 @@ h2 {
   @include respond-to(smartphone) {
     width: 90%;
   }
+
   @include respond-to(tablet) {
     width: 90%;
   }

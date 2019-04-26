@@ -10,9 +10,9 @@ import { environment } from '../../../environments/environment';
 export class SessionService {
   apiEndpoint = environment.apiEndpoint;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   login(user: User): Observable<User> {
-    return this.http.post<User>(`${this.apiEndpoint}/login`, { user: user } );
+    return this.http.post<User>(`${this.apiEndpoint}/login`, { user: user });
   }
 }
