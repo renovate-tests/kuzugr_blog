@@ -24,7 +24,7 @@ module Api
 
       private
       def comment_params
-        params[:comment].permit(:name, :content, :article_id)
+        params.require(:comment).permit(:name, :content, :article_id)
       end
 
       def send_mail?
