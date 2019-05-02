@@ -3,7 +3,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidateForm } from '../../../shared/functions/validate-forms';
 import { SessionService } from '../session.service';
 import { User } from '../../../shared//models/user';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +26,7 @@ export class LoginComponent implements OnInit {
     },
   };
 
-  constructor(private sessionService: SessionService, private router: Router) {}
+  constructor(private sessionService: SessionService) {}
 
   ngOnInit() {
     this.form = new FormGroup({

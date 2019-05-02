@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators, PatternValidator } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidateForm } from '../../shared/functions/validate-forms';
 import { Comment } from '../../shared/models/comment';
 import { CommentService } from '../../shared/services/comment.service';
