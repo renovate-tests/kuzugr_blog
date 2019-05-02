@@ -91,7 +91,7 @@
       "allow-null-check"
     ],
     "unified-signatures": true,
-    "variable-name": true,
+    "variable-name": false,
     "no-output-on-prefix": true,
     "use-input-property-decorator": true,
     "use-output-property-decorator": true,
