@@ -35,6 +35,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { ConfirmDialogService } from './shared/services/confirm-dialog.service';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { MonthlyArchiveComponent } from './components/sidebar/monthly-archive/monthly-archive.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { MonthlyArchiveComponent } from './components/sidebar/monthly-archive/mo
     CommentComponent,
     ConfirmDialogComponent,
     MonthlyArchiveComponent,
+    PrivacyPolicyComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
