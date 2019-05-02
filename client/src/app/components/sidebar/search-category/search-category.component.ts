@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Category } from '../../../shared/models/category';
 import { CategoryService } from '../../../shared/services/category.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-category',
@@ -12,7 +11,7 @@ export class SearchCategoryComponent implements OnInit {
   categoryLoaded: boolean;
   categories: Array<Category>;
 
-  constructor(private categoryService: CategoryService, private router: Router) {}
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit() {
     this.categoryLoaded = false;
