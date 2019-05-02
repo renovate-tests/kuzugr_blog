@@ -30,6 +30,8 @@ namespace :sitemap do
     paths << '/profile'
     # お問い合わせ
     paths << '/contact'
+    # プライバシーポリシー
+    paths << '/privacy-policy'
     # 記事
     article_ids.each do |article_id|
       paths << "/article/#{article_id}"
