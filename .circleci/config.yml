@@ -68,6 +68,7 @@ jobs:
     - save_cache: *save_npm_packages_cache
 
     - run: cd client && yarn format:check
+    - run: cd client && yarn lint
     - run: cd client && yarn build-prod
 
     - store_test_results:
