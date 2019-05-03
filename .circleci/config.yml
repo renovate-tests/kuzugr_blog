@@ -45,14 +45,7 @@ jobs:
 
     steps:
       - checkout
-      - run:
-          name: update bundler
-          command: |
-            sudo gem update --system
-            sudo gem uninstall bundler
-            sudo rm /usr/local/bin/bundle
-            sudo rm /usr/local/bin/bundler
-            sudo gem install bundler
+      - run: gem update bundler
 
       - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
 
