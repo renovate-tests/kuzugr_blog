@@ -1,24 +1,23 @@
 restore_gems_cache: &restore_gems_cache
   keys:
-  - v2-gems-{{ checksum "Gemfile.lock" }}
+    - v2-gems-{{ checksum "Gemfile.lock" }}
 
 save_gems_cache: &save_gems_cache
   key: v2-gems-{{ checksum "Gemfile.lock" }}
   paths:
-  - vendor/bundle
+    - vendor/bundle
 
 restore_npm_packages_cache: &restore_npm_packages_cache
   keys:
-  - v2-npm-{{ checksum "client/yarn.lock" }}
+    - v2-npm-{{ checksum "client/yarn.lock" }}
 
 save_npm_packages_cache: &save_npm_packages_cache
   key: v2-npm-{{ checksum "client/yarn.lock" }}
   paths:
-  - client/node_modules
+    - client/node_modules
 
 version: 2
 jobs:
-
   build:
     working_directory: ~/app
     parallelism: 1
@@ -27,6 +26,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.4.1-node-browsers
         environment:
+          BUNDLER_VERSION: 2.0.1
           CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
           CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
           TZ: /usr/share/zoneinfo/Asia/Tokyo
@@ -40,41 +40,48 @@ jobs:
         environment:
           TZ: /usr/share/zoneinfo/Asia/Tokyo
           MYSQL_ALLOW_EMPTY_PASSWORD: yes
-          MYSQL_ROOT_PASSWORD: ''
+          MYSQL_ROOT_PASSWORD: ""
           MYSQL_DATABASE: root
 
     steps:
-    - checkout
+      - checkout
+      - run:
+          name: update bundler
+          command: |
+            sudo gem update --system
+            sudo gem uninstall bundler
+            sudo rm /usr/local/bin/bundle
+            sudo rm /usr/local/bin/bundler
+            sudo gem install bundler
 
-    - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
+      - run: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
 
-    - restore_cache: *restore_gems_cache
-    - run: bundle install --path vendor/bundle --jobs=4 --retry=3
-    - save_cache: *save_gems_cache
+      - restore_cache: *restore_gems_cache
+      - run: bundle install --path vendor/bundle --jobs=4 --retry=3
+      - save_cache: *save_gems_cache
 
-    - run:
-        name: Wait for db
-        command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m -wait-retry-interval 5s
+      - run:
+          name: Wait for db
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m -wait-retry-interval 5s
 
-    - run: bin/rails db:create && bin/rake ridgepole:apply
+      - run: bin/rails db:create && bin/rake ridgepole:apply
 
-    - run: bundle exec rspec spec
+      - run: bundle exec rspec spec
 
-    - run: bundle exec rubocop
+      - run: bundle exec rubocop
 
-    - restore_cache: *restore_npm_packages_cache
-    - run: sudo npm install -g n && sudo n 10.9.0
-    - run: cd client && sudo npm install -g yarn && sudo yarn global add @angular/cli@latest && sudo ng set --global packageManager=yarn && yarn
-    - save_cache: *save_npm_packages_cache
+      - restore_cache: *restore_npm_packages_cache
+      - run: sudo npm install -g n && sudo n 10.9.0
+      - run: cd client && sudo npm install -g yarn && sudo yarn global add @angular/cli@latest && sudo ng set --global packageManager=yarn && yarn
+      - save_cache: *save_npm_packages_cache
 
-    - run: cd client && yarn format:check
-    - run: cd client && yarn lint
-    - run: cd client && yarn build-prod
+      - run: cd client && yarn format:check
+      - run: cd client && yarn lint
+      - run: cd client && yarn build-prod
 
-    - store_test_results:
-        path: /tmp/circleci-test-results
-    - store_artifacts:
-        path: /tmp/circleci-artifacts
-    - store_artifacts:
-        path: /tmp/circleci-test-results
-
+      - store_test_results:
+          path: /tmp/circleci-test-results
+      - store_artifacts:
+          path: /tmp/circleci-artifacts
+      - store_artifacts:
+          path: /tmp/circleci-test-results
