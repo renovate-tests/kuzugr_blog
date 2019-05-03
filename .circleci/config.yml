@@ -57,7 +57,7 @@ jobs:
           name: Wait for db
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 1m -wait-retry-interval 5s
 
-      - run: bin/rails db:create && bin/rake ridgepole:apply
+      - run: bundle exec rails db:create && bundle exec rake ridgepole:apply
 
       - run: bundle exec rspec spec
 
