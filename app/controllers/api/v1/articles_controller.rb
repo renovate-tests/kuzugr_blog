@@ -74,6 +74,10 @@ module Api
         after_status = article.published ? false : true
         article.published = after_status
         article.save!
+        if after_status && ENV['RAILS_ENV'] == 'production'
+          twitter_service = TwitterService.new(tweet_message(article))
+          twitter_service.call
+        end
         render status: 200, json: article,
           serializer: ArticleSerializer, include_comments: true, include_next: true
       end
@@ -128,6 +132,10 @@ module Api
         else
           Article.with_thumbnail(published_option).by_keyword(params[:keyword])
         end
+      end
+
+      def tweet_message(article)
+        "ブログを更新しました！\n#{article.title}\n\n#{ENV['CORS_ALLOW_HOST']}/#{article.id}"
       end
     end
   end
