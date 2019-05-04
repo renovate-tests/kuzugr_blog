@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogInformation } from '../../shared/models/blog-information';
-import { BlogInformationService } from '../../shared/services/blog-information.service';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-header',
@@ -8,23 +7,9 @@ import { BlogInformationService } from '../../shared/services/blog-information.s
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  blogInformation: BlogInformation;
-  blogInformationLoaded: boolean;
+  title = environment.title;
 
-  constructor(private blogInformationService: BlogInformationService) {}
+  constructor() {}
 
-  ngOnInit() {
-    this.blogInformationLoaded = false;
-    this.getBlogInformation();
-  }
-
-  getBlogInformation() {
-    this.blogInformationService.getBlogInformation().subscribe(
-      (response) => {
-        this.blogInformation = response;
-        this.blogInformationLoaded = true;
-      },
-      (error) => {},
-    );
-  }
+  ngOnInit() {}
 }

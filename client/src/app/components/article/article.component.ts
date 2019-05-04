@@ -4,7 +4,8 @@ import { Article } from '../../shared/models/article';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 import { ConfirmDialogService } from '../../shared/services//confirm-dialog.service';
-import { Meta } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-article',
@@ -16,6 +17,7 @@ export class ArticleComponent implements OnInit {
   articleLoaded: boolean;
   loginState: boolean;
   articleId: number;
+  blogTitle = environment.title;
 
   constructor(
     private articleService: ArticleService,
@@ -23,6 +25,7 @@ export class ArticleComponent implements OnInit {
     private authService: AuthService,
     private confirmDialogService: ConfirmDialogService,
     private metaService: Meta,
+    private titleService: Title,
   ) {}
 
   ngOnInit() {
@@ -43,6 +46,7 @@ export class ArticleComponent implements OnInit {
     this.articleService.getArticles({ limit: 1 }).subscribe((response) => {
       if (response.length > 0) {
         this.article = response[0];
+        this.titleService.setTitle(`${this.article.title} | ${this.blogTitle}`);
         this.setMetaTag();
         this.articleLoaded = true;
       }
@@ -52,6 +56,7 @@ export class ArticleComponent implements OnInit {
   getArticle(articleId: number) {
     this.articleService.getArticle(articleId).subscribe((response) => {
       this.article = response;
+      this.titleService.setTitle(`${this.article.title} | ${this.blogTitle}`);
       this.setMetaTag();
       this.articleLoaded = true;
     });
