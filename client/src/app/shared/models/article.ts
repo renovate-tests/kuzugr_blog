@@ -18,4 +18,5 @@ export class Article {
   next_id: number;
   previous_title: string;
   previous_id: number;
+  description: string;
 }

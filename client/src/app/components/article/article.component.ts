@@ -93,9 +93,10 @@ export class ArticleComponent implements OnInit {
       .replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '')
       .replace(/\r?\n/g, '')
       .trim();
-    this.metaService.addTag({ name: 'description', content: articleContent });
+    const description = this.article.description || articleContent;
+    this.metaService.addTag({ name: 'description', content: description });
     this.metaService.addTag({ property: 'og:title', content: this.article.title });
-    this.metaService.addTag({ property: 'og:description', content: articleContent });
+    this.metaService.addTag({ property: 'og:description', content: description });
     this.metaService.addTag({ property: 'og:type', content: 'article' });
     const url = this.articleId ? `https://kuzugr.com/article/${this.articleId}` : 'https://kuzugr.com';
     this.metaService.addTag({ property: 'og:url', content: url });
