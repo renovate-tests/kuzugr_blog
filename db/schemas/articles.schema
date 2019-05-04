@@ -2,6 +2,7 @@ create_table "articles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSE
   t.string "title", null: false
   t.text "mark_content", null: false
   t.text "html_content", null: false
+  t.string "description", null: false, default: ''
   t.integer "user_id", null: false
   t.datetime "created_at", null: false
   t.datetime "updated_at", null: false
