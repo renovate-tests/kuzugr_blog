@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :blog_informations, only: [:index]
       post 'contacts/send_contact', to: 'contacts#send_contact'
       resources :comments, only: [:index, :create, :destroy]
+      resources :tweet, only: [:create]
     end
   end
 end
