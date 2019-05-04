@@ -135,7 +135,7 @@ module Api
       end
 
       def tweet_message(article)
-        "ブログを更新しました！\n#{article.title}\n\n#{ENV['CORS_ALLOW_HOST']}/article/#{article.id}"
+        "#{article.title}\n\n#{ENV['CORS_ALLOW_HOST']}/article/#{article.id}"
       end
     end
   end
