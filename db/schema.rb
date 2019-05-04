@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "title", null: false
     t.text "mark_content", null: false
     t.text "html_content", null: false
+    t.string "description", default: "", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
