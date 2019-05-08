@@ -28,6 +28,15 @@
             {{ formErrors['mark_content'].join(" ") }}
           </div>
         </div>
+        <div class='label-div'>
+          <label>description</label>
+        </div>
+        <div class='form-parts'>
+          <textarea class='description' rows=5 formControlName="description"></textarea>
+          <div *ngIf="formErrors['description']" class="form-errors">
+            {{ formErrors['description'].join(" ") }}
+          </div>
+        </div>
         <image-upload url="{{ this.uploadFileEndpoint }}" [withCredentials] buttonCaption="SELECT IMAGE"
           dropBoxMessage="DROP IMAGE" clearButtonCaption="CLEAR IMAGES" (uploadFinished)="onUploadFinished($event)">
         </image-upload>
