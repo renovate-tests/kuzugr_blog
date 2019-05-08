@@ -3,7 +3,10 @@ require 'rails_helper'
 RSpec.describe Api::V1::ArticlesController, type: :request do
   let!(:current_user) { create(:user, id: 1) }
   let!(:article) { create(:article, user_id: current_user.id, title: '記事作成') }
-  let!(:not_published_article) { create(:article, user_id: current_user.id, mark_content: '未公開', published: false, created_at: '9999-12-31 23:59:59') }
+  let!(:not_published_article) do
+    create(:article, user_id: current_user.id, mark_content: '未公開',
+                     published: false, created_at: '9999-12-31 23:59:59', description: '概要')
+  end
   let!(:blog_informations) { create(:blog_information) }
   let!(:thumbnail) { create(:thumbnail, article_id: article.id) }
   let!(:category) { create(:category) }
@@ -35,7 +38,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
           expect(article_response['thumbnail_url']).to eq "https://kuzugr-blog-development.s3.ap-northeast-1.amazonaws.com/images/#{article.thumbnail.uuid}"
           expect(article_response['category']).to eq category.name
           expect(article_response['category_id']).to eq category.id
-          expect(article_response['id']).to eq article.id
+          expect(article_response['description']).to eq article.description
         end
       end
 
@@ -134,6 +137,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
             html_content: 'created html_content',
             category_id: article.category_id,
             published: false,
+            description: '概要',
           }
       }
     end
@@ -146,6 +150,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
             html_content: nil,
             category_id: article.category_id,
             published: false,
+            description: '概要',
           }
       }
     end
@@ -163,6 +168,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
         expect(created_article.html_content).to eq params[:article][:html_content]
         expect(created_article.category_id).to eq params[:article][:category_id]
         expect(created_article.published).to eq params[:article][:published]
+        expect(created_article.description).to eq params[:article][:description]
       end
     end
 
@@ -189,6 +195,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
             html_content: 'changed html_content',
             category_id: article.category_id,
             published: false,
+            description: 'ディスクリプション',
           }
       }
     end
@@ -205,6 +212,7 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
         expect(changed_article.mark_content).to eq params[:article][:mark_content]
         expect(changed_article.html_content).to eq params[:article][:html_content]
         expect(changed_article.published).to eq params[:article][:published]
+        expect(changed_article.description).to eq params[:article][:description]
       end
     end
 
