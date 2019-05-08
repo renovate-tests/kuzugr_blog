@@ -16,7 +16,9 @@
       <div class='article-element category' *ngIf="article.category">
         <span>{{article.category}}</span>
       </div>
-      <div class='content' [innerHTML]='article.html_content | safeHtml'></div>
+      <div class='content'>
+        <markdown [data]='article.html_content'></markdown>
+      </div>
       <span *ngIf="article.previous_id" routerLink="/article/{{article.previous_id}}"
         class='change-article previous-artcile click-util' fragment='top'>
         <i class="fa fa-angle-double-left"></i> {{article.previous_title}}
