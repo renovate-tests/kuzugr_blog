@@ -34,6 +34,9 @@ export class CreateArticleComponent implements OnInit {
     mark_content: {
       required: '本文を入力してください。',
     },
+    description: {
+      required: 'descriptionを選択してください。',
+    },
     category_id: {
       required: 'カテゴリを選択してください。',
     },
@@ -116,6 +119,7 @@ export class CreateArticleComponent implements OnInit {
       this.form = new FormGroup({
         title: new FormControl('', [Validators.required, Validators.maxLength(40)]),
         mark_content: new FormControl('', [Validators.required]),
+        description: new FormControl('', [Validators.required]),
         category_id: new FormControl('', [Validators.required]),
       });
       this.articleLoaded = true;
@@ -128,6 +132,7 @@ export class CreateArticleComponent implements OnInit {
         this.form = new FormGroup({
           title: new FormControl(response.title, [Validators.required, Validators.maxLength(40)]),
           mark_content: new FormControl(response.mark_content, [Validators.required]),
+          description: new FormControl(response.description, [Validators.required]),
           category_id: new FormControl(response.category_id, [Validators.required]),
         });
         this.articleLoaded = true;

@@ -85,7 +85,7 @@ module Api
       private
       def article_params
         params.require(:article)
-              .permit(:title, :mark_content, :html_content, :category_id, :published)
+              .permit(:title, :mark_content, :html_content, :category_id, :published, :description)
       end
 
       def move_to_index
