@@ -33,6 +33,8 @@ jobs:
           NODE_ENV: test
           DB_SERVERNAME: 127.0.0.1
           DB_USERNAME: root
+          SITEMAP_PATH: "./tmp/sitemap.xml"
+          CORS_ALLOW_HOST: "local.com"
 
       - image: mysql:5.7
         command: mysqld --innodb_file_format=Barracuda --innodb_file_per_table=1 --innodb_large_prefix=true --sql_mode=TRADITIONAL,NO_AUTO_VALUE_ON_ZERO,ONLY_FULL_GROUP_BY
