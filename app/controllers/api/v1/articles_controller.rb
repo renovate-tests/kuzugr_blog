@@ -35,6 +35,7 @@ module Api
         article = Article.find(params[:id])
         set_upload_files_and_thumbnail(article) if params[:article][:upload_file_uuids].present?
         article.update(article_params) if article.user_id == current_user.id
+        SitemapService.new.call if article.published
       end
 
       def create
@@ -74,9 +75,10 @@ module Api
         after_status = article.published ? false : true
         article.published = after_status
         article.save!
-        if after_status && ENV['RAILS_ENV'] == 'production'
+        if after_status
           twitter_service = TwitterService.new(tweet_message(article))
           twitter_service.call
+          SitemapService.new.call
         end
         render status: 200, json: article,
           serializer: ArticleSerializer, include_comments: true, include_next: true
