@@ -12,6 +12,7 @@ class TwitterService
   end
 
   def call
+    return unless ENV['RAILS_ENV'] == 'production'
     @client.update!(@message)
   end
 end
