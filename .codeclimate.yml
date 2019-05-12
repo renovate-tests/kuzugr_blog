@@ -1,4 +1,4 @@
 exclude_paths:
-  - "'client/**/*.spec.ts"
+  - "client/src/app/**/**/*.spec.ts"
   - "spec/**/*"
   - "db/**/*"
