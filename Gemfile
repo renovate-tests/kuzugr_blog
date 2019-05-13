@@ -46,6 +46,7 @@ group :development, :test do
   gem 'factory_bot'
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'dotenv-rails', require: 'dotenv/rails-now'
 end
 
 group :development do
@@ -68,3 +69,4 @@ gem 'aws-sdk'
 gem 'unicorn', '5.4.1'
 gem 'seed-fu'
 gem 'twitter'
+gem 'config'
