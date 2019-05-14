@@ -24,13 +24,6 @@ module Api
           serializer: ArticleSerializer, include_comments: true, include_next: true
       end
 
-      def new
-      end
-
-      def edit
-        @article = Article.find(params[:id])
-      end
-
       def update
         article = Article.find(params[:id])
         set_upload_files_and_thumbnail(article) if params[:article][:upload_file_uuids].present?

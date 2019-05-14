@@ -6,7 +6,8 @@ module Api
       skip_before_action :authenticate_user_from_token!, only: [:send_contact]
 
       def send_contact
-        ContactMailer.send_contact(contact_params).deliver if request.host == ENV['CORS_ALLOW_HOST']
+        mail = ContactMailer.send_contact(contact_params)
+        mail.deliver if request.host == ENV['CORS_ALLOW_HOST']
         render status: 200, json: { result: true }
       end
 
