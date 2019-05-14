@@ -6,6 +6,7 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+require 'fakes3'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -25,6 +26,8 @@ require 'rspec/rails'
 # Checks for pending migrations and applies them before tests are run.
 # If you are not using ActiveRecord, you can remove these lines.
 RSpec.configure do |config|
+  config.before(:suite) { FakeS3Server.up }
+  config.after(:suite) { FakeS3Server.down }
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -60,4 +63,30 @@ RSpec.configure do |config|
 
   Time.zone = "Tokyo"
   ActiveRecord::Base.default_timezone = :local
+end
+
+class FakeS3Server
+  def initialize(pid)
+    @pid = pid
+  end
+
+  def self.up
+    dir_path = Rails.root.join('tmp/fakes3')
+    Dir.mkdir(dir_path) unless Dir.exist?(dir_path)
+    pid = spawn("bundle exec fakes3 --port 10001 --root #{dir_path}")
+    @@instance = FakeS3Server.new(pid)
+    return @@instance
+  end
+
+  def self.down
+    @@instance.down if defined? @@instance
+  end
+
+  def down
+    if @pid
+      Process.kill("SIGINT", @pid)
+      Process.waitpid2(@pid)
+      @pid = nil
+    end
+  end
 end
