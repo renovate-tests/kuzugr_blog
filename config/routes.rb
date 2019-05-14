@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resource :login, only: [:create], controller: :sessions
       get :login_state, controller: :sessions
-      resources :articles do
+      resources :articles, only: [:index, :show, :update, :create, :destroy] do
         collection do
           get :search
           get :archive
