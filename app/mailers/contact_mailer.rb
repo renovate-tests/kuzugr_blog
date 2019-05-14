@@ -2,7 +2,7 @@
 
 class ContactMailer < ActionMailer::Base
   def send_contact(params)
-    @content = "#{params[:content]}\n\n#{params[:email]}"
+    @content = "#{params[:name]}\n\n#{params[:content]}\n\n#{params[:email]}"
     mail(
       subject: Settings.mail.contact.title,
       to: ENV['KUZUGR_EMAIL'],
