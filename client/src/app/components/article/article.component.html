@@ -2,7 +2,7 @@
   <div class='article-body'>
     <h2 class='title'>{{article.title}}</h2>
     <div>
-      <div *ngIf="loginState" class='article-element'>
+      <div *ngIf="loginState" class='button-list'>
         <button class='click-util edit-btn' routerLink="/article/{{article.id}}/edit">編集</button>
         <button class='click-util publish-btn' (click)="changePublishStatus(article.id)">
           {{article.published ? '非公開にする' : '公開する' }}
