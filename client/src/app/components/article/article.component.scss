@@ -39,6 +39,12 @@
   }
 }
 
+.button-list {
+  text-align: right;
+  margin-right: 2%;
+  margin-bottom: 2%;
+}
+
 .edit-btn {
   color: #fff;
   border-color: #1a3d66;
@@ -47,7 +53,7 @@
   font-weight: 700;
   width: 5rem;
   height: 3rem;
-  margin-bottom: 2%;
+  margin-right: 2%;
 }
 
 .edit-btn:hover {
@@ -62,13 +68,29 @@
   border-radius: 4px;
   font-weight: 700;
   width: 10rem;
-  height: 4rem;
+  height: 3rem;
   margin-bottom: 2%;
+  margin-right: 2%;
 }
 
 .publish-btn:hover {
   background-color: red;
   border: solid 1px red;
+}
+
+.tweet-btn {
+  color: #fff;
+  border-color: #1a3d66;
+  background-color: #214d7f;
+  border-radius: 4px;
+  font-weight: 700;
+  width: 6rem;
+  height: 3rem;
+}
+
+.tweet-btn:hover {
+  background-color: #0044cc;
+  border: solid 1px #0044cc;
 }
 
 .change-article {

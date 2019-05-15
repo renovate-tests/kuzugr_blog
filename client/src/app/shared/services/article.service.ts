@@ -41,6 +41,10 @@ export class ArticleService {
     return this.http.get<any>(`${this.apiEndpoint}/articles/archive`);
   }
 
+  tweet(articleId: number): Observable<any> {
+    return this.http.post<any>(`${this.apiEndpoint}/articles/tweet`, { id: articleId });
+  }
+
   async loadLatestArticles() {
     const articles = await this.getLatesAticles();
     return articles.map((item) => Object.assign(new Article(), item));

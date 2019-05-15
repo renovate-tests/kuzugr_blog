@@ -93,6 +93,22 @@ export class ArticleComponent implements OnInit {
       });
   }
 
+  tweetArticle() {
+    this.confirmDialogService
+      .showConfirm({
+        title: 'ツイート',
+        content: `この記事をツイートしますか？`,
+        acceptButton: 'ツイートする',
+        cancelButton: 'キャンセル',
+        isDanger: true,
+      })
+      .subscribe((confirm) => {
+        if (confirm) {
+          this.articleService.tweet(this.article.id).subscribe((response) => {}, (error) => {});
+        }
+      });
+  }
+
   setMetaTag() {
     const articleContent = this.article.html_content
       .replace(/<("[^"]*"|'[^']*'|[^'">])*>/g, '')
