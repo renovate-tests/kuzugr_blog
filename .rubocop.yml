@@ -1,14 +1,14 @@
 AllCops:
-  TargetRubyVersion: 2.4.1
+  TargetRubyVersion: 2.6.3
   DisabledByDefault: true
   Exclude:
-    - 'vendor/**/*'
-    - 'client/**/*'
-    - 'db/**/*'
-    - 'bin/**/*'
-    - 'config/**/*'
-    - 'spec/**/*'
-    - 'master_data/*'
+    - "vendor/**/*"
+    - "client/**/*"
+    - "db/**/*"
+    - "bin/**/*"
+    - "config/**/*"
+    - "spec/**/*"
+    - "master_data/*"
 
 Rails:
   Enabled: true
@@ -126,12 +126,11 @@ Style/FrozenStringLiteralComment:
 
 Style/PercentLiteralDelimiters:
   PreferredDelimiters:
-    '%w': ()
-    '%W': ()
+    "%w": ()
+    "%W": ()
 
 Style/StringLiterals:
   EnforcedStyle: single_quotes
 
 Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: consistent_comma
-
