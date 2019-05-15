@@ -7,7 +7,8 @@
         <button class='click-util publish-btn' (click)="changePublishStatus(article.id)">
           {{article.published ? '非公開にする' : '公開する' }}
         </button>
-        <button class='click-util tweet-btn' (click)="tweetArticle()">
+        <button class='click-util tweet-btn' (click)="tweetArticle()" [class.disabled]="isDisabled"
+          [disabled]="isDisabled">
           Tweet
         </button>
       </div>

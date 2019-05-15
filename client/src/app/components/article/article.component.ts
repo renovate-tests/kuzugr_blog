@@ -18,6 +18,7 @@ export class ArticleComponent implements OnInit {
   loginState: boolean;
   articleId: number;
   blogTitle = environment.title;
+  isDisabled: boolean;
 
   constructor(
     private articleService: ArticleService,
@@ -29,6 +30,7 @@ export class ArticleComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isDisabled = false;
     this.articleLoaded = false;
     this.loginState = false;
     this.route.params.subscribe((params) => {
@@ -104,7 +106,12 @@ export class ArticleComponent implements OnInit {
       })
       .subscribe((confirm) => {
         if (confirm) {
-          this.articleService.tweet(this.article.id).subscribe((response) => {}, (error) => {});
+          this.articleService.tweet(this.article.id).subscribe(
+            (response) => {
+              this.isDisabled = true;
+            },
+            (error) => {},
+          );
         }
       });
   }

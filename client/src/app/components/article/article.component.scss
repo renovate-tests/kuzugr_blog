@@ -93,6 +93,13 @@
   border: solid 1px #0044cc;
 }
 
+.disabled {
+  color: #ccc;
+  border-color: #eee;
+  background-color: #eee;
+  cursor: not-allowed;
+}
+
 .change-article {
   max-width: 45%;
   display: inline-block;
