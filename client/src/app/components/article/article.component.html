@@ -4,14 +4,12 @@
     <div>
       <div *ngIf="loginState" class='article-element'>
         <button class='click-util edit-btn' routerLink="/article/{{article.id}}/edit">編集</button>
-        <div>
-          <button class='click-util publish-btn' (click)="changePublishStatus(article.id)">
-            {{article.published ? '非公開にする' : '公開する' }}
-          </button>
-          <button class='click-util' (click)="tweetArticle()">
-            Tweet
-          </button>
-        </div>
+        <button class='click-util publish-btn' (click)="changePublishStatus(article.id)">
+          {{article.published ? '非公開にする' : '公開する' }}
+        </button>
+        <button class='click-util tweet-btn' (click)="tweetArticle()">
+          Tweet
+        </button>
       </div>
       <div class='article-element'>
         <span>投稿日時: {{article.created_at | date:"yyyy/MM/dd HH:mm" : '+0000'}}</span>

@@ -82,7 +82,7 @@ module Api
         raise Exception unless article.published
         twitter_service = TwitterService.new(tweet_message(article))
         twitter_service.call
-        render status: 200
+        render status: 200, json: { message: 'tweet success' }
       end
 
       private
