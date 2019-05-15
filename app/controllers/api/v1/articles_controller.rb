@@ -77,6 +77,14 @@ module Api
           serializer: ArticleSerializer, include_comments: true, include_next: true
       end
 
+      def tweet
+        article = Article.find(params[:id])
+        raise Exception unless article.published
+        twitter_service = TwitterService.new(tweet_message(article))
+        twitter_service.call
+        render status: 200
+      end
+
       private
       def article_params
         params.require(:article)

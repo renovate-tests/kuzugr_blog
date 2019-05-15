@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../../shared/services/article.service';
 import { Article } from '../../shared/models/article';
-import { Tweet } from '../../shared/models/tweet';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 import { ConfirmDialogService } from '../../shared/services//confirm-dialog.service';
 import { Meta, Title } from '@angular/platform-browser';
 import { environment } from '../../../environments/environment';
-import { TweetService } from '../../shared/services/tweet.service';
 
 @Component({
   selector: 'app-article',
@@ -20,7 +18,6 @@ export class ArticleComponent implements OnInit {
   loginState: boolean;
   articleId: number;
   blogTitle = environment.title;
-  tweet: Tweet;
 
   constructor(
     private articleService: ArticleService,
@@ -29,7 +26,6 @@ export class ArticleComponent implements OnInit {
     private confirmDialogService: ConfirmDialogService,
     private metaService: Meta,
     private titleService: Title,
-    private tweetService: TweetService,
   ) {}
 
   ngOnInit() {
@@ -98,7 +94,6 @@ export class ArticleComponent implements OnInit {
   }
 
   tweetArticle() {
-    this.tweet.message = '';
     this.confirmDialogService
       .showConfirm({
         title: 'ツイート',
@@ -109,7 +104,7 @@ export class ArticleComponent implements OnInit {
       })
       .subscribe((confirm) => {
         if (confirm) {
-          this.tweetService.tweet(this.tweet).subscribe((response) => {}, (error) => {});
+          this.articleService.tweet(this.article.id).subscribe((response) => {}, (error) => {});
         }
       });
   }
