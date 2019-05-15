@@ -422,4 +422,43 @@ RSpec.describe Api::V1::ArticlesController, type: :request do
       end
     end
   end
+
+  describe 'POST /api/v1/articles/tweet' do
+    let(:params) { { id: article.id } }
+    let(:invalid_params) { { id: not_exist_id } }
+    context 'パラメータが正しい場合' do
+      before do
+        allow_any_instance_of(ApplicationController).to receive(:authenticate_user_from_token!).and_return(true)
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user)
+        post '/api/v1/articles/tweet', params: params
+      end
+      it '200が返る' do
+        expect(response.code).to eq '200'
+      end
+    end
+
+    context '存在しないidの場合' do
+      before do
+        allow_any_instance_of(ApplicationController).to receive(:authenticate_user_from_token!).and_return(true)
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user)
+        post '/api/v1/articles/tweet', params: invalid_params
+      end
+      it '404エラーが返る' do
+        expect(response.code).to eq '404'
+      end
+    end
+
+    context '記事が非公開の場合' do
+      before do
+        allow_any_instance_of(ApplicationController).to receive(:authenticate_user_from_token!).and_return(true)
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(current_user)
+        article.published = false
+        article.save!
+        post '/api/v1/articles/tweet', params: params
+      end
+      it '500エラーが返る' do
+        expect(response.code).to eq '500'
+      end
+    end
+  end
 end
