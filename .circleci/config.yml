@@ -71,6 +71,7 @@ jobs:
 
       - run: cd client && yarn format:check
       - run: cd client && yarn lint
+      - run: cd client && yarn test
       - run: cd client && yarn build-prod
 
       - store_test_results:
