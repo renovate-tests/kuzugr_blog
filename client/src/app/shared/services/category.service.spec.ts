@@ -5,9 +5,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoryService } from './category.service';
 
 describe('CategoryServiceService', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [HttpClientModule],
-  }));
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      imports: [HttpClientModule],
+    }),
+  );
 
   it('should be created', () => {
     const service: CategoryService = TestBed.get(CategoryService);

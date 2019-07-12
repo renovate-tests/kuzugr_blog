@@ -16,12 +16,7 @@ describe('ArticleComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ArticleComponent],
-      imports: [
-        RouterTestingModule,
-        HttpClientModule,
-        MarkdownModule,
-        ReactiveFormsModule,
-      ],
+      imports: [RouterTestingModule, HttpClientModule, MarkdownModule, ReactiveFormsModule],
       providers: [ConfirmDialogService],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
     }).compileComponents();
