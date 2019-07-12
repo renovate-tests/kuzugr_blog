@@ -11,7 +11,9 @@
 # my_setting
 .vscode/
 /my_scripts
+branch_updater.sh
 /master_data
+/coverage
 
 # Ignore all logfiles and tempfiles.
 /log/*

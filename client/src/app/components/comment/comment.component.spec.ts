@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { CommentComponent } from './comment.component';
+import { ConfirmDialogService } from '../../shared/services/confirm-dialog.service';
 
 describe('CommentComponent', () => {
   let component: CommentComponent;
@@ -9,6 +13,8 @@ describe('CommentComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [CommentComponent],
+      imports: [ReactiveFormsModule, HttpClientModule],
+      providers: [ConfirmDialogService],
     }).compileComponents();
   }));
 

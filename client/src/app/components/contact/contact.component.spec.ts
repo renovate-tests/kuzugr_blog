@@ -1,5 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { ContactComponent } from './contact.component';
 
 describe('ContactComponent', () => {
@@ -9,6 +12,7 @@ describe('ContactComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ContactComponent],
+      imports: [ReactiveFormsModule, HttpClientModule],
     }).compileComponents();
   }));
 
