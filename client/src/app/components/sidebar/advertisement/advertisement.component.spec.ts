@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { AdvertisementComponent } from './advertisement.component';
+import { SafeHtmlPipe } from '../../../shared/pipes/pipe.safehtml.pipe';
 
 describe('AdvertisementComponent', () => {
   let component: AdvertisementComponent;
@@ -8,7 +11,8 @@ describe('AdvertisementComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [AdvertisementComponent],
+      declarations: [AdvertisementComponent, SafeHtmlPipe],
+      imports: [HttpClientModule],
     }).compileComponents();
   }));
 

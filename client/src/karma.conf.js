@@ -26,6 +26,10 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
-    singleRun: false
+    singleRun: false,
+    files: [
+      "../node_modules/jquery/dist/jquery.js",
+      "../node_modules/bootstrap-markdown/js/bootstrap-markdown.js",
+    ],
   });
 };
