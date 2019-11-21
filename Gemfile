@@ -47,7 +47,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'simplecov'
   gem 'dotenv-rails', require: 'dotenv/rails-now'
-  gem 'fakes3', '<= 1.2.1'
+  gem 'fakes3', '<= 1.3.1'
 end
 
 group :development do
