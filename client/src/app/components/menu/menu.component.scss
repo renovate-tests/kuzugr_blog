@@ -1,18 +1,64 @@
-.menu-block {
-  width: 100%;
-  font-weight: bold;
-  margin: auto;
-  display: flex;
+@import '../../../assets/styles/mixins';
+
+.menu-body {
   background-color: white;
-  justify-content: space-between;
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0px;
-  z-index: 999;
-  opacity: 0.6;
-  border-bottom: 2px solid cornflowerblue;
+  color: gray;
+  margin-left: 1%;
+  position: fixed;
+  font-weight: bold;
+  opacity: 0.9;
+  width: 100%;
+  height: 5%;
+  top: 0;
+}
+
+.menu-inner-body {
+  margin-top: 1%;
+  background-color: white;
+}
+
+.search-block {
+  display: inline-block;
+  text-align: left;
+  width: 64%;
+
+  .fa-search {
+    margin-right: 1%;
+  }
+
+  @include respond-to(smartphone) {
+    width: 43%;
+    display: block;
+  }
+}
+
+.search-input {
+  border-style: none;
+  width: 80%;
+}
+
+.menu-block {
+  @include respond-to(smartphone) {
+    display: block;
+    margin-top: 2%;
+  }
+}
+
+.menu-item{
+  margin-right: 2%;
+
+  @include respond-to(smartphone) {
+    margin-top: 10%;
+    margin-right: 2.7%;
+  }
 }
 
 .click-util:hover {
   color: #0088c7;
+}
+
+.search-input:hover {
+  border-bottom: solid 1px;
+  border-color: gray;
+  color: gray;
 }
