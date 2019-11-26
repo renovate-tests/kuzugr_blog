@@ -996,7 +996,7 @@ GEM
       unf_ext
     unf_ext (0.0.7.6)
     unicode-display_width (1.4.1)
-    unicorn (5.4.1)
+    unicorn (5.5.1)
       kgio (~> 2.6)
       raindrops (~> 0.7)
     warden (1.2.8)
@@ -1043,7 +1043,7 @@ DEPENDENCIES
   turbolinks (~> 5)
   twitter
   tzinfo-data
-  unicorn (= 5.4.1)
+  unicorn (= 5.5.1)
   web-console (>= 3.3.0)
 
 BUNDLED WITH
