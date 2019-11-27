@@ -282,10 +282,10 @@
     tree-kill "1.2.0"
     webpack-sources "1.2.0"
 
-"@nguniversal/express-engine@0.0.0":
-  version "0.0.0"
-  resolved "https://registry.yarnpkg.com/@nguniversal/express-engine/-/express-engine-0.0.0.tgz#f465cff5b7816da8a62b2cde705215fdfcf5728d"
-  integrity sha512-BMyMIupdOb4G7OZ92qro4wfVuFU3AVSiqZ8lOAVfXUepf5sZYpritFod64ZCN6tAbSTkshYicf8IpUoZp2B2Qw==
+"@nguniversal/express-engine@8.1.1":
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/@nguniversal/express-engine/-/express-engine-8.1.1.tgz#253f2a484764cf183a679847a0c25c52d5b25ab9"
+  integrity sha512-LKfNnKb1BU1IyI/U7LcDgU744ptrn7fTYb3QqHAlGaozHUNRjXpNuBdkrcAS5+8UAhRlTllpSt1c+TmY2/tomA==
 
 "@nguniversal/module-map-ngfactory-loader@7.1.1":
   version "7.1.1"
