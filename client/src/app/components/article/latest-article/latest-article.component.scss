@@ -1,3 +1,5 @@
+@import '../../../../assets/styles/mixins';
+
 .latest-article-img-block {
   text-align: center;
   position: relative;
@@ -6,7 +8,7 @@
 .latest-article-img {
   width: 100%;
   height: 40rem;
-  opacity: 0.3;
+  opacity: 0.4;
 }
 
 .article-detail-block {

@@ -1,7 +1,15 @@
+@import '../../../assets/styles/mixins';
+
 .header-block {
+  margin-top: 8%;
   width: 100%;
   text-align: center;
   margin-bottom: 3%;
+
+  @include respond-to(smartphone) {
+    display: block;
+    margin-top: 20%;
+  }
 }
 
 h1 {

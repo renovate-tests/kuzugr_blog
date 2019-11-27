@@ -1,19 +1,19 @@
-<div class='menu-block'>
-  <div></div>
-  <div>
-    <p class='click-util' [routerLink]="['/']" fragment="top">ブログ記事</p>
+<div class='menu-body'>
+  <div class='menu-inner-body'>
+    <span class='search-block'>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <i class="fa fa-search"></i>
+        <input tabindex='0' class='search-input click-util' formControlName='keyword' type="text" placeholder="Search">
+      </form>
+    </span>
+    <span class='menu-block'>
+      <span class='click-util menu-item' [routerLink]="['/']" fragment="top">記事一覧</span>
+      <span class='click-util menu-item' [routerLink]="['/profile']" fragment="top">プロフィール</span>
+      <span class='click-util menu-item' [routerLink]="['/privacy-policy']" fragment="top">プライバシーポリシー</span>
+      <span class='click-util menu-item' [routerLink]="['/contact']" fragment="top">お問い合わせ</span>
+      <span *ngIf="loginState">
+        <span class='click-util menu-item' [routerLink]="['/article/create']" fragment="top">記事作成</span>
+      </span>
+    </span>
   </div>
-  <div>
-    <p class='click-util' [routerLink]="['/profile']" fragment="top">プロフィール</p>
-  </div>
-  <div>
-    <p class='click-util' [routerLink]="['/privacy-policy']" fragment="top">プライバシーポリシー</p>
-  </div>
-  <div>
-    <p class='click-util' [routerLink]="['/contact']" fragment="top">お問い合わせ</p>
-  </div>
-  <div *ngIf="loginState">
-    <p class='click-util' [routerLink]="['/article/create']" fragment="top">記事作成</p>
-  </div>
-  <div></div>
 </div>
