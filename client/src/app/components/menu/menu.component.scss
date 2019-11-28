@@ -27,7 +27,7 @@
   }
 
   @include respond-to(smartphone) {
-    width: 43%;
+    width: 100%;
     display: block;
   }
 }
