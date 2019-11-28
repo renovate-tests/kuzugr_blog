@@ -4439,10 +4439,10 @@ next-tick@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
 
-ng2-adsense@5.4.1:
-  version "5.4.1"
-  resolved "https://registry.yarnpkg.com/ng2-adsense/-/ng2-adsense-5.4.1.tgz#ef780a4cfd7bd6e8e974c924142d06602e197b8c"
-  integrity sha512-7MKU8Pp8X2F9DgycZgC1/5sfTGcamDF4T6lUNSdMr6ZCpOZsKgLf2xOnYfMjpj/q7HUpplZ5khw4rtlITKRa/Q==
+ng2-adsense@5.4.3:
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/ng2-adsense/-/ng2-adsense-5.4.3.tgz#522b2777bfdbd8b785216541c5dc7d273b5e988f"
+  integrity sha512-KmXYTwAllUE22puOz49v2LZk/fIHE00eKK0K4oW7KdqbTGPPwaPpYNGgfKFfTdEdQrKoB7vi/B/cCO0fd5YnWg==
   dependencies:
     tslib "^1.9.0"
 
