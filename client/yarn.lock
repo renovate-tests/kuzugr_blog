@@ -1132,8 +1132,9 @@ bonjour@^3.5.0:
     multicast-dns "^6.0.1"
     multicast-dns-service-types "^1.1.0"
 
-"bootstrap-markdown@github:toopay/bootstrap-markdown":
+bootstrap-markdown@toopay/bootstrap-markdown:
   version "2.10.0"
+  uid a496d34b9bd34451c8315a850472f794c8df7d53
   resolved "https://codeload.github.com/toopay/bootstrap-markdown/tar.gz/a496d34b9bd34451c8315a850472f794c8df7d53"
 
 bootstrap@^3.3.7:
@@ -7084,7 +7085,7 @@ typescript@3.1.6:
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.6.tgz#b6543a83cfc8c2befb3f4c8fba6896f5b0c9be68"
 
-typescript@3.5:
+typescript@3.5.3:
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.3.tgz#c830f657f93f1ea846819e929092f5fe5983e977"
   integrity sha512-ACzBtm/PhXBDId6a6sDJfroT2pOWt/oOnk4/dElG5G33ZL776N3Y6/6bKZJBFpd+b05F3Ct9qDjMeJmRWtE2/g==
