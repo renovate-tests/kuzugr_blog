@@ -34,7 +34,7 @@
 
 .search-input {
   border-style: none;
-  width: 80%;
+  width: 60%;
 
   @include respond-to(smartphone) {
     width: 60%;
