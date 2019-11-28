@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   apiEndpoint: 'http://local.kuzugr.com:3000/api/v1',
   uploadFileEndpoint: 'http://local.kuzugr.com:3000/api/v1/upload_files',
-  title: 'RubyとJavascriptと時々音楽',
+  title: 'kuzugrの気まぐれブログ',
 };
 
 /*

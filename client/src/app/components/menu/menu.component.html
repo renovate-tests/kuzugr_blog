@@ -4,6 +4,9 @@
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <i class="fa fa-search"></i>
         <input tabindex='0' class='search-input click-util' formControlName='keyword' type="text" placeholder="Search">
+        <span *ngIf="loginState">
+          <span class='click-util menu-item' [routerLink]="['/article/create']" fragment="top">記事作成</span>
+        </span>
       </form>
     </span>
     <span class='menu-block'>
@@ -11,9 +14,6 @@
       <span class='click-util menu-item' [routerLink]="['/profile']" fragment="top">プロフィール</span>
       <span class='click-util menu-item' [routerLink]="['/privacy-policy']" fragment="top">プライバシーポリシー</span>
       <span class='click-util menu-item' [routerLink]="['/contact']" fragment="top">お問い合わせ</span>
-      <span *ngIf="loginState">
-        <span class='click-util menu-item' [routerLink]="['/article/create']" fragment="top">記事作成</span>
-      </span>
     </span>
   </div>
 </div>
