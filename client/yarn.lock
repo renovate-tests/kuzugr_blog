@@ -604,7 +604,7 @@ angular-markdown-editor@2.0.2:
   integrity sha512-gXazd21TWy9t0nsZo5zC+/U7L21sXiBdX/jNmJ0V7MMsM9M7MBvrGF46I2nqEKdQ+LGh4ZfoJoMZ1HTBu8p2mA==
   dependencies:
     bootstrap "^3.3.7"
-    bootstrap-markdown "github:toopay/bootstrap-markdown"
+    bootstrap-markdown toopay/bootstrap-markdown
     core-js "^2.5.1"
     font-awesome "^4.7.0"
     jquery ">=3.2.1"
@@ -1134,7 +1134,6 @@ bonjour@^3.5.0:
 
 "bootstrap-markdown@github:toopay/bootstrap-markdown":
   version "2.10.0"
-  uid a496d34b9bd34451c8315a850472f794c8df7d53
   resolved "https://codeload.github.com/toopay/bootstrap-markdown/tar.gz/a496d34b9bd34451c8315a850472f794c8df7d53"
 
 bootstrap@^3.3.7:
@@ -7084,6 +7083,11 @@ typedarray@^0.0.6:
 typescript@3.1.6:
   version "3.1.6"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.1.6.tgz#b6543a83cfc8c2befb3f4c8fba6896f5b0c9be68"
+
+typescript@3.5:
+  version "3.5.3"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.5.3.tgz#c830f657f93f1ea846819e929092f5fe5983e977"
+  integrity sha512-ACzBtm/PhXBDId6a6sDJfroT2pOWt/oOnk4/dElG5G33ZL776N3Y6/6bKZJBFpd+b05F3Ct9qDjMeJmRWtE2/g==
 
 uglify-es@^3.3.4:
   version "3.3.9"
