@@ -38,7 +38,7 @@
     "express": "4.17.1",
     "font-awesome": "4.7.0",
     "ng2-adsense": "6.0.2",
-    "ngx-markdown": "7.1.5",
+    "ngx-markdown": "8.2.1",
     "rxjs": "6.5.3",
     "rxjs-compat": "6.5.3",
     "yarn": "1.19.2",
