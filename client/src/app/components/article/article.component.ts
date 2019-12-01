@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../../shared/services/article.service';
 import { Article } from '../../shared/models/article';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
 import { ConfirmDialogService } from '../../shared/services//confirm-dialog.service';
 import { Meta, Title } from '@angular/platform-browser';
@@ -27,6 +27,7 @@ export class ArticleComponent implements OnInit {
     private confirmDialogService: ConfirmDialogService,
     private metaService: Meta,
     private titleService: Title,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -109,6 +110,27 @@ export class ArticleComponent implements OnInit {
           this.articleService.tweet(this.article.id).subscribe(
             (response) => {
               this.isDisabled = true;
+            },
+            (error) => {},
+          );
+        }
+      });
+  }
+
+  destoryArticle() {
+    this.confirmDialogService
+      .showConfirm({
+        title: '削除',
+        content: `この記事を削除しますか？`,
+        acceptButton: '削除する',
+        cancelButton: 'キャンセル',
+        isDanger: true,
+      })
+      .subscribe((confirm) => {
+        if (confirm) {
+          this.articleService.destroy(this.article.id).subscribe(
+            (response) => {
+              this.router.navigate(['/'])
             },
             (error) => {},
           );
