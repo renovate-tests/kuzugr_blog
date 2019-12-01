@@ -4,6 +4,7 @@ create_table "comments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSE
   t.bigint "article_id", null: false
   t.index [:article_id], name: 'index_comments_on_article_id'
   t.datetime "created_at", null: false
+  t.index [:created_at], name: 'index_comments_on_created_at'
   t.datetime "updated_at", null: false
 end
 
