@@ -130,7 +130,7 @@ export class ArticleComponent implements OnInit {
         if (confirm) {
           this.articleService.destroy(this.article.id).subscribe(
             (response) => {
-              this.router.navigate(['/'])
+              this.router.navigate(['/']);
             },
             (error) => {},
           );
