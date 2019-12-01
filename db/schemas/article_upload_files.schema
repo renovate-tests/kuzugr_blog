@@ -1,4 +1,9 @@
 create_table "article_upload_files", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC" do |t|
-  t.integer "article_id", null: false
-  t.integer "upload_file_id", null: false
+  t.bigint "article_id", null: false
+  t.index [:article_id], name: 'index_article_upload_files_on_article_id'
+  t.bigint "upload_file_id", null: false
+  t.index [:upload_file_id], name: 'index_article_upload_files_on_upload_file_id'
 end
+
+add_foreign_key :article_upload_files, :articles, name: 'index_article_upload_files_on_article_id'
+add_foreign_key :article_upload_files, :upload_files, name: 'index_article_upload_files_on_upload_file_id'
