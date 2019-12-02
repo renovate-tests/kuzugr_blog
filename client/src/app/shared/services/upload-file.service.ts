@@ -11,6 +11,6 @@ export class UploadFileService {
   constructor(private http: HttpClient) {}
 
   uploadFile(params: any): any {
-    return this.http.post(`${this.apiEndpoint}/upload_files/create`, params);
+    return this.http.post(`${this.apiEndpoint}/upload_files`, params);
   }
 }

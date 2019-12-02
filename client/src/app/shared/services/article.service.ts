@@ -45,6 +45,10 @@ export class ArticleService {
     return this.http.post<any>(`${this.apiEndpoint}/articles/tweet`, { id: articleId });
   }
 
+  destroy(articleId: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiEndpoint}/articles/${articleId}`);
+  }
+
   async loadLatestArticles() {
     const articles = await this.getLatesAticles();
     return articles.map((item) => Object.assign(new Article(), item));
