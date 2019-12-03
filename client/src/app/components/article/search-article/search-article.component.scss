@@ -23,6 +23,10 @@ table {
   color: gray;
 }
 
+.image-td {
+  vertical-align: bottom;
+}
+
 img {
   width: 10rem;
   height: 10rem;
@@ -34,7 +38,7 @@ img {
 }
 
 .click-util {
-  border: solid 2px #999999;
+  border: solid 1px #eaecee;
   width: 60rem;
 
   @include respond-to(tablet) {
@@ -46,7 +50,6 @@ img {
   }
 }
 
-.click-util:hover {
+.article-title:hover {
   color: #0088c7;
-  border: solid 1px #0088c7;
 }
