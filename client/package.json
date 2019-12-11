@@ -41,7 +41,7 @@
         "ngx-markdown": "8.2.1",
         "rxjs": "6.5.3",
         "rxjs-compat": "6.5.3",
-        "yarn": "1.21.0",
+        "yarn": "1.21.1",
         "zone.js": "0.10.2"
     },
     "devDependencies": {
