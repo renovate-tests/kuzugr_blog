@@ -1274,10 +1274,12 @@ angular-markdown-editor@2.0.2:
     tslib "^1.7.1"
     vinyl-paths "^2.1.0"
 
-angular2-image-upload@1.0.0-rc.1:
-  version "1.0.0-rc.1"
-  resolved "https://registry.yarnpkg.com/angular2-image-upload/-/angular2-image-upload-1.0.0-rc.1.tgz#d6fb8e9bd523592d782bf49165ebcacb07891b26"
-  integrity sha512-OdXxB8agH+AXghCvBzlSp4/kkfpUNwSZm2wpqKsGN3wls0MlMEVNzW4kiYFjcdQTIgy236I1IiEgeMZTVVw2rQ==
+angular2-image-upload@1.0.0-rc.2:
+  version "1.0.0-rc.2"
+  resolved "https://registry.yarnpkg.com/angular2-image-upload/-/angular2-image-upload-1.0.0-rc.2.tgz#2e074ff9d8ad08b21f3deaec01f93bbc8265cbc4"
+  integrity sha512-chAmGu7iPy44a40ATEKspQRkRlYRewYkX78OxrzPf9rix4QM+q1MTJIt4KcmiBjdSPMc9zm1qIIsBVv0gpg5Kg==
+  dependencies:
+    tslib "^1.9.0"
 
 ansi-colors@4.1.1:
   version "4.1.1"
